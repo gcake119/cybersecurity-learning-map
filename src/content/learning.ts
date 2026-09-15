@@ -1,4 +1,6 @@
-export const phases = [
+export interface Phase { id: number; title: string; subtitle: string; tags: string; color: "teal" | "ochre" | "olive" | "rust"; slide: number; goal: string; exercise: string }
+export interface Slide { phase: number; title: string; intro: string; items: [string,string][]; task: string; source?: string }
+const phaseRows: Array<[string, string, string, Phase["color"], number, string, string]> = [
 ['資安基本模型','先知道，要保護什麼','CIA · 資產 · 威脅與風險','teal',2,'描述資產、存取者與失敗後的影響。','選一項功能，列出不能洩漏、不能被改、不能中斷的資料或服務。'],
 ['漏洞資訊','看懂公告，判斷優先順序','CWE · CVE · CVSS · EPSS','ochre',4,'區分漏洞類型、漏洞編號、嚴重度與利用訊號。','找一個專案依賴的公告，核對版本、暴露面和修補方法。'],
 ['Linux 與 SSH','在伺服器上找到方向','Shell · 檔案 · Process','olive',5,'辨識現在操作的是本機、遠端主機或容器。','在練習目錄建立檔案，再登入自己的測試 VM 查看日誌。'],
@@ -8,9 +10,10 @@ export const phases = [
 ['Secure Development','把保護寫進日常開發','驗證 · 機密 · 日誌 · 相依套件','olive',11,'把攻擊條件轉成明確的設計與測試要求。','替一個 API 寫下身分、權限、輸入與日誌規則。'],
 ['Threat Modeling','沿著資料流找風險','資產 · 攻擊面 · 信任邊界','rust',12,'辨識資料跨越的邊界與每一段的信任假設。','畫出 PDF 上傳到解析的資料流，逐段寫下可能的失敗。'],
 ['Security Engineering','讓安全持續被驗證','安全需求 · CI · 監控 · 應變','teal',13,'把安全需求連到測試、部署和營運責任。','加入未授權請求測試，指定告警後的處理人與回復方式。']
-].map(([title,subtitle,tags,color,slide,goal,exercise],i)=>({id:i,title,subtitle,tags,color,slide,goal,exercise}));
-const slide=(phase,title,intro,items,task,source)=>({phase,title,intro,items,task,source});
-export const slides=[
+];
+export const phases: Phase[] = phaseRows.map(([title,subtitle,tags,color,slide,goal,exercise],i)=>({id:i,title,subtitle,tags,color,slide,goal,exercise}));
+const slide=(phase: number,title: string,intro: string,items: [string,string][],task: string,source?: string): Slide=>({phase,title,intro,items,task,source});
+export const slides: Slide[]=[
 slide(0,'從看懂系統，開始學資安','沿著「資料如何被信任」學習，逐步建立能解釋、能驗證的安全判斷。', [['觀察','資料從哪裡來？誰可以操作？'],['判斷','哪些條件失效會造成影響？'],['驗證','用什麼測試證明保護有效？']], '選一個你熟悉的功能，作為整條路徑的練習案例。'),
 slide(0,'先看全貌，再選起點','九個階段是一條建議學習順序。所有內容都可自由閱讀，Linux 與漏洞資訊也可同步補齊。',[['基礎 01—04','資安模型、漏洞語言、系統操作、HTTP'],['實驗 05—06','Web 信任關係與授權靶場'],['工程 07—09','安全開發、威脅模型、持續驗證']], '切回地圖，選擇最需要補齊的階段。'),
 slide(0,'資安在保護什麼？','先描述你要保護的資產，再看事件會造成哪一種影響。',[['C · 機密性','個案資料只能由獲授權的人讀取。'],['I · 完整性','案件狀態不能被未授權地修改。'],['A · 可用性','工作人員需要時能使用案件系統。']], '為同一項功能各寫一個 CIA 失敗情境。'),
