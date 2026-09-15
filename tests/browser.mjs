@@ -16,7 +16,7 @@ try {
  assert.equal(await page.locator('.node.muted').count(),3);
  await page.locator('[data-node="3"]').click();
  await page.locator('.detail .primary').click();
- await page.waitForURL('**/#/slide/6');
+ await page.waitForURL('**/#/learn/6');
  await page.getByRole('tab',{name:'Response',exact:true}).click();
  assert.match(await page.getByRole('tabpanel').innerText(),/application\/json/);
  await page.getByRole('button',{name:'權限 檢查可否存取'}).click();
@@ -27,8 +27,10 @@ try {
  await page.locator('[data-complete]').click();
  await page.reload();await page.locator('[data-complete][aria-pressed="true"]').waitFor();
  assert.match(await page.locator('#progress').innerText(),/1 \/ 16/);
- await page.keyboard.press('ArrowRight');await page.waitForURL('**/#/slide/7');
- await page.keyboard.press('ArrowLeft');await page.waitForURL('**/#/slide/6');
+ await page.keyboard.press('ArrowRight');assert.ok(page.url().endsWith('/learn/6'));
+ assert.equal(await page.getByRole('button',{name:'下一頁',exact:true}).count(),0);
+ await page.getByRole('navigation',{name:'本階段主題'}).getByRole('link',{name:'UI 限制需要後端保護'}).click();await page.waitForURL('**/#/learn/7');
+ await page.getByRole('navigation',{name:'本階段主題'}).getByRole('link',{name:'跟著一次 HTTP 請求'}).click();await page.waitForURL('**/#/learn/6');
  await page.keyboard.press('Escape');await page.waitForURL('**/#/map/3');
  // A reload intentionally resets the in-memory path preference. Switching modes must retain it.
  await page.getByRole('button',{name:'Web 開發者優先'}).click();
@@ -38,21 +40,22 @@ try {
  await mkdir('test-results',{recursive:true});
  await page.screenshot({path:'test-results/map-desktop.png',fullPage:true});
  for(let i=0;i<16;i++){
-  await page.goto(url+'#/slide/'+i);await page.locator(i===6?'.http-lesson':'.concept').last().waitFor();
+  await page.goto(url+'#/learn/'+i);await page.locator(i===6?'.http-lesson':'.concept').last().waitFor();
   if(i!==6)assert.equal(await page.locator('.concept').count(),3);
   assert.ok(await page.locator('h1').innerText());
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'desktop overflow on '+i);
  }
- await page.goto(url+'#/slide/6');await page.locator('.http-lesson').waitFor();
+ await page.goto(url+'#/learn/6');await page.locator('.http-lesson').waitFor();
  await page.screenshot({path:'test-results/slide-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});
- for(const route of ['map/0',...Array.from({length:16},(_,i)=>'slide/'+i)]){
-  await page.goto(url+'#/'+route);await page.locator(route.startsWith('map')?'.node':route==='slide/6'?'.http-lesson':'.concept').last().waitFor();
+ for(const route of ['map/0',...Array.from({length:16},(_,i)=>'learn/'+i)]){
+  await page.goto(url+'#/'+route);await page.locator(route.startsWith('map')?'.node':route==='learn/6'?'.http-lesson':'.concept').last().waitFor();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'mobile overflow on '+route);
  }
- await page.goto(url+'#/slide/6');await page.locator('.http-lesson').waitFor();
+ await page.goto(url+'#/learn/6');await page.locator('.http-lesson').waitFor();
  await page.screenshot({path:'test-results/slide-mobile.png',fullPage:true});
- await page.goto(url+'#/slide/999');await page.waitForURL('**/#/slide/15');
+ await page.goto(url+'#/slide/6');await page.waitForURL('**/#/learn/6');
+ await page.goto(url+'#/learn/999');await page.waitForURL('**/#/learn/15');
  await page.goto(url+'#/unknown');await page.waitForURL('**/#/map/0');
  await page.evaluate(()=>localStorage.setItem('security-progress-v1','[6,6,-1,999,"oops"]'));
  await page.reload();await page.locator('.node').last().waitFor();
@@ -66,5 +69,5 @@ try {
  const isolated=await context.newPage();await isolated.goto(url);await isolated.locator('.node').last().waitFor();
  assert.match(await isolated.locator('#progress').innerText(),/無法持久儲存/);
  assert.deepEqual(errors,[]);
- console.log('PASS: 9 map nodes; 16 slides on desktop/mobile; routing; keyboard; path state; progress persistence, migration and reset; unavailable storage; no page errors.');
+ console.log('PASS: 9 map nodes; 16 learning topics on desktop/mobile; routing; keyboard; path state; progress persistence, migration and reset; unavailable storage; no page errors.');
 } finally {await browser?.close();server.kill();}
