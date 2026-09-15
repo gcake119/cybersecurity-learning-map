@@ -23,6 +23,6 @@ python3 -m http.server 8000
 
 ## 編輯原則
 
-主題為 Cybersecurity，不混入 Agent System Design。所有階段開放閱讀；編號是建議顺序，不代表嚴格先備依賴。Bug、弱點、漏洞、威脅與風險不描述成必然線性鏈；CVSS 與 EPSS 不當作個別部署的完整風險分數。練習限自有測試環境或授權靶場。內容是自主整理的學習路徑，不是飛飛課程的官方教材。
+主題為 Cybersecurity，不混入 Agent System Design。所有階段開放閱讀；編號是建議順序，不代表嚴格先備依賴。Bug、弱點、漏洞、威脅與風險不描述成必然線性鏈；CVSS 與 EPSS 不當作個別部署的完整風險分數。練習限自有測試環境或授權靶場。內容是自主整理的學習路徑，不是飛飛課程的官方教材。
 
 參考來源：FIRST EPSS、MITRE CWE、MDN HTTP、OpenSSH、curl、OWASP WSTG / ASVS / SAMM、PortSwigger Academy；各頁附對應官方連結。
