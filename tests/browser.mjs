@@ -17,6 +17,13 @@ try {
  await page.locator('[data-node="3"]').click();
  await page.locator('.detail .primary').click();
  await page.waitForURL('**/#/slide/6');
+ await page.getByRole('tab',{name:'Response',exact:true}).click();
+ assert.match(await page.getByRole('tabpanel').innerText(),/application\/json/);
+ await page.getByRole('button',{name:'權限 檢查可否存取'}).click();
+ assert.match(await page.locator('.gate-explanation').innerText(),/案件 42/);
+ await page.getByRole('button',{name:'播放封包流程'}).click();
+ await page.waitForFunction(()=>document.querySelector('[role=status]')?.textContent.includes('3 / 3'));
+ assert.equal(await page.getByRole('tab',{name:'Response',exact:true}).getAttribute('aria-selected'),'true');
  await page.locator('[data-complete]').click();
  await page.reload();await page.locator('[data-complete][aria-pressed="true"]').waitFor();
  assert.match(await page.locator('#progress').innerText(),/1 \/ 16/);
@@ -31,18 +38,19 @@ try {
  await mkdir('test-results',{recursive:true});
  await page.screenshot({path:'test-results/map-desktop.png',fullPage:true});
  for(let i=0;i<16;i++){
-  await page.goto(url+'#/slide/'+i);await page.locator('.concept').last().waitFor();
-  assert.equal(await page.locator('.concept').count(),3);
-  assert.ok(await page.locator('article h1').innerText());
+  await page.goto(url+'#/slide/'+i);await page.locator(i===6?'.http-lesson':'.concept').last().waitFor();
+  if(i!==6)assert.equal(await page.locator('.concept').count(),3);
+  assert.ok(await page.locator('h1').innerText());
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'desktop overflow on '+i);
  }
- await page.goto(url+'#/slide/6');await page.locator('article').waitFor();
+ await page.goto(url+'#/slide/6');await page.locator('.http-lesson').waitFor();
  await page.screenshot({path:'test-results/slide-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});
  for(const route of ['map/0',...Array.from({length:16},(_,i)=>'slide/'+i)]){
-  await page.goto(url+'#/'+route);await page.locator(route.startsWith('map')?'.node':'.concept').last().waitFor();
+  await page.goto(url+'#/'+route);await page.locator(route.startsWith('map')?'.node':route==='slide/6'?'.http-lesson':'.concept').last().waitFor();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'mobile overflow on '+route);
  }
+ await page.goto(url+'#/slide/6');await page.locator('.http-lesson').waitFor();
  await page.screenshot({path:'test-results/slide-mobile.png',fullPage:true});
  await page.goto(url+'#/slide/999');await page.waitForURL('**/#/slide/15');
  await page.goto(url+'#/unknown');await page.waitForURL('**/#/map/0');
