@@ -1,10 +1,26 @@
 # 資安學習地圖
 
-Vue 3 + TypeScript + Vite 的九階段地圖與 16 個互動學習主題。採用冷白／淺藍底、深藍文字與立體技術圖示。支援完整與 Web 開發者優先路徑、階段內主題探索與 Esc 返回地圖。
+Vue 3 + TypeScript + Vite + pnpm。九個階段各有可執行的情境模型；操作條件會改變輸出資料、處理路徑或測試結果。不提供純簡報模式。
+
+## 九個實驗
+
+| 階段 | 操作與可觀察結果 |
+|---|---|
+| CIA | 切換外洩、竄改、中斷與存取控制，比較資料和服務狀態 |
+| 漏洞資訊 | 調整暴露、KEV、EPSS 和業務重要性，觀察修補順序 |
+| Linux / SSH | 在本機與虛擬 VM 執行相同唯讀指令，比較輸出 |
+| HTTP | 切換帳號、資源、UI/API 入口與權限檢查，觀察 200/401/403 和回傳資料 |
+| Web Security | 比較拼接與參數化查詢對同一測試輸入的回傳筆數 |
+| 攻擊實驗 | 固定 Session，修改案件 ID、重送、修補，再比較證據 |
+| Secure Development | 配置歸屬、狀態、日誌規則，執行四項驗收 |
+| Threat Modeling | 在資料流邊界配置保護，觀察指定威脅在哪裡被攔截 |
+| Security Engineering | 注入缺陷並選擇測試，觀察 CI 放行、漏檢或阻擋 |
+
+每個實驗都有：任務、可編輯條件、執行按鈕、結果與處理路徑、最近兩次比較、模型範圍及原始參考連結。變更輸入後明確提示結果過期，必須重新執行。所有資料及命令皆在瀏覽器內模擬，沒有後端、外部 API 請求或真實 Shell / SQL 執行。
 
 ## 開發與驗證
 
-需要 Node.js 22.12+ 與 pnpm 11.19.0（packageManager 已鎖定版本）。
+Node.js 22.12+；pnpm 11.19.0。
 
 ```sh
 pnpm install --frozen-lockfile
@@ -14,32 +30,26 @@ pnpm exec playwright install chromium
 pnpm test:browser
 ```
 
-`build` 先以 vue-tsc 檢查 TypeScript 與 Vue 模板，再由 Vite 產生 dist。瀏覽器測試使用 production preview，檢查桌機／手機的全部主題、路由、鍵盤、進度保留、重設與 storage 不可用情境，並留下截圖。
+瀏覽器測試逐一檢查九個模型的反例與保護結果，包括資料回傳、查詢筆數、排序、錯誤邊界、CI 漏檢；另驗證前後比較、完成證據、路由、桌面／手機與儲存失效情境。不是只檢查卡片數量。
 
-## 元件與內容
+## 結構與相容性
 
-- `src/App.vue`：頁首、觀看模式、路由容器。
-- `src/components/LearningMap.vue`、`MapNode.vue`：地圖及優先路徑。
-- `src/components/SlideView.vue`：概念點選與練習展開。
-- `src/components/HttpLesson.vue`：HTTP 封包播放、Request／Response 切換及伺服器檢查說明。
-- `src/components/UiIcon.vue`：共用 Phosphor 圖示。
-- `public/assets/`：淺銀藍色筆電與伺服器 WebP 插圖。
-- `src/components/PhaseDetail.vue`：共用學習目標與練習。
-- `src/components/ProgressFooter.vue`、`src/composables/useProgress.ts`：進度顯示與儲存。
-- `src/content/learning.ts`：有型別的 Phase / Slide、九階段及 16 頁內容、官方來源。
-- `src/style.css`：共享設計樣式與響應式布局。
+- `src/labs/model.ts`：九個純函式模擬模型、控制項與完成條件。
+- `src/components/LabView.vue`：條件編輯、結果快照、執行紀錄與比較。
+- `src/components/LearningMap.vue`、`MapNode.vue`、`PhaseDetail.vue`：地圖與實驗入口。
+- `src/composables/useProgress.ts`：指定對照完成後自動儲存九個實驗的進度。
+- `src/content/learning.ts`：階段資料及舊主題對應；舊簡報元件已移除。
+- `src/components/UiIcon.vue`、`src/style.css`：共享圖示與淺色視覺。
 
-Vue Router 使用 hash history，保留 `#/map/0`、`#/learn/6` 等網址；舊 `#/slide/6` 會轉址到互動主題。localStorage 沿用 `security-progress-v1`，舊版進度可繼續使用，只儲存於此瀏覽器。無後端、無追蹤分析、無 CDN 執行期依賴。
+主要路由為 `#/map/0`、`#/lab/3`。舊 `#/learn/6` 與 `#/slide/6` 轉到 HTTP 實驗 `#/lab/3`。
+新實驗進度使用 `security-lab-progress-v2`，保留舊閱讀進度的儲存資料，但不把閱讀完成當作實驗證據。重新整理保留完成紀錄；執行快照是暫存，不持久化。
 
 ## GitHub Pages
 
-**必要設定：Settings → Pages → Build and deployment → Source 必須選 GitHub Actions。** 若使用 Deploy from a branch，內建部署會發布原始 index.html（引用 /src/main.ts），覆蓋 Vite 建置成果並造成空白頁。main 更新後執行 pnpm install --frozen-lockfile、型別檢查、建置與瀏覽器測試，通過才將 dist 部署至 Pages。Vite base 為 `/cybersecurity-learning-map/`。更改 repo 名稱時需同步調整 base 與測試網址。
+**Settings → Pages → Build and deployment → Source 必須選 GitHub Actions。** 分支原始碼部署會發布引用 `/src/main.ts` 的開發入口而造成空白頁。
 
-## 內容原則
+main 更新後執行 pnpm 安裝、型別檢查、建置與瀏覽器測試，成功才部署 dist。每次重跑使用獨立 artifact 名稱，避免重複名稱導致部署失敗。Vite base 為 `/cybersecurity-learning-map/`。
 
-主題是 Cybersecurity。所有階段開放閱讀；編號代表建議順序，不代表嚴格先備依賴。Bug、弱點、漏洞、威脅與風險不描述成必然線性鏈；CVSS 與 EPSS 不當作個別部署的完整風險分數。練習限自有測試環境或授權靶場。本網站是自主整理的學習路徑，不是飛飛課程的官方教材。
+## 教學範圍
 
-各頁附 FIRST、MITRE、MDN、OpenSSH、curl、OWASP 或 PortSwigger 的官方參考連結。
-
-## 主題探索
-網站提供學習地圖與互動主題，不提供純簡報模式。階段內可自由選擇主題，保留概念展開、HTTP 操作、練習和原有進度，不以左右鍵或滑動強制逐頁切換。
+練習是特定案例的簡化模型，不宣稱為真實漏洞掃描、完整 SQL 引擎或風險評分。每個模型在畫面列出限制和來源。完成代表做過指定比較，不代表已熟練或系統全面安全。教材為自主整理，非飛飛課程官方教材。
