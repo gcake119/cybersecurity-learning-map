@@ -41,3 +41,6 @@ final result: passed
 - [x] Preserve Vue, pnpm and GitHub Pages routing.
 - [x] Inspect browser rendering and primary interactions.
 - [x] Update browser regression suite for new lesson markup.
+
+## Deployment verification
+GitHub Actions run 35011017403 passed build, the full browser suite and Pages deployment for commit b129501e679873c11f6fd66620f59441e5d156f9.

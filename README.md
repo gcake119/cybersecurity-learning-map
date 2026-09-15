@@ -1,6 +1,6 @@
 # 資安學習地圖
 
-Vue 3 + TypeScript + Vite 的九階段地圖與 16 頁互動簡報。保留暖白網格、低彩度分類色、完整與 Web 開發者優先路徑、鍵盤及手機滑動導覽。
+Vue 3 + TypeScript + Vite 的九階段地圖與 16 頁互動簡報。採用冷白／淺藍底、深藍文字與立體技術圖示。支援完整與 Web 開發者優先路徑、鍵盤及手機滑動導覽。
 
 ## 開發與驗證
 
@@ -20,7 +20,10 @@ pnpm test:browser
 
 - `src/App.vue`：頁首、觀看模式、路由容器。
 - `src/components/LearningMap.vue`、`MapNode.vue`：地圖及優先路徑。
-- `src/components/SlideView.vue`、`ConceptCard.vue`：簡報與導覽。
+- `src/components/SlideView.vue`：概念點選與練習展開。
+- `src/components/HttpLesson.vue`：HTTP 封包播放、Request／Response 切換及伺服器檢查說明。
+- `src/components/UiIcon.vue`：共用 Phosphor 圖示。
+- `public/assets/`：淺銀藍色筆電與伺服器 WebP 插圖。
 - `src/components/PhaseDetail.vue`：共用學習目標與練習。
 - `src/components/ProgressFooter.vue`、`src/composables/useProgress.ts`：進度顯示與儲存。
 - `src/content/learning.ts`：有型別的 Phase / Slide、九階段及 16 頁內容、官方來源。
