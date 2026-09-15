@@ -33,7 +33,7 @@ Vue Router 使用 hash history，保留 `#/map/0`、`#/slide/6` 等原有網址�
 
 ## GitHub Pages
 
-Source 設為 GitHub Actions。main 更新後執行 pnpm install --frozen-lockfile、型別檢查、建置與瀏覽器測試，通過才將 dist 部署至 Pages。Vite base 為 `/cybersecurity-learning-map/`。更改 repo 名稱時需同步調整 base 與測試網址。
+**必要設定：Settings → Pages → Build and deployment → Source 必須選 GitHub Actions。** 若使用 Deploy from a branch，內建部署會發布原始 index.html（引用 /src/main.ts），覆蓋 Vite 建置成果並造成空白頁。main 更新後執行 pnpm install --frozen-lockfile、型別檢查、建置與瀏覽器測試，通過才將 dist 部署至 Pages。Vite base 為 `/cybersecurity-learning-map/`。更改 repo 名稱時需同步調整 base 與測試網址。
 
 ## 內容原則
 

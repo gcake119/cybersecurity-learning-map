@@ -31,12 +31,15 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: browser-screenshots
+          name: browser-screenshots-${{ github.run_attempt }}
           path: test-results/
           retention-days: 7
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
+          name: github-pages-${{ github.run_attempt }}
           path: dist
       - uses: actions/deploy-pages@v4
         id: deployment
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
