@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import {computed,inject,type Ref} from 'vue';
+import {computed,nextTick} from 'vue';
 import {useRoute,useRouter} from 'vue-router';
-import {phases} from '../content/learning';
+import {units,chapters,unitById} from '../content/curriculum';
 import {useProgress} from '../composables/useProgress';
-import MapNode from './MapNode.vue';
 import PhaseDetail from './PhaseDetail.vue';
-const route=useRoute(),router=useRouter();const index=computed(()=>Number(route.params.index));
-const priority=inject<Ref<boolean>>('priority')!;const {done}=useProgress();
+const route=useRoute(),router=useRouter();const index=computed(()=>Number(route.params.index));const {done}=useProgress();
+async function selectUnit(id:number){await router.push(`/map/${id}`);await nextTick();if(innerWidth<850)document.querySelector('.detail')?.scrollIntoView({block:'start'});}
 </script>
-<template><section class="intro"><div><span class="eyebrow">YOUR SECURITY LEARNING ATLAS</span><h1>把概念連起來，<em>走出自己的學習路徑。</em></h1><p>選擇一個情境，改變條件、觀察結果，再把保護加回系統。</p></div><div class="path-switch" role="group" aria-label="學習路徑"><button :class="{selected:!priority}" :aria-pressed="!priority" @click="priority=false">完整路徑</button><button :class="{selected:priority}" :aria-pressed="priority" @click="priority=true">Web 開發者優先</button></div></section><div class="workspace"><section class="map-paper" aria-label="九階段學習地圖"><div class="map-caption"><span>THE LEARNING PATH</span><span>01 — 09 / 自由探索</span></div><div class="nodes"><MapNode v-for="phase in phases" :key="phase.id" :phase="phase" :selected="index===phase.id" :priority="priority" :started="done.includes(phase.id)" @select="router.push(`/map/${phase.id}`)"/></div><div class="map-legend"><span>● 目前選取</span><span>{{priority?'加深節點：Web 開發者優先路徑':'編號表示建議順序，不限制閱讀'}}</span><RouterLink to="/lab/0">從第一個實驗開始 →</RouterLink></div></section><PhaseDetail :phase="phases[index]"/></div></template>
+<template><section class="intro"><div><span class="eyebrow">SECURITY / LEARN · APPLY · VERIFY</span><h1>你的系統，<em>如何保護重要資料與操作？</em></h1><p>說清楚要保護什麼 → 把保護放進系統 → 用證據確認保護有效。</p><p>以案件管理系統為共同案例。三章九單元，每一單元都從理解走向操作與判斷。</p></div></section><div class="workspace course-map"><section class="map-paper" aria-label="三章九單元學習地圖"><section v-for="(chapter,c) in chapters" :key="chapter.title" class="course-chapter"><div class="chapter-heading"><span>CHAPTER 0{{c+1}}</span><h2>{{chapter.title}}</h2><strong>{{chapter.question}}</strong><p>{{chapter.summary}}</p></div><div class="course-units"><button v-for="unit in units.filter(u=>u.chapter===c)" :key="unit.id" class="node course-node" :class="{chosen:index===unit.id}" :aria-pressed="index===unit.id" :data-node="unit.id" @click="selectUnit(unit.id)"><span class="unit-number">{{String(unit.number).padStart(2,'0')}}</span><div><small>{{done.includes(unit.id)?'✓ 已完成學習檢核':'觀念 · 實驗 · 應用'}}</small><h3>{{unit.title}}</h3><p>{{unit.goals[0]}}</p></div><span aria-hidden="true">↗</span></button></div></section></section><PhaseDetail :unit="unitById[index]"/></div></template>

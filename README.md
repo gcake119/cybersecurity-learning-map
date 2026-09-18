@@ -1,24 +1,24 @@
 # 資安學習地圖
 
-Vue 3 + TypeScript + Vite + pnpm。九個階段各有可執行的情境模型；操作條件會改變輸出資料、處理路徑或測試結果。不提供純簡報模式。
+Vue 3 + TypeScript + Vite + pnpm 的互動課程，部署至 GitHub Pages。
 
-## 九個實驗
+## 課程結構
 
-| 階段 | 操作與可觀察結果 |
+核心問題：如何判斷自己的 Web 系統有沒有保護重要資料與操作？
+
+| 章 | 單元 |
 |---|---|
-| CIA | 切換外洩、竄改、中斷與存取控制，比較資料和服務狀態 |
-| 漏洞資訊 | 調整暴露、KEV、EPSS 和業務重要性，觀察修補順序 |
-| Linux / SSH | 在本機與虛擬 VM 執行相同唯讀指令，比較輸出 |
-| HTTP | 切換帳號、資源、UI/API 入口與權限檢查，觀察 200/401/403 和回傳資料 |
-| Web Security | 比較拼接與參數化查詢對同一測試輸入的回傳筆數 |
-| 攻擊實驗 | 固定 Session，修改案件 ID、重送、修補，再比較證據 |
-| Secure Development | 配置歸屬、狀態、日誌規則，執行四項驗收 |
-| Threat Modeling | 在資料流邊界配置保護，觀察指定威脅在哪裡被攔截 |
-| Security Engineering | 注入缺陷並選擇測試，觀察 CI 放行、漏檢或阻擋 |
+| 說清楚要保護什麼 | 1 從後果寫出安全需求；2 沿資料流找出信任邊界；3 依情境決定修補順序 |
+| 把保護放進系統 | 4 逐次檢查身分與資源權限；5 讓外部輸入保持資料身分；6 讓每條需求都有實作位置 |
+| 用證據確認保護有效 | 7 確認驗證環境與日誌來源；8 改變一個條件，留下對照證據；9 把安全保證留下來持續驗證 |
 
-每個實驗都有：任務、可編輯條件、執行按鈕、結果與處理路徑、最近兩次比較、模型範圍及原始參考連結。變更輸入後明確提示結果過期，必須重新執行。所有資料及命令皆在瀏覽器內模擬，沒有後端、外部 API 請求或真實 Shell / SQL 執行。
+每單元包含問題、核心結論、兩項學習目標、三段觀念教學、操作路線、互動模型、兩項判斷檢核、專案應用筆記及限制。以案件管理系統作為共同案例，不提供純簡報模式。
 
-## 開發與驗證
+操作可返回觀念或檢核，切換階段保留當次實驗條件、結果、答案。離開單元後實驗和答案重設；筆記與完成紀錄保留於本機瀏覽器。筆記可匯出 Markdown。
+
+完成需同時具備指定對照、兩項正確判斷、至少 20 字筆記。筆記只檢查填寫長度，**不自動判定語意正確性**。新進度 key 為 `security-course-progress-v3`，不把舊實驗進度認定為新課程完成。清除完成紀錄保留筆記。
+
+## 開發與測試
 
 Node.js 22.12+；pnpm 11.19.0。
 
@@ -30,26 +30,14 @@ pnpm exec playwright install chromium
 pnpm test:browser
 ```
 
-瀏覽器測試逐一檢查九個模型的反例與保護結果，包括資料回傳、查詢筆數、排序、錯誤邊界、CI 漏檢；另驗證前後比較、完成證據、路由、桌面／手機與儲存失效情境。不是只檢查卡片數量。
+GitHub Actions 執行建置與瀏覽器測試後才部署，Pages Source 為 GitHub Actions。測試涵蓋三章順序、九個模型、對照與理解檢核完成條件、筆記保留、桌面與手機、舊路由、儲存失效。
 
-## 結構與相容性
+## 維護
 
-- `src/labs/model.ts`：九個純函式模擬模型、控制項與完成條件。
-- `src/components/LabView.vue`：條件編輯、結果快照、執行紀錄與比較。
-- `src/components/LearningMap.vue`、`MapNode.vue`、`PhaseDetail.vue`：地圖與實驗入口。
-- `src/composables/useProgress.ts`：指定對照完成後自動儲存九個實驗的進度。
-- `src/content/learning.ts`：階段資料及舊主題對應；舊簡報元件已移除。
-- `src/components/UiIcon.vue`、`src/style.css`：共享圖示與淺色視覺。
+- `src/content/curriculum.ts`：三章九單元及學習目標、觀念、操作路線、檢核與應用。
+- `src/labs/model.ts`：九個模擬及實驗證據條件。全部本機執行，無真實 Shell、SQL、SSH 或外部 API。
+- `src/components/LabView.vue`：學習階段、實驗、檢核與筆記。
+- `src/components/LearningMap.vue`：依章節展示單元；使用穩定 ID 保留既有深層連結。
+- `src/content/learning.ts`：保留舊簡報路由映射，非目前課程內容來源。
 
-主要路由為 `#/map/0`、`#/lab/3`。舊 `#/learn/6` 與 `#/slide/6` 轉到 HTTP 實驗 `#/lab/3`。
-新實驗進度使用 `security-lab-progress-v2`，保留舊閱讀進度的儲存資料，但不把閱讀完成當作實驗證據。重新整理保留完成紀錄；執行快照是暫存，不持久化。
-
-## GitHub Pages
-
-**Settings → Pages → Build and deployment → Source 必須選 GitHub Actions。** 分支原始碼部署會發布引用 `/src/main.ts` 的開發入口而造成空白頁。
-
-main 更新後執行 pnpm 安裝、型別檢查、建置與瀏覽器測試，成功才部署 dist。每次重跑使用獨立 artifact 名稱，避免重複名稱導致部署失敗。Vite base 為 `/cybersecurity-learning-map/`。
-
-## 教學範圍
-
-練習是特定案例的簡化模型，不宣稱為真實漏洞掃描、完整 SQL 引擎或風險評分。每個模型在畫面列出限制和來源。完成代表做過指定比較，不代表已熟練或系統全面安全。教材為自主整理，非飛飛課程官方教材。
+顯示單元順序的穩定 ID 為 `[0,7,1,3,4,6,2,5,8]`。不要直接重排 labs 陣列以免破壞舊 `/lab/:id`、`/learn/:id`、`/slide/:id` 連結。
