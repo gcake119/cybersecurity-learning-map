@@ -5,6 +5,7 @@ import {labs,initial,achieved,type Values,type Outcome} from '../labs/model';
 import {unitById,chapters} from '../content/curriculum';
 import {useProgress} from '../composables/useProgress';
 import UiIcon from './UiIcon.vue';
+import ExperimentAnimation from './ExperimentAnimation.vue';
 const base=import.meta.env.BASE_URL;
 const route=useRoute(),router=useRouter();
 const id=computed(()=>Number(route.params.index));const lab=computed(()=>labs[id.value]);
@@ -38,7 +39,7 @@ function display(c:{key:string;options?:[string,string][]},v:Values){return type
 <section v-if="stage===0" class="lesson-intro"><p class="core-conclusion">{{unit.conclusion}}</p><h2>學完這個單元，你應該能</h2><ul><li v-for="goal in unit.goals" :key="goal">{{goal}}</li></ul><div class="concept-lessons"><article v-for="([title,body],i) in unit.concepts" :key="title"><span>觀念 {{i+1}}</span><h3>{{title}}</h3><p>{{body}}</p></article></div><section class="scenario-brief"><h2>這次的情境</h2><p>{{lab.story}}</p><h3>操作路線</h3><ol><li v-for="step in unit.steps" :key="step">{{step}}</li></ol></section><div class="lesson-actions"><button class="primary" @click="stage=1">開始情境操作 →</button></div></section>
 <template v-if="stage===1">
 <div class="mission"><UiIcon name="lab"/><div><strong>這次要觀察什麼？</strong><p>{{lab.mission}}</p></div><span class="mission-state">{{met?'對照已完成':'等待實驗證據'}}</span></div>
-<details class="operation-guide"><summary>查看操作路線與完成對照條件</summary><ol><li v-for="step in unit.steps" :key="step">{{step}}</li></ol><p>{{lab.mission}}</p></details><div class="lab-workspace">
+<details class="operation-guide"><summary>查看操作路線與完成對照條件</summary><ol><li v-for="step in unit.steps" :key="step">{{step}}</li></ol><p>{{lab.mission}}</p></details><div class="lab-workspace has-animation">
 <form class="lab-controls" @submit.prevent="run"><h2><span>01</span> 改變條件</h2><p class="lab-hint">每次改一個條件，更容易看出差異。</p>
 <div v-for="control in lab.controls" :key="control.key" class="lab-field">
 <label v-if="control.type==='check'" class="check-control"><input v-model="values[control.key]" type="checkbox" :name="control.key">{{control.label}}</label>
@@ -50,7 +51,7 @@ function display(c:{key:string;options?:[string,string][]},v:Values){return type
 <div v-if="!result" class="lab-empty"><UiIcon name="pulse" :size="52"/><h3>先執行一次，建立比較基準</h3><p>設定左側條件，按下「{{lab.action}}」。這裡會顯示處理路徑、輸出資料與原因。</p><div v-if="id===3||id===5" class="lab-art"><img :src="`${base}assets/browser.webp`" alt="測試瀏覽器"><UiIcon name="right"/><img :src="`${base}assets/server.webp`" alt="虛擬伺服器"></div></div>
 <template v-else><p v-if="stale" class="stale" role="status">條件已改變，請重新執行。下方仍是上一次的結果。</p>
 <div class="outcome" :class="result.outcome.tone" aria-live="polite"><strong>{{result.outcome.title}}</strong><p>{{result.outcome.summary}}</p></div>
-<ol class="execution-trace"><li v-for="([stage,detail],i) in result.outcome.trace" :key="stage"><span>{{i+1}}</span><div><strong>{{stage}}</strong><p>{{detail}}</p></div></li></ol>
+<ExperimentAnimation :id="id" :current="result" :previous="previous" :controls="lab.controls"/>
 <pre v-if="result.outcome.code" class="lab-code">{{result.outcome.code}}</pre>
 <div class="result-table"><table><thead><tr><th v-for="column in result.outcome.columns" :key="column">{{column}}</th></tr></thead><tbody><tr v-for="(row,i) in result.outcome.rows" :key="i"><td v-for="(cell,j) in row" :key="j">{{cell}}</td></tr><tr v-if="!result.outcome.rows.length"><td :colspan="result.outcome.columns.length">沒有回傳資料</td></tr></tbody></table></div>
 </template>

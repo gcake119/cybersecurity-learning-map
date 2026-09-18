@@ -27,6 +27,25 @@ try{
  await enable('authz');assert.match(await page.locator('.stale').innerText(),/上一次/);await run();await title(/403/);assert.match(await page.locator('.result-table').innerText(),/沒有回傳資料/);
  assert.match(await page.locator('#progress').innerText(),/0 \/ 9/);
  await page.getByRole('button',{name:'解釋結果與應用 →'}).click();await page.getByRole('button',{name:'檢查學習成果'}).click();assert.match(await page.locator('.check-status').innerText(),/修正觀念/);await page.getByRole('button',{name:'← 回到操作'}).click();await finish(3);assert.equal(await page.locator('.comparison-grid article').count(),2);
+ // Animation compares captured runs; playback never changes model evidence.
+ assert.equal(await page.locator('.animation-lane').count(),2);
+ await page.getByRole('button',{name:'直接看結果',exact:true}).click();
+ assert.match(await page.locator('.animation-lane').first().innerText(),/1 筆資料/);
+ assert.match(await page.locator('.animation-lane').last().innerText(),/0 筆資料/);
+ assert.equal(await page.locator('.animation-lane').last().locator('.animated-path li.blocked').count(),1);
+ assert.equal(await page.locator('.animation-lane').last().locator('.animated-path li.skipped').count(),1);
+ await page.getByRole('button',{name:'回到起點',exact:true}).click();
+ assert.equal(await page.locator('.animated-experiment').getAttribute('data-frame'),'0');
+ await page.getByRole('button',{name:'前進一步',exact:true}).click();
+ assert.equal(await page.locator('.animated-experiment').getAttribute('data-frame'),'1');
+ await page.getByRole('button',{name:'播放動畫',exact:true}).click();
+ await page.getByRole('button',{name:'暫停動畫',exact:true}).click();
+ assert.equal(await page.locator('.animated-experiment').getAttribute('data-playing'),'false');
+ await page.getByRole('checkbox',{name:'減少動態效果',exact:true}).check();
+ assert.equal(await page.locator('.animated-experiment').getAttribute('data-frame'),'4');
+ assert.equal(await page.getByRole('button',{name:'重播動畫',exact:true}).isDisabled(),true);
+ await page.getByRole('checkbox',{name:'減少動態效果',exact:true}).uncheck();
+
  await choose('actor','guest');await run();await title(/401/);
  await choose('actor','alice');await choose('channel','ui');await run();await title(/沒有送出請求/);
  await page.reload();assert.match(await page.locator('#progress').innerText(),/1 \/ 9/);
@@ -50,7 +69,7 @@ try{
  assert.match(await page.locator('#progress').innerText(),/9 \/ 9/);
  await mkdir('test-results',{recursive:true});await page.screenshot({path:'test-results/ci-comparison.png',fullPage:true});
  await page.keyboard.press('Escape');await page.waitForURL('**/#/map/8');await page.screenshot({path:'test-results/map-desktop.png',fullPage:true});
- for(const width of [1440,390]){await page.setViewportSize({width,height:900});for(let id=0;id<9;id++){await go(id);await run();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`experiment overflow ${id}/${width}`);await page.getByRole('button',{name:'解釋結果與應用 →'}).click();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`check overflow ${id}/${width}`);await page.getByRole('button',{name:'1 · 理解觀念'}).click();assert.equal(await page.locator('.concept-lessons article').count(),3);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`overflow lab ${id} width ${width}`);}}
+ for(const width of [1440,390]){await page.setViewportSize({width,height:900});for(let id=0;id<9;id++){await go(id);await run();await page.getByRole('button',{name:'直接看結果',exact:true}).click();assert.equal(await page.locator('.animated-impact[data-result-visible="true"]').count(),1);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`experiment overflow ${id}/${width}`);await page.getByRole('button',{name:'解釋結果與應用 →'}).click();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`check overflow ${id}/${width}`);await page.getByRole('button',{name:'1 · 理解觀念'}).click();assert.equal(await page.locator('.concept-lessons article').count(),3);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`overflow lab ${id} width ${width}`);}}
  await page.screenshot({path:'test-results/lab-mobile.png',fullPage:true});
  await page.goto(url+'#/slide/6');await page.waitForURL('**/#/lab/3');await page.goto(url+'#/learn/12');await page.waitForURL('**/#/lab/7');await page.goto(url+'#/lab/99');await page.waitForURL('**/#/lab/8');
  await page.goto(url+'#/unknown');await page.waitForURL('**/#/map/0');
@@ -58,5 +77,6 @@ try{
  page.once('dialog',d=>d.accept());await page.getByRole('button',{name:'重設進度',exact:true}).click();assert.match(await page.locator('#progress').innerText(),/0 \/ 9/);
  await page.evaluate(()=>{localStorage.setItem('security-progress-v1','[1,2,3]');localStorage.setItem('security-course-progress-v3','[2,2,-1,99,"bad"]');});await page.reload();assert.match(await page.locator('#progress').innerText(),/1 \/ 9/);
  const isolated=await browser.newContext();await isolated.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw Error('unavailable');}}));const p=await isolated.newPage();await p.goto(url);await p.locator('.node').last().waitFor();assert.match(await p.locator('#progress').innerText(),/無法持久儲存/);
+ const reducedContext=await browser.newContext({reducedMotion:'reduce'});const rp=await reducedContext.newPage();await rp.goto(url+'#/lab/3');await rp.getByRole('button',{name:'開始情境操作 →'}).click();await rp.locator('.run-lab').click();assert.equal(await rp.getByRole('checkbox',{name:'減少動態效果'}).isChecked(),true);assert.equal(await rp.locator('.animated-experiment').getAttribute('data-playing'),'false');await rp.getByRole('button',{name:'重設這次實驗',exact:true}).click();assert.equal(await rp.locator('.animated-experiment').count(),0);await reducedContext.close();
  assert.deepEqual(errors,[]);console.log('PASS: pyramid curriculum, objectives, knowledge gates, note persistence and all nine completions; all 9 scenario models, changing data outputs, comparisons, completion evidence, UI bypass, stale state, legacy URLs, responsive layouts and storage edge cases.');
 }finally{await browser?.close();server.kill();}
