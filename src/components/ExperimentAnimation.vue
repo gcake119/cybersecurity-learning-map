@@ -3,7 +3,7 @@ import {computed,ref,watch,onMounted,onUnmounted} from 'vue';
 import type {Values,Outcome,Control} from '../labs/model';
 import UiIcon from './UiIcon.vue';
 type Run={values:Values;outcome:Outcome;number:number};
-const props=defineProps<{id:number;current:Run;previous?:Run;controls:Control[];generic?:boolean;checkpoint?:string}>();
+const props=defineProps<{id:number;current:Run;previous?:Run;controls:Control[];generic?:boolean;checkpoint?:string;checkpointAt?:number}>();
 const frame=ref(0),playing=ref(false),reduced=ref(false),speed=ref('1');
 let timer:ReturnType<typeof setTimeout>|undefined;
 let media:MediaQueryList|undefined;
@@ -12,7 +12,7 @@ const end=computed(()=>Math.max(...lanes.value.map(r=>r.outcome.trace.length)));
 const finished=computed(()=>frame.value>=end.value);
 const title=computed(()=>['事件如何改變案件','部署條件如何改變順位','指令在哪個環境執行','請求在哪一道檢查停下','輸入如何被查詢解讀','同一請求，修補前後','每條規則保護哪個情境','資料跨界時發生什麼','測試能否攔下這次缺陷'][props.id]);
 function stop(){clearTimeout(timer);timer=undefined;playing.value=false;}
-function schedule(){clearTimeout(timer);if(!playing.value||finished.value)return;timer=setTimeout(()=>{frame.value++;if(finished.value||(props.checkpoint&&frame.value===1))stop();else schedule();},1200/Number(speed.value));}
+function schedule(){clearTimeout(timer);if(!playing.value||finished.value)return;timer=setTimeout(()=>{frame.value++;if(finished.value||(props.checkpoint&&frame.value===(props.checkpointAt??1)))stop();else schedule();},1200/Number(speed.value));}
 function play(){if(finished.value)frame.value=0;playing.value=true;schedule();}
 function replay(){stop();frame.value=reduced.value?end.value:0;if(!reduced.value)play();}
 function next(){stop();frame.value=Math.min(end.value,frame.value+1);}
@@ -35,7 +35,7 @@ function cardState(r:Run,i:number){if(!shown(r))return 'pending';if(props.id===6
 <div class="animation-heading"><div><span class="eyebrow">{{previous?'同步對照 · 最近兩次執行':'流程觀察 · 第一次執行'}}</span><h3>{{generic?'追蹤處理與後續影響':title}}</h3></div><span class="frame-label">{{frame}} / {{end}}</span></div>
 <div class="animation-toolbar"><button type="button" @click="playing?stop():play()" :disabled="reduced">{{playing?'暫停動畫':finished?'重播動畫':'播放動畫'}}</button><button type="button" @click="next" :disabled="finished">前進一步</button><button type="button" @click="stop();frame=0">回到起點</button><button type="button" @click="stop();frame=end">直接看結果</button><label>速度 <select v-model="speed" aria-label="動畫速度"><option value="0.5">0.5×</option><option value="1">1×</option><option value="2">2×</option></select></label><label class="motion-toggle"><input type="checkbox" v-model="reduced" @change="motionChange">減少動態效果</label></div>
 <p class="animation-help">{{previous?'兩邊依同一時間軸播放，標記的條件是這次改動。':'先觀察這次處理路徑；改變條件再執行，就會出現並排對照。'}}{{reduced?'目前使用靜態呈現，也可回到起點逐步查看。':''}}</p>
-<p v-if="checkpoint&&frame===1" class="checkpoint-question" role="status">檢查點：{{checkpoint}} 請先想一想，再按「播放動畫」或「前進一步」。</p>
+<p v-if="checkpoint&&frame===(checkpointAt??1)" class="checkpoint-question" role="status">檢查點：{{checkpoint}} 請先想一想，再按「播放動畫」或「前進一步」。</p>
 <div class="animation-lanes" :class="{single:!previous}">
 <article v-for="(r,lane) in lanes" :key="r.number" class="animation-lane" :aria-label="`第 ${r.number} 次執行動畫`">
 <div class="lane-heading"><strong>{{previous?(lane===0?'前一次':'這一次'):'這一次'}}</strong><span>第 {{r.number}} 次</span></div>
