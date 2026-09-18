@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "test:browser": "node tests/browser.mjs"
+    "test:browser": "node tests/browser.mjs && node tests/deep-browser.mjs",
+    "test:models": "node --experimental-strip-types tests/deep-model.mjs"
   },
   "dependencies": {
     "@phosphor-icons/vue": "^2.2.1",
