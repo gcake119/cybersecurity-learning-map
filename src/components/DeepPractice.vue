@@ -7,6 +7,7 @@ import {unitById,chapters} from '../content/curriculum';
 import type {Values,Outcome} from '../labs/model';
 import {useDeepProgress} from '../composables/useDeepProgress';
 import ExperimentAnimation from './ExperimentAnimation.vue';
+import CourseDiagram from './CourseDiagram.vue';
 const route=useRoute();const id=computed(()=>Number(route.params.index)),mission=computed(()=>route.name==='mission');
 const lab=computed(()=>mission.value?missionLabs[id.value]!:deepLabs[id.value]!);
 const key=computed(()=>`${mission.value?'mission':'unit'}${id.value}`);
@@ -32,7 +33,7 @@ function exportEvidence(){const sections=runs.value.map(r=>`## 第 ${r.number} �
 </script>
 <template>
 <section class="lab-heading"><span class="eyebrow">{{mission?`第三層應用 / ${chapters[id].title}`:`單元 ${unitById[id].number} / 深入練習`}}</span><h1>{{lab.title}}</h1><p>{{lab.principle}}</p></section>
-<div class="depth-path"><span>① 理解機制</span><span>② 預測變化</span><span>③ 設計保護</span><span>④ 驗證範圍</span></div>
+<details class="deep-diagram-reference"><summary>打開系統圖，確認元件與信任邊界</summary><CourseDiagram :id="mission?[7,6,8][id]!:id"/></details><div class="depth-path"><span>① 理解機制</span><span>② 預測變化</span><span>③ 設計保護</span><span>④ 驗證範圍</span></div>
 <div class="deep-links"><RouterLink :to="mission?`/map/${[0,3,2][id]}`:`/lab/${id}`">← {{mission?'回到學習地圖':'回到基礎觀念與實驗'}}</RouterLink><span>{{done.includes(key)?'✓ 已有深入完成紀錄':'深入練習與基礎進度分開記錄'}}</span></div>
 <nav class="lesson-stages" aria-label="深入練習輪次"><button v-for="(label,i) in ['引導觀察','配置與修補','新情境挑戰']" :key="label" :aria-current="round===i&&!showNotes?'step':undefined" @click="changeRound(i)">{{i+1}} · {{label}} {{accepted[i]?'✓':''}}</button><button :aria-current="showNotes?'step':undefined" @click="showNotes=true">整理證據</button></nav>
 <template v-if="!showNotes">

@@ -6,7 +6,9 @@ import {unitById,chapters} from '../content/curriculum';
 import {useProgress} from '../composables/useProgress';
 import UiIcon from './UiIcon.vue';
 import ExperimentAnimation from './ExperimentAnimation.vue';
-const base=import.meta.env.BASE_URL;
+import CourseDiagram from './CourseDiagram.vue';
+import DiagramGlyph from './DiagramGlyph.vue';
+
 const route=useRoute(),router=useRouter();
 const id=computed(()=>Number(route.params.index));const lab=computed(()=>labs[id.value]);
 const unit=computed(()=>unitById[id.value]);
@@ -36,7 +38,7 @@ function display(c:{key:string;options?:[string,string][]},v:Values){return type
 <template>
 <section class="lab-heading"><span class="eyebrow">{{chapters[unit.chapter].title}} / 單元 {{String(unit.number).padStart(2,'0')}}</span><h1>{{unit.title}}</h1><p>{{unit.question}}</p></section>
 <nav class="lesson-stages" aria-label="單元學習流程"><button v-for="(label,i) in ['理解觀念','操作與比較','檢核與應用']" :key="label" :aria-current="stage===i?'step':undefined" @click="stage=i">{{i+1}} · {{label}}</button></nav>
-<section v-if="stage===0" class="lesson-intro"><p class="core-conclusion">{{unit.conclusion}}</p><h2>學完這個單元，你應該能</h2><ul><li v-for="goal in unit.goals" :key="goal">{{goal}}</li></ul><div class="concept-lessons"><article v-for="([title,body],i) in unit.concepts" :key="title"><span>觀念 {{i+1}}</span><h3>{{title}}</h3><p>{{body}}</p></article></div><section class="scenario-brief"><h2>這次的情境</h2><p>{{lab.story}}</p><h3>操作路線</h3><ol><li v-for="step in unit.steps" :key="step">{{step}}</li></ol></section><div class="lesson-actions"><button class="primary" @click="stage=1">開始情境操作 →</button></div></section>
+<section v-if="stage===0" class="lesson-intro"><p class="core-conclusion">{{unit.conclusion}}</p><h2>學完這個單元，你應該能</h2><ul><li v-for="goal in unit.goals" :key="goal">{{goal}}</li></ul><CourseDiagram :id="id"/><div class="concept-lessons"><article v-for="([title,body],i) in unit.concepts" :key="title"><span>觀念 {{i+1}}</span><h3>{{title}}</h3><p>{{body}}</p></article></div><section class="scenario-brief"><h2>這次的情境</h2><p>{{lab.story}}</p><h3>操作路線</h3><ol><li v-for="step in unit.steps" :key="step">{{step}}</li></ol></section><div class="lesson-actions"><button class="primary" @click="stage=1">開始情境操作 →</button></div></section>
 <template v-if="stage===1">
 <div class="mission"><UiIcon name="lab"/><div><strong>這次要觀察什麼？</strong><p>{{lab.mission}}</p></div><span class="mission-state">{{met?'對照已完成':'等待實驗證據'}}</span></div>
 <details class="operation-guide"><summary>查看操作路線與完成對照條件</summary><ol><li v-for="step in unit.steps" :key="step">{{step}}</li></ol><p>{{lab.mission}}</p></details><div class="lab-workspace has-animation">
@@ -48,7 +50,7 @@ function display(c:{key:string;options?:[string,string][]},v:Values){return type
 <button class="primary run-lab" type="submit"><UiIcon name="play" :size="20"/>{{lab.action}}</button><button class="reset-lab" type="button" @click="reset">重設這次實驗</button><small>全部使用虛構資料，在瀏覽器內模擬。</small>
 </form>
 <section ref="output" class="lab-output" aria-label="實驗結果"><div class="result-header"><h2><span>02</span> 觀察結果</h2><span v-if="result">第 {{result.number}} 次執行</span></div>
-<div v-if="!result" class="lab-empty"><UiIcon name="pulse" :size="52"/><h3>先執行一次，建立比較基準</h3><p>設定左側條件，按下「{{lab.action}}」。這裡會顯示處理路徑、輸出資料與原因。</p><div v-if="id===3||id===5" class="lab-art"><img :src="`${base}assets/browser.webp`" alt="測試瀏覽器"><UiIcon name="right"/><img :src="`${base}assets/server.webp`" alt="虛擬伺服器"></div></div>
+<div v-if="!result" class="lab-empty"><UiIcon name="pulse" :size="52"/><h3>先執行一次，建立比較基準</h3><p>設定左側條件，按下「{{lab.action}}」。這裡會顯示處理路徑、輸出資料與原因。</p><div v-if="id===3||id===5" class="lab-art"><DiagramGlyph kind="browser"/><UiIcon name="right"/><DiagramGlyph kind="server"/></div></div>
 <template v-else><p v-if="stale" class="stale" role="status">條件已改變，請重新執行。下方仍是上一次的結果。</p>
 <div class="outcome" :class="result.outcome.tone" aria-live="polite"><strong>{{result.outcome.title}}</strong><p>{{result.outcome.summary}}</p></div>
 <ExperimentAnimation :id="id" :current="result" :previous="previous" :controls="lab.controls"/>
