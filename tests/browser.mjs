@@ -13,10 +13,10 @@ try{
  assert.equal(await page.locator('.course-chapter').count(),3);
  assert.deepEqual(await page.locator('.node').evaluateAll(nodes=>nodes.map(n=>Number(n.dataset.node))),[0,7,1,3,4,6,2,5,8]);
  await page.locator('[data-node="3"]').click();await page.getByRole('link',{name:'開始學習與操作 ↗'}).click();await page.waitForURL('**/#/lab/3');
- const go=async id=>{await page.goto(url+'#/lab/'+id);await page.getByRole('button',{name:'開始情境操作 →'}).click();await page.locator('.run-lab').waitFor();};
+ const go=async id=>{await page.goto(url+'#/lab/'+id);await page.getByRole('button',{name:'開始情境操作 →'}).click();await page.getByRole('button',{name:'基礎請求工具',exact:true}).click();await page.locator('.run-lab').waitFor();};
  const answers={0:[1,2],7:[1,0],1:[2,0],3:[2,1],4:[0,2],6:[0,1],2:[1,2],5:[0,1],8:[2,1]};
  const finish=async id=>{await page.getByRole('button',{name:'解釋結果與應用 →'}).click();for(let i=0;i<2;i++)await page.locator(`input[name="question-${i}"]`).nth(answers[id][i]).check();await page.locator('#application-note').fill('測試筆記：在後端驗證使用者與資源關係，拒絕未授權存取，並保留回應與資料影響作為證據。');await page.getByRole('button',{name:'檢查學習成果'}).click();assert.match(await page.locator('.check-status').innerText(),/本單元完成/);await page.getByRole('button',{name:'← 回到操作'}).click();};
- await page.getByRole('button',{name:'開始情境操作 →'}).click();
+ await page.getByRole('button',{name:'開始情境操作 →'}).click();await page.getByRole('button',{name:'基礎請求工具',exact:true}).click();
  const run=async()=>{await page.locator('.run-lab').click();await page.locator('.outcome').waitFor();};
  const choose=async(key,value)=>page.locator('#control-'+key).selectOption(value);
  const enable=async(key,value=true)=>page.locator(`input[name="${key}"]`).setChecked(value);
@@ -77,6 +77,6 @@ try{
  page.once('dialog',d=>d.accept());await page.getByRole('button',{name:'重設進度',exact:true}).click();assert.match(await page.locator('#progress').innerText(),/0 \/ 9/);
  await page.evaluate(()=>{localStorage.setItem('security-progress-v1','[1,2,3]');localStorage.setItem('security-course-progress-v3','[2,2,-1,99,"bad"]');});await page.reload();assert.match(await page.locator('#progress').innerText(),/1 \/ 9/);
  const isolated=await browser.newContext();await isolated.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw Error('unavailable');}}));const p=await isolated.newPage();await p.goto(url);await p.locator('.node').last().waitFor();assert.match(await p.locator('#progress').innerText(),/無法持久儲存/);
- const reducedContext=await browser.newContext({reducedMotion:'reduce'});const rp=await reducedContext.newPage();await rp.goto(url+'#/lab/3');await rp.getByRole('button',{name:'開始情境操作 →'}).click();await rp.locator('.run-lab').click();assert.equal(await rp.getByRole('checkbox',{name:'減少動態效果'}).isChecked(),true);assert.equal(await rp.locator('.animated-experiment').getAttribute('data-playing'),'false');await rp.getByRole('button',{name:'重設這次實驗',exact:true}).click();assert.equal(await rp.locator('.animated-experiment').count(),0);await reducedContext.close();
+ const reducedContext=await browser.newContext({reducedMotion:'reduce'});const rp=await reducedContext.newPage();await rp.goto(url+'#/lab/3');await rp.getByRole('button',{name:'開始情境操作 →'}).click();await rp.getByRole('button',{name:'基礎請求工具',exact:true}).click();await rp.locator('.run-lab').click();assert.equal(await rp.getByRole('checkbox',{name:'減少動態效果'}).isChecked(),true);assert.equal(await rp.locator('.animated-experiment').getAttribute('data-playing'),'false');await rp.getByRole('button',{name:'重設這次實驗',exact:true}).click();assert.equal(await rp.locator('.animated-experiment').count(),0);await reducedContext.close();
  assert.deepEqual(errors,[]);console.log('PASS: pyramid curriculum, objectives, knowledge gates, note persistence and all nine completions; all 9 scenario models, changing data outputs, comparisons, completion evidence, UI bypass, stale state, legacy URLs, responsive layouts and storage edge cases.');
 }finally{await browser?.close();server.kill();}
