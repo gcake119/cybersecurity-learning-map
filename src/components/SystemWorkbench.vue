@@ -88,7 +88,7 @@ function exportEvidence(){const text=`# 單元 ${unitById[props.id].number}｜${
 </article></div>
 <div v-if="id===4" class="wb-branch-note">外部輸入分別送往 SQL 查詢與 HTML 顯示；兩條路徑獨立處理。</div>
 <div v-if="id===2" class="wb-terminal" aria-label="模擬終端"><p v-if="!transcript.length">按下左側指令，查看目前環境的輸出。</p><div v-for="(line,i) in transcript" :key="i"><strong>$ {{line.command}}</strong><pre>{{line.output}}</pre></div></div>
-<aside class="wb-inspector" aria-label="元件觀察"><h4>{{liveNode?.label}}</h4><p>{{liveNode?.hint}}</p><template v-if="eventsFor(selected).length"><div v-for="(event,i) in eventsFor(selected)" :key="i"><b>{{event.label}}</b><p>{{event.detail}}</p><code v-if="event.data">{{event.data}}</code></div></template><p v-else class="wb-note">此元件尚無本次執行資料。</p></aside>
+<aside class="wb-inspector" aria-label="元件觀察"><h4>{{liveNode?.label}}</h4><p>{{liveNode?.hint}}</p><template v-if="eventsFor(selected).length"><div v-for="(event,i) in eventsFor(selected)" :key="i"><b>{{event.label}}</b><p>{{event.detail}}</p><code v-if="event.data">{{event.data}}</code></div></template><p v-else class="wb-note">此元件尚無本次執行資料。</p><button class="wb-run" @click="run">用目前配置重送情境</button></aside>
 </div></div>
 
 <p v-if="message" class="wb-message" role="status">{{message}}</p>

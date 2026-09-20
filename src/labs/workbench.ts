@@ -30,7 +30,7 @@ const check=(name:string,pass:boolean,expected:string,actual:string,node:string)
 const result=(events:Event[],checks:Check[],summary:string,signature:string):Result=>({events,checks,summary,signature,safe:checks.every(c=>c.pass)});
 export function replay(c:Config){
  let written=false,notified=false,rejected=false;const events:Event[]=[];const legal=c.target==='42';
- const add=(event:Event,final=false)=>events.push({...event,effects:{data:written?(c.transaction&&!final?'closed（交易內待提交）':'closed'):'open',notice:notified?'已寄出 1 則':'尚未寄出',response:final?(rejected?'403':'200'):'尚未回應'}});
+ const add=(event:Event,final=false,response=false)=>events.push({...event,effects:{data:written?(c.transaction&&!final?'closed（交易內待提交）':'closed'):'open',notice:notified?'已寄出 1 則':'尚未寄出',response:response?(rejected?'403':'200'):'尚未回應'}});
  for(const step of c.order){
   if(rejected){add(evt(step,step==='write'?'寫入案件':step==='notify'?'寄送通知':'權限檢查','前一步拒絕，未執行。','skipped'));continue;}
   if(step==='authorize'){rejected=!legal;add(evt(step,'權限檢查',legal?'Alice 可以修改案件 42。':'Alice 不得修改案件 73。',legal?'ok':'blocked'));}
@@ -39,7 +39,7 @@ export function replay(c:Config){
  }
  if(rejected&&c.transaction&&written){written=false;add(evt('write','交易回滾','拒絕操作，撤回暫存變更。','ok','狀態：open'));}
  if(!rejected&&c.afterCommit){notified=true;add(evt('notify','提交後通知','交易成功後寄出通知。','ok'),true);}
- add(evt('response','HTTP 回應',rejected?'403；仍需核對資料與通知。':'200；操作完成。',rejected?'blocked':'ok',`資料=${written?'closed':'open'}；通知=${notified?1:0}`),true);
+ add(evt('response','HTTP 回應',rejected?'403；仍需核對資料與通知。':'200；操作完成。',rejected?'blocked':'ok',`資料=${written?'closed':'open'}；通知=${notified?1:0}`),true,true);
  return {written,notified,rejected,events};
 }
 export function evaluate(id:number,c:Config,round=0):Result{
@@ -55,3 +55,15 @@ export function evaluate(id:number,c:Config,round=0):Result{
  const active=c.fault==='both'?['state','side']:c.fault==='none'?[]:[c.fault];const tests=['legal','owner','state','side'];const names:Record<string,string>={legal:'合法更新',owner:'跨案件拒絕',state:'已結案拒絕',side:'拒絕後無副作用'};const caught=active.filter(f=>c.tests.includes(f));e.push(evt('change','植入缺陷',active.length?active.map(f=>names[f]).join('、')+' 的保護被移除。':'所有規則正常。'));for(const t of tests)e.push(evt('suite',names[t]!,!c.tests.includes(t)?'未選入測試，沒有證據。':active.includes(t)?'測試失敗，抓到缺陷。':'測試通過。',!c.tests.includes(t)?'skipped':active.includes(t)?'blocked':'ok'));e.push(evt('gate','CI 判定',caught.length?'有測試失敗，阻擋發布。':'所選測試通過。',caught.length?'blocked':active.length?'bad':'ok'));const monitor=c.placements.signal==='denied'&&c.placements.person==='oncall'&&c.placements.action==='investigate';checks=[check('正常版本不被誤擋',c.tests.includes('legal'),'合法測試有通過證據',c.tests.includes('legal')?'已驗證':'未測','suite'),check('刻意缺陷可被偵測',active.length>0&&caught.length===active.length,'每項缺陷都有反例',`${caught.length} / ${active.length}`,'gate')];if(round===2)checks.push(check('上線處理',monitor,'訊號、責任與處理方式完整',monitor?'已配置':'尚未完成','monitor'));return result(e,checks,caught.length===active.length&&active.length?'所選測試抓到了這次的全部缺陷。':active.length?'仍有缺陷未被測試抓到。':'這次沒有植入缺陷；不能用來證明反例的偵測力。',caught.length===active.length&&active.length?'detected':'missed');
 }
 export function accepted(id:number,round:number,c:Config,r:Result){if([1,2].includes(id))return r.safe;if(round===0)return id===8?r.signature==='missed'&&c.fault==='owner'&&c.tests.length===1&&c.tests[0]==='legal':id===5?r.signature==='side-effect'&&c.target==='73':r.signature==='exposed'&&(id!==0||c.event==='read')&&(id!==7||c.event==='foreign')&&(id!==3||c.actor==='alice'&&c.target==='73')&&(id!==4||c.input==='probe')&&(id!==6||c.event==='foreign');if(!r.safe)return false;if(id===0&&round===2)return c.event==='outage';if(id===7&&round===2)return c.event==='large';if(id===3)return round===2?c.actor==='guest':c.actor==='alice'&&c.target==='73';if(id===4)return c.input===(round===2?'normal':'probe');if(id===6&&round===2)return c.event==='closed';if(id===5)return c.target==='73'&&(round!==2||c.transaction&&c.afterCommit&&c.order.join(',')==='write,notify,authorize');if(id===8)return c.fault===(round===2?'both':'owner');return true;}
+
+export const scenarios:Record<number,string>={
+0:'一筆待處理案件必須保護內容、狀態與服務可用性。你可以送入讀取、修改與中斷事件，再把存取控制或故障切換放到系統中。',
+7:'文件會通過 Upload API、解析器，再寫入資料。使用者能指定案件、提供超大文件或夾帶管理員欄位；你要在正確位置阻止對應影響。',
+1:'兩個虛構服務的 CVSS 分數固定，但三輪部署證據不同。請查閱版本、暴露與業務影響，再安排修補順序。',
+3:'Alice 擁有案件 42，Bob 擁有案件 73。使用者從 API 工具直接送出請求；你可以把身分與歸屬規則放到讀取前或回傳後，比較差異。',
+4:'搜尋與顯示會把外部文字交給 SQL 與 HTML 兩種解讀環境。你需要分別配置參數化與安全輸出，並確認正常輸入仍可使用。',
+6:'案件可以從單筆 API、批次匯入與背景工作更新。你決定每條入口是否經過共用服務，以及授權、狀態、欄位和日誌規則放在哪裡。',
+2:'測試目標會從 VM 的 v2 / R42 升級為 v3 / R99。透過定位指令和日誌，排除本機、舊版與正式環境的相似證據。',
+5:'Alice 以 PATCH 要求把案件改為 closed。處理流程包含授權、寫入和通知；請比較早檢查、晚檢查與交易策略對三條觀察線的影響。',
+8:'你會刻意移除權限、狀態或副作用保護，再挑選回歸測試。觀察 CI 是否抓到缺陷，最後補上異常訊號與處理責任。'
+};

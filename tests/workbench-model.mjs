@@ -11,4 +11,5 @@ c=solve(1,1);c.known=['version','exposure'];assert.equal(evaluate(1,c,1).safe,fa
 c=solve(2,2);c.environment='prod';assert.equal(evaluate(2,c,2).safe,false);c.environment='next';c.log='prod';assert.equal(evaluate(2,c,2).safe,false);
 c=solve(8,2);c.tests=['legal','state'];assert.equal(evaluate(8,c,2).safe,false);c.tests=['legal','state','side'];c.fault='none';assert.equal(accepted(8,2,c,evaluate(8,c,2)),false);
 c=solve(0,2);c.placements.failover='api';assert.equal(evaluate(0,c,2).safe,false);
+c=solve(5,2);c.target='42';const legalReplay=replay(c);assert.equal(legalReplay.events.find(e=>e.label==='提交後通知').effects.response,'尚未回應');assert.equal(legalReplay.events.at(-1).effects.response,'200');
 console.log('PASS 27 workbench tasks; wrong placement, bypass paths, partial protection, rollback/notification, environment and coverage counterexamples');
