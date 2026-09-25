@@ -18,6 +18,35 @@ Vue 3 + TypeScript + Vite + pnpm 的互動課程，部署至 GitHub Pages。
 
 完成需同時具備指定對照、兩項正確判斷、至少 20 字筆記。筆記只檢查填寫長度，**不自動判定語意正確性**。新進度 key 為 `security-course-progress-v3`，不把舊實驗進度認定為新課程完成。清除完成紀錄保留筆記。
 
+## 使用方式：直接學習或 Fork 成自己的教材
+
+這份公開教材可以直接使用，不需要先安裝 `learning-map` Skill，也不需要建立個人學習紀錄。
+
+如果希望讓 Agent 根據自己的學習狀況持續調整教材，可以 Fork 本 repo，搭配：
+
+- `learning-map` Skill：提供課綱、教材內容、互動設計與 Learning Handoff 的共用方法。
+- 自己的 private Learning Handoff：保存目前學習位置、學習證據、回饋、待確認問題與 Learner Path。
+
+概念上：
+
+```text
+本公開教材
+    ↓ Fork
+自己的教材 fork
+    ↑
+learning-map
+    ↑
+private Learning Handoff
+```
+
+Agent 可以同時讀取教材 fork 與私人 Learning Handoff，再依實際學習狀況修改自己的教材版本，例如增加補充案例、改寫說明、加入額外練習、略過已熟悉內容或調整學習路線。
+
+**不要把私人 Learning Handoff、個人學習紀錄或 Agent 對個人的暫時判斷 commit 到公開 fork。** 個人紀錄應保存在 private repo、本機私人檔案或其他適當的私人儲存。
+
+如果某項修改後來確認是一般學習者都可能受益的教材改善，可以先去除個人資訊，再整理成 issue 或 pull request 回饋本 repo。
+
+`learning-map`：https://github.com/gcake119/learning-map
+
 ## 開發與測試
 
 Node.js 22.12+；pnpm 11.19.0。
