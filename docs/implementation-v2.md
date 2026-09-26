@@ -2,7 +2,7 @@
 
 > 日期：2026-09-26
 > Branch：`learning-map-v2`
-> QA implementation HEAD：`34678af2da531644e683e160c362ea4416075ae6`
+> QA implementation HEAD：`f4ea4f49de3db1044a233f70392af05ac5392973`
 > Gate：Technical QA PASS WITH FINDINGS；Ready for Human Learning Review
 > Curriculum / Canonical Content 保持 confirmed meaning；不合併 main。
 
@@ -18,7 +18,7 @@
 - URL 保存當前 simulation parameters、stage、Teaching / Transfer 狀態；reload、back / forward 可重建。沒有 learning-progress、個人作答或 localStorage 學習紀錄。
 - Constraint 初次進入注入；再訪不覆蓋 learner 已改設定。本階段 reset 回預設／constraint，restart 清除當單元 simulation。
 - `#/v2/final`：獨立 integrated surface，同一張 collaboration SaaS canvas，五個累積事件／changes 加 domain transfer。返回先前設定不移除已注入事件，前輪控制仍可調整。
-- Legacy UI／routes 保留；v2 不掛載 legacy progress footer。
+- 依 2026-09-26 使用者新指示完整移除舊版；只保留 v2。根入口與所有舊網址由 fallback 導向新版入口，不沿用舊編號或學習進度。
 
 ## Storyboard traceability
 
@@ -69,8 +69,8 @@ Learning Copy QA：opening 先白話問題與 phenomenon；術語由 learner 觀
 
 | Check | 實際結果 |
 | --- | --- |
-| `pnpm install --frozen-lockfile` | PASS；initial install 51 packages，candidate rerun frozen install up to date |
-| `pnpm test` | PASS；27 deep scenarios、9 mission rounds、27 workbench tasks、214 v2 assertions |
+| `pnpm install --frozen-lockfile` | PASS；移除舊版專用圖示依賴後 frozen install，50 packages；未更新其他依賴版本 |
+| `pnpm test` | PASS；214 v2 assertions；舊版專用 tests 已移除 |
 | `pnpm build` | PASS；vue-tsc + Vite production build |
 | `git diff --check` | PASS |
 | Production base path | PASS；production assets HTTP 200、direct route / reload |
@@ -98,13 +98,24 @@ pnpm test:v2:browser
 
 27 組 surface 檢查均通過。每個 Unit 在每個尺寸各改主要參數一次，共 24 次直接觀察 node / edge consequence；所有 controls 另外逐一操作。
 
-20 項 route / accessibility checks 包含 landing、8 個 direct unit routes、reload、unknown route、back / forward、restart / reset、stage persistence、progressive controls、keyboard Tab / Enter、focus、accessible names、reduced-motion、invalid query fallback、GitHub Pages base path、legacy route，以及 Teaching / Transfer isolation、constraint revisit、Final cumulative incidents、drag/select、tool triage / fix / rescan。
+20 項 route / accessibility checks 包含 landing、8 個 direct unit routes、reload、unknown route、back / forward、restart / reset、stage persistence、progressive controls、keyboard Tab / Enter、focus、accessible names、reduced-motion、invalid query fallback、GitHub Pages base path、根入口與全部舊 route 轉向，以及 Teaching / Transfer isolation、constraint revisit、Final cumulative incidents、drag/select、tool triage / fix / rescan。
 
-另在 Codex 原生 In-app Browser 實際以 Space / Down / Return 操作 Unit 1–8 與 Final，共 9 個主要控制 PASS。自動化 ArrowDown 對 macOS 原生 select 的輸入方式曾失敗，改用原生 UI 操作後確認控制可用；此限制不當作產品 failure。
+原生鍵盤補充證據來自移除前的 `34678af`（本次未重跑原生 UI 操作）：在 Codex 原生 In-app Browser 實際以 Space / Down / Return 操作 Unit 1–8 與 Final，共 9 個主要控制 PASS。自動化 ArrowDown 對 macOS 原生 select 的輸入方式曾失敗，改用原生 UI 操作後確認控制可用；此限制不當作產品 failure。
 
-可追溯報告：[learning-map-v2-technical-qa.json](qa/learning-map-v2-technical-qa.json)。66 張本機截圖保留於 `output/playwright/v2/`，報告記錄 SHA-256；截圖不入 Git。圖面複查涵蓋桌面各單元與 mobile / narrow 代表畫面。Final 後段控制較多，需要垂直捲動，沒有水平溢出或阻擋操作。
+可追溯報告：[learning-map-v2-technical-qa.json](qa/learning-map-v2-technical-qa.json)。66 張本機截圖保留於 `output/playwright/v2/`，報告記錄 SHA-256；截圖不入 Git。本次圖面 spot check：Desktop Unit 1、Mobile Unit 3；未見樣式移除造成閱讀或操作阻擋。Final 後段控制較多，需要垂直捲動，沒有水平溢出或阻擋操作。
 
 QA HEAD 是受測程式版本；後續 commit 僅保存本文件與 QA 報告，不改受測程式。
+
+## 舊版完整移除
+
+本次新指示取代先前「保留 legacy」要求；不改 confirmed v2 Curriculum 或 Canonical Content。
+
+- 刪除 `src/content/`、`src/labs/`、`src/components/`、`src/composables/` 的全部舊版實作，包括個人進度／筆記儲存程式。
+- 刪除 5 個舊版專用 model／browser tests、2 張舊插圖與過時 `design-qa.md`。
+- 移除入口「開啟舊版教材」、舊 route components、舊樣式與 `@phosphor-icons/vue`；保留 v2 使用的基本 reset／字型／skip link 樣式。
+- README 與 HTML metadata 改為八章 v2；Pages workflow 的 tests／browser artifacts 改用 v2。
+- 既有使用者瀏覽器中的舊 localStorage 資料未讀取、搬移或刪除；本 repo 不再有存取舊學習紀錄的程式。
+- Dependency 更新過程的 offline metadata resolution 失敗；保留原 lockfile 版本，僅移除圖示 package 記錄，frozen install 在可連線環境通過。sandbox 與一般 pnpm store 不同，測試／build／browser 在同一安裝環境完成。
 
 ## 修正 findings
 

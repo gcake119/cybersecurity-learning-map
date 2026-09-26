@@ -240,7 +240,7 @@
     "reduced-motion no animation with visible state",
     "invalid query safe fallback",
     "GitHub Pages base path assets HTTP 200",
-    "legacy map route"
+    "root and all removed legacy routes redirect to v2 without legacy content"
   ],
   "interactionChecks": [
     {
@@ -388,13 +388,13 @@
       "visibleConsequence": "PASS"
     }
   ],
-  "qaHead": "34678af2da531644e683e160c362ea4416075ae6",
+  "qaHead": "f4ea4f49de3db1044a233f70392af05ac5392973",
   "date": "2026-09-26",
   "gate": "PASS WITH FINDINGS; Ready for Human Learning Review",
   "checks": {
-    "install": "PASS",
-    "test": "PASS; 214 v2 assertions plus legacy tests",
-    "build": "PASS",
+    "install": "PASS; frozen lockfile; 50 packages",
+    "test": "PASS; 214 v2 assertions",
+    "build": "PASS; vue-tsc and Vite",
     "diffCheck": "PASS"
   },
   "viewports": {
@@ -411,350 +411,355 @@
       844
     ]
   },
-  "nativeKeyboard": [
-    {
-      "unit": 1,
-      "control": "注入事件",
-      "keyboard": "Space / Down / Return",
-      "observedValue": "修改內容",
-      "result": "PASS",
-      "surface": "Codex In-app Browser"
-    },
-    {
-      "unit": 2,
-      "control": "A 的本輪路徑已有有效緩解",
-      "keyboard": "Space",
-      "observedValue": "1",
-      "result": "PASS",
-      "surface": "Codex In-app Browser"
-    },
-    {
-      "unit": 3,
-      "control": "在 API 讀寫前檢查資源政策",
-      "keyboard": "Space",
-      "observedValue": "1",
-      "result": "PASS",
-      "surface": "Codex In-app Browser"
-    },
-    {
-      "unit": 4,
-      "control": "送入的資料",
-      "keyboard": "Space / Down / Return",
-      "observedValue": "不符業務型別",
-      "result": "PASS",
-      "surface": "Codex In-app Browser"
-    },
-    {
-      "unit": 5,
-      "control": "已失守的起點",
-      "keyboard": "Space / Down / Return",
-      "observedValue": "Worker",
-      "result": "PASS",
-      "surface": "Codex In-app Browser"
-    },
-    {
-      "unit": 6,
-      "control": "磁碟加密",
-      "keyboard": "Space",
-      "observedValue": "1",
-      "result": "PASS",
-      "surface": "Codex In-app Browser"
-    },
-    {
-      "unit": 7,
-      "control": "執行課程 Semgrep-like 規則",
-      "keyboard": "Space",
-      "observedValue": "0",
-      "result": "PASS",
-      "surface": "Codex In-app Browser"
-    },
-    {
-      "unit": 8,
-      "control": "取得身分使用紀錄",
-      "keyboard": "Space",
-      "observedValue": "1",
-      "result": "PASS",
-      "surface": "Codex In-app Browser"
-    },
-    {
-      "unit": "Final",
-      "control": "每次讀取前核對人與文件的允許條件",
-      "keyboard": "Space",
-      "observedValue": "1",
-      "result": "PASS",
-      "surface": "Codex In-app Browser"
-    }
-  ],
-  "screenshots": [
-    {
-      "path": "output/playwright/v2/desktop-final-1.png",
-      "sha256": "ddc41a977fb7ce328c00f2efd34a81673a675a1cc5a2c799e64b3adab1bfbae9"
-    },
-    {
-      "path": "output/playwright/v2/desktop-final-2.png",
-      "sha256": "8343173f945e4f0b4a16af6c4dc8a7e575c87a9ded91a1007f2092130ca3bec7"
-    },
-    {
-      "path": "output/playwright/v2/desktop-final-3.png",
-      "sha256": "23c4ed8b36a63b9f252773a7c07ff70193021cf714a65755e4e0626419800c82"
-    },
-    {
-      "path": "output/playwright/v2/desktop-final-4.png",
-      "sha256": "329657ca4c39ea8e1604ebd46eeb707061ae2cd934cfcb7c12ae6cd82319aba5"
-    },
-    {
-      "path": "output/playwright/v2/desktop-final-5.png",
-      "sha256": "7460f1eeb3e014ab287da7b1313dac70316692f01393174d4c1517ab5bd53d26"
-    },
-    {
-      "path": "output/playwright/v2/desktop-final-6.png",
-      "sha256": "ed4911383fb655acce1b08d70748ccfb4109c068e6d530adfae3b4399ca8fe1f"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u1-comparison.png",
-      "sha256": "a9a2dc92ddba10599db7506879bdc43b22d923c87805499255e4a6a1b4811886"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u1-transfer.png",
-      "sha256": "09cc85a40da808ec8eff33d7a3863e91efbe911d2d156ec574c2b3735261653f"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u2-comparison.png",
-      "sha256": "c8642d6bd311df1426c858c2cb9a9e7b4f89f490a6c758343395e8ba58abe79f"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u2-transfer.png",
-      "sha256": "51cb1c02c72e10283e86b303d8d9dfa72b2c5bf642409dbe3bac7c2b360a9aed"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u3-comparison.png",
-      "sha256": "efb02efe25272b3eda5d045ace422cb5941a00cdb385a0f0d1cd2ce87fc6f83a"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u3-transfer.png",
-      "sha256": "9bece42e17906e2cc3849794d2679cedf5b37fa7193f000cf50f6c45d945a247"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u4-comparison.png",
-      "sha256": "ad92255a09fed63c1603dbd2196e9edc9a2852b6edb5a7fc48056fbf4262d679"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u4-transfer.png",
-      "sha256": "b2a036acc39189c6bd9afc65e80a62944403445e0304777e99e9a990d85800c7"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u5-comparison.png",
-      "sha256": "11f64cea45250bf000f99f07d77469894e867391fb4c66b89600799c813fe1e5"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u5-transfer.png",
-      "sha256": "4fc2ebaf14a6220d5011ea8607ce9e675e19daa85bdf9045aa2719ef66f366a6"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u6-comparison.png",
-      "sha256": "b9eb691acbfe1a66d56b79882cc9e95df68d355cbd25898a888705bd98ceb675"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u6-transfer.png",
-      "sha256": "176a5c6ba39f589c75fe24434229508ce3e06745afde6867254c771d8703e441"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u7-comparison.png",
-      "sha256": "d23c61e8100ad7cb046871815006005e71b4fc6ff26dd6bf9c315a7b1466bb27"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u7-transfer.png",
-      "sha256": "4674adce8c62a0f73e2c1b11e2757b8da5aaeacdfbf51d454a0fc85f2ee93dac"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u8-comparison.png",
-      "sha256": "037ceb9c5f9a330fc1ca0ced87f13e10c6ffb878a81f191c009143e80092fe7a"
-    },
-    {
-      "path": "output/playwright/v2/desktop-u8-transfer.png",
-      "sha256": "66b4bd4dab5e3ce29634bacf27ebcf801b10b24275205960cce48e5cbfb704f7"
-    },
-    {
-      "path": "output/playwright/v2/mobile-final-1.png",
-      "sha256": "9c20888d28ec6056bc60a6280f44bf788ed20b71b14644f2383d990e2557f918"
-    },
-    {
-      "path": "output/playwright/v2/mobile-final-2.png",
-      "sha256": "078318ad4b0b8b175ab7f4d873d5657c5aecab26a54b51d5af9a6196451f9858"
-    },
-    {
-      "path": "output/playwright/v2/mobile-final-3.png",
-      "sha256": "58885f4a7214b7d47d9c0352f17b03def41692789b428162b8994ffe5f7778d1"
-    },
-    {
-      "path": "output/playwright/v2/mobile-final-4.png",
-      "sha256": "34fb4af0f9ce40b1a42bf3be00a572033fa0952f05d9eb62b76e254ba9b36241"
-    },
-    {
-      "path": "output/playwright/v2/mobile-final-5.png",
-      "sha256": "d704eb898c027d822d93e254bfffb07cabbb4765ded6d6c6ac7e8bdacfbaf870"
-    },
-    {
-      "path": "output/playwright/v2/mobile-final-6.png",
-      "sha256": "9e60a3e8a5c45c3f55a4ed029c123415ad0f653c257619b722f3765e7598bcc1"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u1-comparison.png",
-      "sha256": "f42307217176a0bdf243a5bbaedf703bfbef8f4c57e88d64d1ef9e6914d7f308"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u1-transfer.png",
-      "sha256": "0477bf9d9d34ba6bc969939516483b505447701e699ca4cfc2a93c8a350e78d5"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u2-comparison.png",
-      "sha256": "0c92068ff4da4cf9f2e8ca3cb2038b8e2f4c587fd985e3778011a8cb165e8920"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u2-transfer.png",
-      "sha256": "63595e43fbb95bf5544ff8192a3d51514bd97510b45b42d5b625bd0c2690f4e0"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u3-comparison.png",
-      "sha256": "53e9d5c11e7a8b8340d2e1bf9c41dac84f63a5c5987c210083e882e854254def"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u3-transfer.png",
-      "sha256": "c77d3deba921db9685c05c324e4f9c215aaef9b5322e4789805dc23fa4b496a6"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u4-comparison.png",
-      "sha256": "cc696611725d69f6e3e69b915e8c34380fca333a9f09719a196fa05e06d6319d"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u4-transfer.png",
-      "sha256": "402a21e8b64f9acebd9e7c1039c4c3772bae66c80b1df713d50187ea6ebddc6c"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u5-comparison.png",
-      "sha256": "0f2c4302b947b079b1e54c499a5dd6bf782d74229b416aeeeb3a3b587e36d930"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u5-transfer.png",
-      "sha256": "dd67224ea4af80a7b470d11ce25c934c2057bede2f8fc63828c95a1b6b721adc"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u6-comparison.png",
-      "sha256": "bcf63eba059b3589a913121c93d7dc5e4f93064f7eefd386e5834476f3a6facf"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u6-transfer.png",
-      "sha256": "484d76f9f261f057955241d4b836fbc73b0f5a636d3927182739d1c93dbc1a9d"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u7-comparison.png",
-      "sha256": "16d15335b5cf6983f5b2121c3622e8711c10b252ce1f8a8557c10a94ca1c0a5a"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u7-transfer.png",
-      "sha256": "1cc5c3b17e6cdbb050b51e6da086e35a81abebb4b066fe18b27dbf295daa28c4"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u8-comparison.png",
-      "sha256": "ed5461ae56261a0686eadc1ac114bc6b8dc0ee230efd32a6bb71db650cb63a06"
-    },
-    {
-      "path": "output/playwright/v2/mobile-u8-transfer.png",
-      "sha256": "a60e931f31dfb67fe7cadabb0bc589cbdd97565a16dc2241d85d6ac6f0048657"
-    },
-    {
-      "path": "output/playwright/v2/narrow-final-1.png",
-      "sha256": "64f03f009bf06a4bb97b40f81534f516b8dc7c4c6deb942a2b54aec2337173f4"
-    },
-    {
-      "path": "output/playwright/v2/narrow-final-2.png",
-      "sha256": "9e32592b86eca87c566952649993a766a021d17e037cecea6e42db2530915ece"
-    },
-    {
-      "path": "output/playwright/v2/narrow-final-3.png",
-      "sha256": "64a34303b8037d7bfa9019be5b48750aedae900a0481f3b4cd87e213c7a330cb"
-    },
-    {
-      "path": "output/playwright/v2/narrow-final-4.png",
-      "sha256": "2f7e3f0fd31f61609373ffca2995dd6e335f5970ebe222e915fc7be0262a283a"
-    },
-    {
-      "path": "output/playwright/v2/narrow-final-5.png",
-      "sha256": "b11815f48aafc37a2174e116741e935f5d3f0b3899ab57f5bd1bf19f1fa2605d"
-    },
-    {
-      "path": "output/playwright/v2/narrow-final-6.png",
-      "sha256": "1794704926e62201e4409fadc3a3a7ee98c3ffd3bb73bef99d6a87a5687e23fc"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u1-comparison.png",
-      "sha256": "da93d5a6a9af653394cba473a4536f9b31626fb111b332da485d4af60dfd9a67"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u1-transfer.png",
-      "sha256": "aee7407b30c3d2b588bcd169c025e6598e8aa1622fafaab14e74919e818bad02"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u2-comparison.png",
-      "sha256": "89f19c32daf8be2bd27897aed466c7e44a6a4657720cb1039e69f4b3a8d30340"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u2-transfer.png",
-      "sha256": "250a5360b43bab6b5bec9e6eaa0f9b1756474056189a441b0c3442f6894cbf24"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u3-comparison.png",
-      "sha256": "85887a5858486566a298cb88dc22bd05ef85b734734e272813a760539cce38f8"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u3-transfer.png",
-      "sha256": "188d0c3878d4c99b4b309161c286e2229c8227cf879b956250221db072448560"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u4-comparison.png",
-      "sha256": "79a655fdbe00de2dbb9311daf4c0732eae80aad74577142e11a00deb4856b243"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u4-transfer.png",
-      "sha256": "5fa70f34d6a19426992af688f423ec2d8d48b508f59a4e7378498288fb88966f"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u5-comparison.png",
-      "sha256": "d9d4dcc464659a4a3ab6828ab4567f92e985ed4f3716fb1a0cb9e09a7345d2a7"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u5-transfer.png",
-      "sha256": "e08acec96340934800e126e983621d508526ac0bff1624929e16ff66985848fc"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u6-comparison.png",
-      "sha256": "21cf8775d86011fabbb2ec6af9338242ef9920e6d50bb5f7d1c9b1a5851bc70f"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u6-transfer.png",
-      "sha256": "c78890f8f59ea2ee10512a11aea29a7abbb104a0a51a19d5a39154536276c235"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u7-comparison.png",
-      "sha256": "46e18a78592971226d06947dec496ab576f0a98cd9619545cc48912b0159d411"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u7-transfer.png",
-      "sha256": "ef4e21278bf215fafc6f15c199bc4d2ddfa95c1ca62882e0280e30ec5c302154"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u8-comparison.png",
-      "sha256": "6d931281011516b497f6c9b9465b20c405d3b67dc1f81fbd64be0763cfa7f439"
-    },
-    {
-      "path": "output/playwright/v2/narrow-u8-transfer.png",
-      "sha256": "818125a0812284dd5480d7889649ead068b47b5e4e040c6e244ae2aec71f0f4a"
-    }
-  ],
   "notTested": [
     "Real Semgrep execution",
     "Safari / Firefox / physical mobile / full screen-reader audit",
     "Online GitHub Actions / deployed GitHub Pages",
     "Human learning effectiveness"
+  ],
+  "legacyRemoval": "All legacy source, teaching content, progress code, exclusive tests, images and icon dependency removed. Root and six legacy route families redirect to v2.",
+  "priorNativeKeyboardEvidence": {
+    "qaHead": "34678af2da531644e683e160c362ea4416075ae6",
+    "note": "Prior implementation evidence; native UI not rerun after removal. Current candidate reran automated keyboard/focus checks.",
+    "checks": [
+      {
+        "unit": 1,
+        "control": "注入事件",
+        "keyboard": "Space / Down / Return",
+        "observedValue": "修改內容",
+        "result": "PASS",
+        "surface": "Codex In-app Browser"
+      },
+      {
+        "unit": 2,
+        "control": "A 的本輪路徑已有有效緩解",
+        "keyboard": "Space",
+        "observedValue": "1",
+        "result": "PASS",
+        "surface": "Codex In-app Browser"
+      },
+      {
+        "unit": 3,
+        "control": "在 API 讀寫前檢查資源政策",
+        "keyboard": "Space",
+        "observedValue": "1",
+        "result": "PASS",
+        "surface": "Codex In-app Browser"
+      },
+      {
+        "unit": 4,
+        "control": "送入的資料",
+        "keyboard": "Space / Down / Return",
+        "observedValue": "不符業務型別",
+        "result": "PASS",
+        "surface": "Codex In-app Browser"
+      },
+      {
+        "unit": 5,
+        "control": "已失守的起點",
+        "keyboard": "Space / Down / Return",
+        "observedValue": "Worker",
+        "result": "PASS",
+        "surface": "Codex In-app Browser"
+      },
+      {
+        "unit": 6,
+        "control": "磁碟加密",
+        "keyboard": "Space",
+        "observedValue": "1",
+        "result": "PASS",
+        "surface": "Codex In-app Browser"
+      },
+      {
+        "unit": 7,
+        "control": "執行課程 Semgrep-like 規則",
+        "keyboard": "Space",
+        "observedValue": "0",
+        "result": "PASS",
+        "surface": "Codex In-app Browser"
+      },
+      {
+        "unit": 8,
+        "control": "取得身分使用紀錄",
+        "keyboard": "Space",
+        "observedValue": "1",
+        "result": "PASS",
+        "surface": "Codex In-app Browser"
+      },
+      {
+        "unit": "Final",
+        "control": "每次讀取前核對人與文件的允許條件",
+        "keyboard": "Space",
+        "observedValue": "1",
+        "result": "PASS",
+        "surface": "Codex In-app Browser"
+      }
+    ]
+  },
+  "screenshots": [
+    {
+      "path": "output/playwright/v2/desktop-final-1.png",
+      "sha256": "57506c27d9bb6e645e4bf73644994a1d431544669cbf7584d91b12fc5aa00178"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-2.png",
+      "sha256": "f897d930fd5a840a87175cc77075e4872cc34983fb6df3d33480adc409dec5ce"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-3.png",
+      "sha256": "88541626d1ca55ff33bca5c6c9e229ceff7af2381486306f4b056672049e3f26"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-4.png",
+      "sha256": "77ffeeadea4cddf184850ff835c476eff6db4ebfdb0cfe8f9ae2ffe42b2d657f"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-5.png",
+      "sha256": "afbac70dc41e92fe1a0d615a9e57c248448ad2b0efb84e176604a63220cf3df5"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-6.png",
+      "sha256": "88b353d195a79eb73976a60fe575b1ddaea296fc1b8c02fb878b13f4ad7d8109"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u1-comparison.png",
+      "sha256": "139cca86863ab95281635c789b407d907ab95379232f263f0c81eba8d82568dd"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u1-transfer.png",
+      "sha256": "dc4f1dc97cd4c143cf54b60d07b7a0a51fbadf5cb0d3804f8d8d4f565a2cc8f5"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u2-comparison.png",
+      "sha256": "2b38ae707f412272206758fb91a6570bf9eeb9d032746e00438d71e1d9b28a42"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u2-transfer.png",
+      "sha256": "28386a5f28ebf7c7cfdee527eceb7aa25fe5c4d6f9a7d110e741cb31dec5e451"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u3-comparison.png",
+      "sha256": "3951ae8a95fc033c4bbbc81f67fda2f79178a4d2d9b8f5dd2e1c58c388d1fcfe"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u3-transfer.png",
+      "sha256": "017a20d3fbb404d539c0bb8e62ad72b19fe44411983e8df8cc0d145f87b61585"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u4-comparison.png",
+      "sha256": "52d632cba3d8af66849dd09e20d681710c98061a8d916e6ce374e3f4f2b16140"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u4-transfer.png",
+      "sha256": "56a37a0eaf52ab1ceac3f54806c819b7c7709328412e93d850b9d2fac4a3b112"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u5-comparison.png",
+      "sha256": "99bf8aa63b0c465b4f0fbe5d4a002274c11bd30d7fc539854d879a2c9ab494ee"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u5-transfer.png",
+      "sha256": "b6b78f87a7438b9861802bfbfee35653d0521774b943f24b98460bac386ecafd"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u6-comparison.png",
+      "sha256": "a6c39bf1f511256e43022fa76ca4fdc1746cf47ded76461b5c034062ad5fc92f"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u6-transfer.png",
+      "sha256": "be1c4dd75eafbffb8dd326ad0e65b3b0c4d37c4782bb327d077be295da3053fc"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u7-comparison.png",
+      "sha256": "5acc62603c8b5d7041a8887f2b48bb4b49041a925d38e606088c1cc5b980651c"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u7-transfer.png",
+      "sha256": "feaa5575a9033837bbddc3c057cc04ab87f4a15655f8754eecc467d7241715b6"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u8-comparison.png",
+      "sha256": "c0275512e24b2569b52c60a6b405f06c0a3db05e79a2e9168b3964cf336dffc1"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u8-transfer.png",
+      "sha256": "2e3e76af35e0c31d3ac67becd316cdd81a11cd0cedde4dad756880d62ef098ff"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-1.png",
+      "sha256": "973543a478e8769954bcd0e18cb09555ddb97e67630c857a8f116413d3964fbb"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-2.png",
+      "sha256": "35c75ffb69e170822623e7dc40feb3920167f64a6a3c75e526eac87e0a1a4394"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-3.png",
+      "sha256": "301c2f2e957a8db90b2f9870bb21f265274b5af9762a1d91cc5b55fb4f5a5e0d"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-4.png",
+      "sha256": "da8c5c56e3ce625e694ce04a3e616ec428d5c27cf62b20126e8c53ae5dcc71af"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-5.png",
+      "sha256": "a0b338408f5608688b8cbba644768a6380b44ebb58074824be02c2563502d7a4"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-6.png",
+      "sha256": "326cd96c93c7b190bc2c970576e3aa4b83b8b73a9410cb5e628797dc0cb8cca6"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u1-comparison.png",
+      "sha256": "5314be772c096c758e41cd416a28ed5971bcab6d3eda27fba56f0716d4dad3fa"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u1-transfer.png",
+      "sha256": "337ffcbb487957456c46350b1cf3bc105be2b45ea96c78fb210c2d65b53ec059"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u2-comparison.png",
+      "sha256": "a71a7f561b615a9a020e8ded0b4eb80b5c86df4c8606e1358e3aacce461cc3c6"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u2-transfer.png",
+      "sha256": "2d05a98cc57fa902dd2e56cc6fbad9bcdb1af26c4a60fdb8616b806fcd17a914"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u3-comparison.png",
+      "sha256": "eb676332e6e284972b14d7176349b2a63831e6e14d8b0b6044175722524b1ab8"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u3-transfer.png",
+      "sha256": "18f47cf4ab232149fe9e67dc17e6fadb80eb044c35bcf3e28d11012d411c07f2"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u4-comparison.png",
+      "sha256": "a72990aaaeb7df36bf399b6181aebb69e0d6dce41b048f799c5a5d21f203e483"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u4-transfer.png",
+      "sha256": "5958aeeba67ddf8b6485f7a8ed8981c6b5ef1a76c9f9de8cefea99ff155b1f09"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u5-comparison.png",
+      "sha256": "d53a1575b3bf419843adee4ed06cc946f1dfc7449ad5c66ab25e05092968ae61"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u5-transfer.png",
+      "sha256": "9d79d79920b46a9cbd788709defb34d0e31ba90793151827ad77a5a703421ab9"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u6-comparison.png",
+      "sha256": "233026959cbfcb6db022379cf4ab9a6b0b94bbf48dd56fef44de0ec129480464"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u6-transfer.png",
+      "sha256": "900832f4742a85d835a383f3f03e27a7f91338a44ac250bbbc5ea6823ddccebe"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u7-comparison.png",
+      "sha256": "6c68a57131d21b670bf1e8d2ec10d414ea60a39fdf48ad120b1baf5d8b7b0782"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u7-transfer.png",
+      "sha256": "3019bc9dd38c93a3db9e76e94da75609356ea3cb1554470eb7c7c8088be4f2eb"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u8-comparison.png",
+      "sha256": "37a2f95db97e3b72a7aadac55db6f495a3505d8fa491a0953d085a14427e3bb8"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u8-transfer.png",
+      "sha256": "28558ba364420ffbc9ce9eb5d8d67b1339da4834264a1e715215efec338039b2"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-1.png",
+      "sha256": "1e9de26d272ccf3157631495abd277128242e1cecba4010b5dfa9bdc88529e4e"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-2.png",
+      "sha256": "70bf008a4337c8fec2d1e06b4bf4d4c4a69612725cd5bbb80f442d249fc44e80"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-3.png",
+      "sha256": "4e7b97c05521d8fa25c2bbc025fa7799c8b2b8ba50b6cbe590471c6e8c692047"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-4.png",
+      "sha256": "a89f2e7f1b35c4dec407c7398e7e4a1ebc3f40ab150cc85d02229749982f5495"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-5.png",
+      "sha256": "3ef52f6f7c72a21285f795c421f8de6d26a122edef9dc4ffeed4dcc0445918c8"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-6.png",
+      "sha256": "bade0e4060ba609b8df16d6d43119b7dca18d560699cae7d0f263359822817d6"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u1-comparison.png",
+      "sha256": "65a4fb8bb6a22ba23c7a50e8101b54318e9ec914aed347de7135c400771b0c0c"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u1-transfer.png",
+      "sha256": "142abfb75b89b0bea8c39155cf127996dc500b0bb8f818167b7d6de3f8a1ac34"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u2-comparison.png",
+      "sha256": "52c84afe9d0cc88c8bba93b10e7796a85a3ede7a61bc32c681549d01b3a253b3"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u2-transfer.png",
+      "sha256": "c18ac7b28cc7861c988bcc15e77161c090c2df208fc68e2a0409c5494a7504b3"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u3-comparison.png",
+      "sha256": "3a350cead8611484ca7163a2cf04b046862c6468e902fc0a844fc28b4bf42834"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u3-transfer.png",
+      "sha256": "e9a906d8347a2bd7ecd3a8956ba9dc72e5570944631fc46cdf0371dd158d7197"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u4-comparison.png",
+      "sha256": "5be3af22030cffa1e23b1f2507a1a284bcc8d16fa35c6827c2922966bdbabf72"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u4-transfer.png",
+      "sha256": "d01833b027b0e9f47de42ee7a4c52b8f79ea3255900b5b42a168138acc6cc550"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u5-comparison.png",
+      "sha256": "c37d1b46e5dcf0c2a17659407deee994603fb96523b48d23338ee031c688aaf1"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u5-transfer.png",
+      "sha256": "c7cc81fc8c4b64ab907c86ebf15956683be9f53528a03f53e0808f58723e9aa9"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u6-comparison.png",
+      "sha256": "d5202d35a2f7d6e058a7a45c605cb0110909b5bb4bc441a615a48d1d4852ceee"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u6-transfer.png",
+      "sha256": "966d80287357dc75e77790878aa465d36985119d03b99760b71c17a376d0f6d2"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u7-comparison.png",
+      "sha256": "7c1a380f14a379a4b047a0eee143a7b55311677d7056bc6f8e5b9c844b5acd72"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u7-transfer.png",
+      "sha256": "44dfa678595282689d356fdabd938d0b716b41187fb18c9390813d682efb248c"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u8-comparison.png",
+      "sha256": "d81fbd270867748d8459a2a9bdc50358fec4fd242597375aff88c479f803cb37"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u8-transfer.png",
+      "sha256": "0ee350c41d1ba3ea8bd4176a1401785b387a76375724b15d55cba561611f0108"
+    }
   ]
 }
