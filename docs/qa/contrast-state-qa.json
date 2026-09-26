@@ -1,0 +1,1206 @@
+{
+  "base": "http://127.0.0.1:4187/cybersecurity-learning-map/",
+  "browser": "152.0.7977.8",
+  "matrix": [
+    {
+      "viewport": "desktop",
+      "unit": 1,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 2,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 3,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 4,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 5,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 6,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 7,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 8,
+      "stages": 5,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": "Final",
+      "stages": 6,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 1,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 2,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 3,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 4,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 5,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 6,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 7,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 8,
+      "stages": 5,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": "Final",
+      "stages": 6,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 1,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 2,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 3,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 4,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 5,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 6,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 7,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 8,
+      "stages": 5,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": "Final",
+      "stages": 6,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    }
+  ],
+  "errors": [],
+  "routeChecks": [
+    "native drag with keyboard select alternative",
+    "synthetic rule/triage/fix/rescan with fixture/miss",
+    "Teaching/Transfer independent state and reload",
+    "revisiting constraint preserves changed settings",
+    "Final incidents cumulative on return",
+    "landing",
+    "8 direct unit routes",
+    "reload preserves URL simulation/stage state",
+    "back/forward preserves stage state",
+    "unknown unit and unknown route redirect",
+    "restart resets stages/controls",
+    "stage reset restores defaults/constraint",
+    "progressive controls",
+    "keyboard Tab/Enter",
+    "stage focus",
+    "accessible button/select names",
+    "reduced-motion no animation with visible state",
+    "invalid query safe fallback",
+    "GitHub Pages base path assets HTTP 200",
+    "root and all removed legacy routes redirect to v2 without legacy content"
+  ],
+  "interactionChecks": [
+    {
+      "viewport": "desktop",
+      "unit": 1,
+      "parameter": "policy",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 2,
+      "parameter": "mitigation",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 3,
+      "parameter": "authorizeBefore",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 4,
+      "parameter": "input",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 5,
+      "parameter": "compromised",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 6,
+      "parameter": "diskEncryption",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 7,
+      "parameter": "sast",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 8,
+      "parameter": "identityEvidence",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 1,
+      "parameter": "policy",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 2,
+      "parameter": "mitigation",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 3,
+      "parameter": "authorizeBefore",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 4,
+      "parameter": "input",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 5,
+      "parameter": "compromised",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 6,
+      "parameter": "diskEncryption",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 7,
+      "parameter": "sast",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 8,
+      "parameter": "identityEvidence",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 1,
+      "parameter": "policy",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 2,
+      "parameter": "mitigation",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 3,
+      "parameter": "authorizeBefore",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 4,
+      "parameter": "input",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 5,
+      "parameter": "compromised",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 6,
+      "parameter": "diskEncryption",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 7,
+      "parameter": "sast",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 8,
+      "parameter": "identityEvidence",
+      "visibleConsequence": "PASS"
+    }
+  ],
+  "qaHead": "365107ec7eda306e42259ebe36c67ea40ff513ac",
+  "date": "2026-09-26",
+  "gate": "PASS WITH FINDINGS; presentation contrast/state QA only",
+  "viewports": {
+    "desktop": [
+      1280,
+      800
+    ],
+    "narrow": [
+      900,
+      700
+    ],
+    "mobile": [
+      390,
+      844
+    ]
+  },
+  "checks": {
+    "install": "PASS; frozen lockfile; 50 packages",
+    "test": "PASS; 214 v2 model assertions",
+    "build": "PASS; vue-tsc + Vite",
+    "browser": "PASS; complete pnpm test:browser",
+    "diffCheck": "PASS"
+  },
+  "baseline": {
+    "head": "9744031d6c34c1950225cae358cfa2e991e6d29d",
+    "foreground": "#183339",
+    "background": "#184e4e",
+    "contrast": 1.4245475207665823,
+    "newRegressionTest": "EXPECTED FAIL on original production build"
+  },
+  "contrastSummary": [
+    {
+      "viewport": "desktop",
+      "samples": 3143,
+      "states": {
+        "default": 1585,
+        "hover": 411,
+        "active": 375,
+        "focus": 411,
+        "selected": 334,
+        "disabled": 18,
+        "disabled-hover": 9
+      },
+      "minTextContrast": 6.2375231550090815,
+      "minFocusContrast": 5.452412478323138
+    },
+    {
+      "viewport": "narrow",
+      "samples": 3143,
+      "states": {
+        "default": 1585,
+        "hover": 411,
+        "active": 375,
+        "focus": 411,
+        "selected": 334,
+        "disabled": 18,
+        "disabled-hover": 9
+      },
+      "minTextContrast": 6.2375231550090815,
+      "minFocusContrast": 5.452412478323138
+    },
+    {
+      "viewport": "mobile",
+      "samples": 3143,
+      "states": {
+        "default": 1585,
+        "hover": 411,
+        "active": 375,
+        "focus": 411,
+        "selected": 334,
+        "disabled": 18,
+        "disabled-hover": 9
+      },
+      "minTextContrast": 6.2375231550090815,
+      "minFocusContrast": 5.452412478323138
+    },
+    {
+      "viewport": "reduced-motion",
+      "samples": 103,
+      "states": {
+        "default": 23,
+        "hover": 26,
+        "active": 25,
+        "focus": 26,
+        "selected": 3
+      },
+      "minTextContrast": 8.76781930823949,
+      "minFocusContrast": 5.452412478323138
+    }
+  ],
+  "ctaSamples": [
+    {
+      "surface": "desktop/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "default",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 8.76781930823949,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 8.76781930823949
+    },
+    {
+      "surface": "desktop/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "hover",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(18, 63, 63)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 10.853028733493048,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 10.853028733493048
+    },
+    {
+      "surface": "desktop/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "active",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(14, 51, 51)",
+      "disabled": false,
+      "selected": false,
+      "active": true,
+      "focused": false,
+      "borderContrast": 12.745199813282726,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 12.745199813282726
+    },
+    {
+      "surface": "desktop/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "focus",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": true,
+      "borderContrast": 8.76781930823949,
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "outlineContrast": 5.452412478323138,
+      "textContrast": 8.76781930823949
+    },
+    {
+      "surface": "desktop/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "default",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 8.76781930823949,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 8.76781930823949
+    },
+    {
+      "surface": "desktop/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "hover",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(18, 63, 63)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 10.853028733493048,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 10.853028733493048
+    },
+    {
+      "surface": "desktop/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "active",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(14, 51, 51)",
+      "disabled": false,
+      "selected": false,
+      "active": true,
+      "focused": false,
+      "borderContrast": 12.745199813282726,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 12.745199813282726
+    },
+    {
+      "surface": "desktop/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "focus",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": true,
+      "borderContrast": 8.76781930823949,
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "outlineContrast": 5.452412478323138,
+      "textContrast": 8.76781930823949
+    },
+    {
+      "surface": "narrow/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "default",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 8.76781930823949,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 8.76781930823949
+    },
+    {
+      "surface": "narrow/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "hover",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(18, 63, 63)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 10.853028733493048,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 10.853028733493048
+    },
+    {
+      "surface": "narrow/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "active",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(14, 51, 51)",
+      "disabled": false,
+      "selected": false,
+      "active": true,
+      "focused": false,
+      "borderContrast": 12.745199813282726,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 12.745199813282726
+    },
+    {
+      "surface": "narrow/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "focus",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": true,
+      "borderContrast": 8.76781930823949,
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "outlineContrast": 5.452412478323138,
+      "textContrast": 8.76781930823949
+    },
+    {
+      "surface": "narrow/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "default",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 8.76781930823949,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 8.76781930823949
+    },
+    {
+      "surface": "narrow/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "hover",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(18, 63, 63)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 10.853028733493048,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 10.853028733493048
+    },
+    {
+      "surface": "narrow/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "active",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(14, 51, 51)",
+      "disabled": false,
+      "selected": false,
+      "active": true,
+      "focused": false,
+      "borderContrast": 12.745199813282726,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 12.745199813282726
+    },
+    {
+      "surface": "narrow/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "focus",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": true,
+      "borderContrast": 8.76781930823949,
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "outlineContrast": 5.452412478323138,
+      "textContrast": 8.76781930823949
+    },
+    {
+      "surface": "mobile/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "default",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 8.76781930823949,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 8.76781930823949
+    },
+    {
+      "surface": "mobile/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "hover",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(18, 63, 63)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 10.853028733493048,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 10.853028733493048
+    },
+    {
+      "surface": "mobile/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "active",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(14, 51, 51)",
+      "disabled": false,
+      "selected": false,
+      "active": true,
+      "focused": false,
+      "borderContrast": 12.745199813282726,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 12.745199813282726
+    },
+    {
+      "surface": "mobile/landing",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "focus",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": true,
+      "borderContrast": 8.76781930823949,
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "outlineContrast": 5.452412478323138,
+      "textContrast": 8.76781930823949
+    },
+    {
+      "surface": "mobile/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "default",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 8.76781930823949,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 8.76781930823949
+    },
+    {
+      "surface": "mobile/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "hover",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(18, 63, 63)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": false,
+      "borderContrast": 10.853028733493048,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 10.853028733493048
+    },
+    {
+      "surface": "mobile/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "active",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(14, 51, 51)",
+      "disabled": false,
+      "selected": false,
+      "active": true,
+      "focused": false,
+      "borderContrast": 12.745199813282726,
+      "outline": "none",
+      "outlineWidth": "3px",
+      "outlineContrast": 1,
+      "textContrast": 12.745199813282726
+    },
+    {
+      "surface": "mobile/landing-menu",
+      "control": "從「什麼不能發生」開始 →",
+      "state": "focus",
+      "foreground": "rgb(246, 248, 242)",
+      "background": "rgb(24, 78, 78)",
+      "disabled": false,
+      "selected": false,
+      "active": false,
+      "focused": true,
+      "borderContrast": 8.76781930823949,
+      "outline": "solid",
+      "outlineWidth": "3px",
+      "outlineContrast": 5.452412478323138,
+      "textContrast": 8.76781930823949
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "output/playwright/v2/desktop-final-1.png",
+      "sha256": "13ed79cbbf758bc107b62ee589a70bc752ab3d8a3b3dcc5a0d803076d7e572fa"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-2.png",
+      "sha256": "1a1d2abef231dcd3abdcb0d37804bab4297bbb36ed78773a75ec4614e0cafdd7"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-3.png",
+      "sha256": "bd452207d8f6069a421a485142d06bcf0f8e51be1ec52d800b557b7af0d71793"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-4.png",
+      "sha256": "d391b2b97108defa0fb0c7e9783e5277d0bc2ff149e06c1a3ece7bb02e063f87"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-5.png",
+      "sha256": "a35ab6711dffc26305fb4cb9aae3365a42af5239dfc7d6f20ff9cb71926db231"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-6.png",
+      "sha256": "87ee4ff98825ede5c50ad08222300aefc8ff3e493eac4724368f5c8859158dc7"
+    },
+    {
+      "path": "output/playwright/v2/desktop-landing-active.png",
+      "sha256": "69ca8d1037191bc5f51427f0ace649122d0950e6c6d8844ef452ee9729e170cc"
+    },
+    {
+      "path": "output/playwright/v2/desktop-landing-default.png",
+      "sha256": "57b1463f8b3182c51426d8d755a52fd53f30cfd7e2a9ec974a163a4781fc7963"
+    },
+    {
+      "path": "output/playwright/v2/desktop-landing-focus.png",
+      "sha256": "d24561226ec8acd3d0ebf502c05ddb9cb170c31d23631d80fd4d0b0685b4cda7"
+    },
+    {
+      "path": "output/playwright/v2/desktop-landing-hover.png",
+      "sha256": "3f2b432e09b0ef9f96f32f5a9f6347d3209fed6fe3a55fa59fa755cfe3c86638"
+    },
+    {
+      "path": "output/playwright/v2/desktop-landing-menu.png",
+      "sha256": "291b8435bc0653a67587dc0a6a70c6aa718aee6918fe7d19f66a2a2817ec2028"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u1-comparison.png",
+      "sha256": "44226b811c9e9db0e8e57c54cb05422d1405a1745e7d13b213fc9fe215dbfdb9"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u1-transfer.png",
+      "sha256": "da8c6055cdb1c00b3bf11d1bb04630ebb0696eae170ae3735fc86b5fd43a9ef2"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u2-comparison.png",
+      "sha256": "4eab1b88626e8b4e707049e535fe4034bf3360fcc065cc9321291e69c076b006"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u2-transfer.png",
+      "sha256": "fb89fd2d96047f9f7db19def559888bb517c91ac7449c818bf6195a8b925a9cc"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u3-comparison.png",
+      "sha256": "fe9604b299e2a7d5f67e34ce45f17b9019c35e3d5b045fc6bc4907680370e427"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u3-transfer.png",
+      "sha256": "a927272fbc7e1297258c5b0a1b09b092089b12ab74aac53cea1d3df9cd7b8350"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u4-comparison.png",
+      "sha256": "7c58536e063373fcaf8ba4f254967576e9358a73c2bbfa767f69608d9d8a6b17"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u4-transfer.png",
+      "sha256": "6d5ce8561177ac2558f61f12647ba0f8588458ac37ec26b00a088926e2f8600a"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u5-comparison.png",
+      "sha256": "cc69e4869321aaed298fa67087e472e08ad3bce54dbdbe5be5925f85644d84eb"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u5-transfer.png",
+      "sha256": "8722c14be6b506d72fdba9d71365a286943a2b76c27589e8fa9b0552993f0a5f"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u6-comparison.png",
+      "sha256": "f471b6bf1a5055daf994c7947c267cde7b5f72da01de5ca1e2c80b4396720095"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u6-transfer.png",
+      "sha256": "b3343d1001a80bdb49adb6bc6d390300bea4d959c9f3e1936ee931cd521fbe10"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u7-comparison.png",
+      "sha256": "7fc109f8a3ecd07f9608127f5c4296bd71f094a8c5ad6d73087a0391160d2f0d"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u7-transfer.png",
+      "sha256": "11dc7b8d61ba2df27f076bcff2657e7da24d63034cf84ed6647cf3a63b9c0f79"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u8-comparison.png",
+      "sha256": "845c489416b5be924d3dc2bba93749346358d21b41a60d51632c37c683ca0bcd"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u8-transfer.png",
+      "sha256": "917b191dcbb68e0991343709b7a96b81092261f6ab40f8f271d686542267cf7a"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-1.png",
+      "sha256": "4875f0b352f4a5f318b55e17c96a66f6a328076fd7833f5d14c0f5561348adab"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-2.png",
+      "sha256": "0d6ffc4ddbcdfbaa46f2888f04362056e20bf48df55faaceb9d9113f6bb8e361"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-3.png",
+      "sha256": "88cc7ba7b2c633487084f9854d793c8a33558f78aa97d02bb45aad142e6f43f5"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-4.png",
+      "sha256": "d98f3929640f427b70dcca1bc1d942d9484d07fe3c03d1dac0b7d577b89f27f2"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-5.png",
+      "sha256": "a7bcd9aaa3636036cfd791ef1307d06d2f9bd42d660d7451f580ca76cd448447"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-6.png",
+      "sha256": "abe263f9e89e34e27c7876e309919d72c4b65b1a2e72009f68ad27ccf7b9c5cd"
+    },
+    {
+      "path": "output/playwright/v2/mobile-landing-active.png",
+      "sha256": "85162ac1d68c52404be9e51cf0514f8950a53ffb01b5e835bf7047f6abb9ab7e"
+    },
+    {
+      "path": "output/playwright/v2/mobile-landing-default.png",
+      "sha256": "119117fc5bd84a5caf14d5b6d91e75a836d176df911e4e19d45c67b586d7dbd5"
+    },
+    {
+      "path": "output/playwright/v2/mobile-landing-focus.png",
+      "sha256": "e5bdb14f69717eabc8a75254e237bcb02cfc9e7ace05d792e29edca0e549691c"
+    },
+    {
+      "path": "output/playwright/v2/mobile-landing-hover.png",
+      "sha256": "f4a4a7738087c2ffef5fa70417216c7e73192dd9ef0e5314eb5a638056d43881"
+    },
+    {
+      "path": "output/playwright/v2/mobile-landing-menu.png",
+      "sha256": "bacc5fcc77464c83baa3a80b7cc114696f17768f66d0d37295848beed3377e1f"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u1-comparison.png",
+      "sha256": "a28ba437b3915a9a8a18a016475799a52d6a544edea9497ab0310845dbe0a2a9"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u1-transfer.png",
+      "sha256": "254cb133a1af3cc0a5a7603c5637f1ab921d7332a900b9c4b3df1565b62c2843"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u2-comparison.png",
+      "sha256": "7979bcd2987cec36a272e59897a03248b5e03fc844811d9c96b3522084d4aae1"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u2-transfer.png",
+      "sha256": "9f98c20ce8b5b05755233fcd06b84b339e858dc3e09a513554a8af57784cd57b"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u3-comparison.png",
+      "sha256": "141ef910b845226d6e2b666d889eb1bf897bf2722001a463e0441f2aadef1ff5"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u3-transfer.png",
+      "sha256": "9040b0a9ca34dca3841e90b62a8b047a466d1632b407d5db2b740b007ff09782"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u4-comparison.png",
+      "sha256": "47a6ca6fb6c8cd9a125972ed825832d27a170874563930c4e7f3e9c046abcd1a"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u4-transfer.png",
+      "sha256": "013b035cc314968c9e7a30dfea81b728c5c3831bb1c88a906fd4b182322ee4a6"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u5-comparison.png",
+      "sha256": "8a7edb6c24279e2dbc04bf905f6e09f04df741e2899e73f5e3748793b4efa0a3"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u5-transfer.png",
+      "sha256": "448479c86e1f41963cbee919dcb42f6c818357bef243efd326b85dd996b56e46"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u6-comparison.png",
+      "sha256": "46032b995835dd7e2bf34f23958c2e0c2828711b7eb76390c7575c11ec1e6942"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u6-transfer.png",
+      "sha256": "049664d60233b5f9273e428ab109cfbe8414026c71d5dfade4a23113ffa70ef1"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u7-comparison.png",
+      "sha256": "8ecc2b1a94a7270300e15e5ffd7fee210db5598fd48683329e3ae6fead9141c9"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u7-transfer.png",
+      "sha256": "82d1fdbf87d3dc035811bbce7f53644e60bc8bb56c96deba6775e442075c7e7f"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u8-comparison.png",
+      "sha256": "81f2356ce9c250c63a0e1a3e92fbf381d7675f556b5e1a622a5e69b599cc1e81"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u8-transfer.png",
+      "sha256": "2c22693313d6f6dc8cc69f4fc89ff583f11312b6a01c5a59749b12af49606f88"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-1.png",
+      "sha256": "744c237f85fd0993cb3c241cb4150922672bcc0a0d648e7ed98c98e0b54ccc64"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-2.png",
+      "sha256": "c6b9089c7b78ea4c2f59516d857d350c992c791042c0e0635bb7b5b6b30faf45"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-3.png",
+      "sha256": "c1530c7e25ec5188e4b0e7f5a0158f3a659989b959143b658b487d983a070362"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-4.png",
+      "sha256": "25e1332d7d743b80582aeb49325c7d535695cef9f470fe76c67023c9b43bd1a1"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-5.png",
+      "sha256": "41d2c67f5cbe76624b80c5f15b67011a54f9c37129d34b0dd6718daf1829570c"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-6.png",
+      "sha256": "799b7dd049a3d9b50dc7255464bf3bc21600b3c8b6fcae581618f15792237efa"
+    },
+    {
+      "path": "output/playwright/v2/narrow-landing-active.png",
+      "sha256": "a3557e9980abfc03bbca86ad22b1ce6b9ec9fd30c0754e6980bbbb75490b2adb"
+    },
+    {
+      "path": "output/playwright/v2/narrow-landing-default.png",
+      "sha256": "0b42fb90dfa3b68c7a6a5efe0800da19be070024819b5dbf668c88e6cf7e3052"
+    },
+    {
+      "path": "output/playwright/v2/narrow-landing-focus.png",
+      "sha256": "f48eecb69eaa3d4fcb4908bd832469b3fdaa35f440d7055a9dcea2bd2f63d641"
+    },
+    {
+      "path": "output/playwright/v2/narrow-landing-hover.png",
+      "sha256": "ac9dc1893f7273972e341f2e7c8c347a59fea454fa96ca728394802c1fbae910"
+    },
+    {
+      "path": "output/playwright/v2/narrow-landing-menu.png",
+      "sha256": "5b6bcd38123fa599c82bd9349cb6e6a1f932f73b288d3eeef9b7b031e3b11a28"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u1-comparison.png",
+      "sha256": "7dd8ae4ac1b764a039d5b375c4fdc1a2114d622d3e65ce7ba537ccf6279c4350"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u1-transfer.png",
+      "sha256": "d483a0b878656fd1a571cfb451c7cdce6594652cd86a28fbcce7a64555a2f4e8"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u2-comparison.png",
+      "sha256": "a96623e1846883a76407b4f1551bb665cdeb183d1d1e514d635e2454a7e4243d"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u2-transfer.png",
+      "sha256": "14523439fbd19d19eb573db1db6afb64e4d517b1ff9951cd3771e7fe931a8b3d"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u3-comparison.png",
+      "sha256": "8b57599a4087c9b4cc4476b2ab3f5230aaf5e55633386d251b06649e32fbad9e"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u3-transfer.png",
+      "sha256": "bf7b45aac880f505cd267a0697774eb95896e5bf1038d31ca53330b652e78811"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u4-comparison.png",
+      "sha256": "162aef839bd8d412a48068148fa22901baa0f7a92aad186e4185320039d0bd38"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u4-transfer.png",
+      "sha256": "d4582e6bdd28923c2a5f41d898ac45d29c537bbf94c84b6ad09541c89bc25087"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u5-comparison.png",
+      "sha256": "522620b47fd7cd745bb5fc670c318a900d1e30a9322f07ab5cbe2b6472395c28"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u5-transfer.png",
+      "sha256": "a71a259090d67efb89b76777b7a3c9bf0330fd0dcdffc98b7592b7e2e17c8ac6"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u6-comparison.png",
+      "sha256": "f4cfc8143531095c2edade724461ca1cb0d5ace2e3adbb3d2826de490bc9f650"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u6-transfer.png",
+      "sha256": "d0be3c6d9aa0d67fddb17311218adbc502b4962f009e593b7370e006c8ccd3ff"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u7-comparison.png",
+      "sha256": "9465ad176bfe4cfdef0ce2457823b58b1f0e39b7a253d5557b7e60dd4ecf041d"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u7-transfer.png",
+      "sha256": "0b241cc805a67d46961a2e258de65e27d67f301fb769b013042a1fcb848b78f1"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u8-comparison.png",
+      "sha256": "28b2b3ea644980bee0be6a3da28ca1b9802a944085184fed7775f76588aec389"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u8-transfer.png",
+      "sha256": "53124b824a1c8a08e901f22174920d0537a876d6c90c8cb371c3880c4ae2b4fc"
+    }
+  ],
+  "sourceHashes": {
+    "src/v2/v2.css": "b54a397f0db227cd3e6363cfaea4fac6f8038624ade1d9c7ae7936b3f3e8f372",
+    "tests/v2-browser.mjs": "ffa3cddea7ee1572790b9d8078d11c17264d5489ed49033ba8d066b6243dbcda",
+    "tests/v2-contrast.mjs": "7bd676808291b64c36e76d4f47f49bf09cf8624cced180f64e91c671376b9ac5"
+  },
+  "notTested": [
+    "Safari / Firefox / physical mobile / full screen-reader audit",
+    "OS-rendered select popup colors and active/open state; disabled select/link not present",
+    "Human learning effectiveness",
+    "Real Semgrep / real systems / production acceptance",
+    "Merged main or new GitHub Pages deployment"
+  ]
+}

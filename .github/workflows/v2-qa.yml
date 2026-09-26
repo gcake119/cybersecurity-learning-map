@@ -2,6 +2,8 @@ name: V2 technical QA
 on:
   push:
     branches: [learning-map-v2]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read

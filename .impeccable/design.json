@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-26",
+  "title": "Cybersecurity Learning Map v2",
+  "extensions": {
+    "shadows": [],
+    "breakpoints": [
+      {
+        "name": "nodes",
+        "value": "1000px"
+      },
+      {
+        "name": "workbench",
+        "value": "700px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Interaction colors from DESIGN.md.",
+      "html": "<button class=\"ds-control\">Primary CTA</button>",
+      "css": ".ds-control {color:#f6f8f2;background:#184e4e;border:1px solid #657e72;border-radius:8px;padding:10px 14px;min-height:44px} .ds-control:focus-visible {outline:3px solid #a34c12;outline-offset:3px} .ds-control:hover {color:#f6f8f2;background:#123f3f} .ds-control:active {color:#f6f8f2;background:#0e3333}"
+    },
+    {
+      "name": "Secondary button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Interaction colors from DESIGN.md.",
+      "html": "<button class=\"ds-control\">Secondary button</button>",
+      "css": ".ds-control {color:#183339;background:#fdfefd;border:1px solid #657e72;border-radius:8px;padding:10px 14px;min-height:44px} .ds-control:focus-visible {outline:3px solid #a34c12;outline-offset:3px} .ds-control:disabled {border-style:dashed;opacity:1} .ds-control:not(:disabled):hover {color:#183339;background:#e5eeea} .ds-control:not(:disabled):active {color:#183339;background:#d4e2dc}"
+    },
+    {
+      "name": "Selected stage",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Interaction colors from DESIGN.md.",
+      "html": "<button class=\"ds-control\">Selected stage</button>",
+      "css": ".ds-control {color:#f6f8f2;background:#184e4e;border:1px solid #657e72;border-radius:8px;padding:10px 14px;min-height:44px} .ds-control:focus-visible {outline:3px solid #a34c12;outline-offset:3px} .ds-control:hover {color:#f6f8f2;background:#123f3f} .ds-control:active {color:#f6f8f2;background:#0e3333}"
+    },
+    {
+      "name": "Toggle on",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Interaction colors from DESIGN.md.",
+      "html": "<button class=\"ds-control\">Toggle on</button>",
+      "css": ".ds-control {color:#f6f8f2;background:#184e4e;border:1px solid #657e72;border-radius:8px;padding:10px 14px;min-height:44px} .ds-control:focus-visible {outline:3px solid #a34c12;outline-offset:3px} .ds-control:hover {color:#f6f8f2;background:#123f3f} .ds-control:active {color:#f6f8f2;background:#0e3333}"
+    },
+    {
+      "name": "Disabled button",
+      "kind": "button",
+      "refersTo": "button-disabled",
+      "description": "Interaction colors from DESIGN.md.",
+      "html": "<button class=\"ds-control\" disabled>Disabled button</button>",
+      "css": ".ds-control {color:#405957;background:#e5ebe7;border:1px solid #657e72;border-radius:8px;padding:10px 14px;min-height:44px} .ds-control:focus-visible {outline:3px solid #a34c12;outline-offset:3px} .ds-control:disabled {border-style:dashed;opacity:1} .ds-control:not(:disabled):hover {color:#183339;background:#e5eeea} .ds-control:not(:disabled):active {color:#183339;background:#d4e2dc}"
+    }
+  ],
+  "narrative": {
+    "northStar": "看得清楚，再判斷證據",
+    "overview": "沿用既有淺色教材。",
+    "rules": [
+      {
+        "name": "The Paired Color Rule",
+        "body": "每個互動狀態都同時指定 foreground（文字）與 background（背景），不可只改背景後繼承頁面文字。",
+        "section": "colors"
+      }
+    ]
+  }
+}

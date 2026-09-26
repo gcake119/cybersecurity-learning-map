@@ -5,12 +5,14 @@ import assert from 'node:assert/strict';
 import {units} from '../src/v2/course.ts';
 import {defaults} from '../src/v2/model.ts';
 import {incidents} from '../src/v2/final-model.ts';
+import {contrastAudit} from './v2-contrast.mjs';
 const base=process.env.V2_QA_URL||'http://127.0.0.1:4187/cybersecurity-learning-map/';
 const server=process.env.V2_QA_URL?undefined:spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4187','--strictPort'],{stdio:'ignore'});
 if(server){let ready=false;for(let i=0;i<60;i++){try{if((await fetch(base)).ok){ready=true;break;}}catch{}await new Promise(r=>setTimeout(r,200));}if(!ready){server.kill();throw Error('Preview server did not start');}}
 let browser;try{browser=await chromium.launch({executablePath:process.env.CHROMIUM_EXECUTABLE_PATH});}catch(error){server?.kill();throw error;}
-const report={base,browser:browser.version(),matrix:[],errors:[],routeChecks:[],interactionChecks:[]};
+const report={base,browser:browser.version(),matrix:[],errors:[],routeChecks:[],interactionChecks:[],contrastChecks:[]};
 const output='output/playwright/v2';await mkdir(output,{recursive:true});
+const audit=contrastAudit(report.contrastChecks,output);
 const overflow=async page=>assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+page.url());
 async function settle(page){await page.locator('.v2-lesson,.v2-landing').waitFor();await page.waitForTimeout(30);}
 async function change(page,ctl){const target=page.locator(`[data-control="${ctl.key}"]`);if(ctl.type==='toggle')await target.click();else{const v=await target.inputValue();await target.selectOption(ctl.options.find(o=>o.value!==v).value);}await page.waitForTimeout(35);}
@@ -19,6 +21,9 @@ try {
   const context=await browser.newContext({viewport:{width,height}}),page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));
   page.on('response',r=>{if(r.status()>=400)report.errors.push(`${r.status()} ${r.url()}`)});
   await page.goto(base+'#/v2');await settle(page);await overflow(page);assert.equal(await page.locator('.v2-start').count(),1);
+  await audit(page,`${label}/landing`,{screenshots:true});
+  await page.locator('.v2-course-menu summary').click();await audit(page,`${label}/landing-menu`);
+  await page.screenshot({path:`${output}/${label}-landing-menu.png`,fullPage:true});
   for(const unit of units){
    await page.goto(base+'#/v2/'+unit.slug);await settle(page);
    // Each storyboard stage has its controls; later controls are not dumped into stage 1.
@@ -26,16 +31,19 @@ try {
    for(let i=0;i<unit.stages.length;i++){
     await page.locator('.v2-stages button').nth(i).click();await page.waitForTimeout(40);
     assert.equal(await page.locator('[data-control]').count(),unit.stages[i].keys.length,`stage controls ${unit.id}/${i}`);
-    await overflow(page);
+    await overflow(page);await audit(page,`${label}/u${unit.id}/stage-${i+1}`);
     if(unit.stages[i].reveal){assert.equal(await page.locator('.v2-reveal p').count(),0);await page.locator('.v2-reveal button').click();assert.equal(await page.locator('.v2-reveal p').count(),unit.stages[i].reveal.length);await page.locator('.v2-reveal button').click();}
     for(const key of unit.stages[i].keys){const ctl=unit.controls.find(c=>c.key===key);await change(page,ctl);await overflow(page);}
+    await audit(page,`${label}/u${unit.id}/stage-${i+1}-changed`);
     assert.equal(await page.locator('.v2-node').count()>0,true);assert.equal(await page.locator('[data-edge]').count()>0,true);
    }
    // Independent Transfer state initialized from its own case, and all Transfer controls work.
    await page.locator('.v2-stages button').last().click();await page.waitForTimeout(40);assert.match(await page.locator('h1').innerText(),/換一個情境/);
    assert.equal(await page.locator('.v2-reveal').count(),0);assert.equal(await page.locator('[data-control]').count(),unit.controls.length);
    const transferBefore=await page.locator('.v2-canvas').innerText();
+   await audit(page,`${label}/u${unit.id}/transfer`);
    for(const ctl of unit.controls)await change(page,ctl);
+   await audit(page,`${label}/u${unit.id}/transfer-changed`);
    await overflow(page);report.matrix.push({viewport:label,unit:unit.id,stages:unit.stages.length,controls:'all operated',transfer:'operated',overflow:'PASS'});
    await page.waitForTimeout(1100);await page.screenshot({path:`${output}/${label}-u${unit.id}-transfer.png`,fullPage:true});
    await page.getByRole('button',{name:'從本單元重新開始',exact:true}).click();await page.waitForTimeout(40);assert.equal(await page.locator('[data-control]').count(),unit.stages[0].keys.length);
@@ -52,7 +60,9 @@ try {
   await page.goto(base+'#/v2/final');await settle(page);
   for(let i=0;i<incidents.length;i++){
    await page.locator('.v2-stages button').nth(i).click();await page.waitForTimeout(40);assert.match(await page.locator('h1').innerText(),new RegExp(incidents[i].title));
+   await audit(page,`${label}/final/stage-${i+1}`);
    for(const target of await page.locator('[data-control]').all()){if(await target.evaluate(e=>e.tagName)==='SELECT'){const values=await target.locator('option').evaluateAll(es=>es.map(e=>e.value));await target.selectOption(values.at(-1));}else await target.click();await page.waitForTimeout(30);}
+   await audit(page,`${label}/final/stage-${i+1}-changed`);
    await overflow(page);assert.equal(await page.locator('.v2-node').count(),13);await page.waitForTimeout(1100);await page.screenshot({path:`${output}/${label}-final-${i+1}.png`,fullPage:true});
   }
   await page.reload();await settle(page);assert.match(await page.locator('h1').innerText(),/帶到另一個系統/);await overflow(page);
@@ -80,6 +90,7 @@ try {
  await page.goto(base+'#/v2/objectives');await settle(page);await page.locator('.v2-stages button').nth(2).click();await page.waitForTimeout(40);await page.locator('[data-claim=claim0]').dragTo(page.locator('[data-claim-group=confirmed]'));await page.waitForTimeout(40);assert.equal(await page.locator('[data-control=claim0]').inputValue(),'confirmed','dragging updates same model as select');
  await page.goto(base+'#/v2/evidence');await settle(page);await page.locator('.v2-stages button').nth(1).click();await page.waitForTimeout(40);assert.equal(await page.locator('[data-evidence=query]').count(),1);await page.locator('[data-control=fixQuery]').click();await page.waitForTimeout(40);await page.getByRole('button',{name:'重新執行課程掃描與測試',exact:true}).click();assert.equal(await page.locator('[data-evidence=query]').count(),0);assert.equal(await page.locator('[data-evidence=fixture]').count(),1);assert.equal(await page.locator('[data-evidence=business]').count(),1,'uncovered business logic remains');assert.equal(await page.locator('.v2-wires>path').count()>0,true,'graph has actual connecting wires');
  report.routeChecks=['native drag with keyboard select alternative','synthetic rule/triage/fix/rescan with fixture/miss','Teaching/Transfer independent state and reload','revisiting constraint preserves changed settings','Final incidents cumulative on return','landing','8 direct unit routes','reload preserves URL simulation/stage state','back/forward preserves stage state','unknown unit and unknown route redirect','restart resets stages/controls','stage reset restores defaults/constraint','progressive controls','keyboard Tab/Enter','stage focus','accessible button/select names','reduced-motion no animation with visible state','invalid query safe fallback','GitHub Pages base path assets HTTP 200','root and all removed legacy routes redirect to v2 without legacy content'];
+ await audit(page,'reduced-motion/u7');
  await context.close();assert.deepEqual(report.errors,[]);
- await writeFile(output+'/report.json',JSON.stringify(report,null,2));console.log(`PASS ${report.matrix.length} viewport/surface rows; every stage/control/transfer; ${report.routeChecks.length} route/accessibility checks; ${report.interactionChecks.length} main-parameter observations`);
+ await writeFile(output+'/report.json',JSON.stringify(report,null,2));console.log(`PASS ${report.matrix.length} viewport/surface rows; every stage/control/transfer; ${report.routeChecks.length} route/accessibility checks; ${report.interactionChecks.length} main-parameter observations; ${report.contrastChecks.length} rendered contrast/state samples`);
 }finally{await browser.close();server?.kill();}
