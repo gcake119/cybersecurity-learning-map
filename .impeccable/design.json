@@ -30,7 +30,7 @@
       "refersTo": "button-secondary",
       "description": "Interaction colors from DESIGN.md.",
       "html": "<button class=\"ds-control\">Secondary button</button>",
-      "css": ".ds-control {color:#183339;background:#fdfefd;border:1px solid #657e72;border-radius:8px;padding:10px 14px;min-height:44px} .ds-control:focus-visible {outline:3px solid #a34c12;outline-offset:3px} .ds-control:not(:disabled):hover {color:#183339;background:#e5eeea} .ds-control:not(:disabled):active {color:#183339;background:#d4e2dc}"
+      "css": ".ds-control {color:#183339;background:#fdfefd;border:1px solid #657e72;border-radius:8px;padding:10px 14px;min-height:44px} .ds-control:focus-visible {outline:3px solid #a34c12;outline-offset:3px} .ds-control:disabled {border-style:dashed;opacity:1} .ds-control:not(:disabled):hover {color:#183339;background:#e5eeea} .ds-control:not(:disabled):active {color:#183339;background:#d4e2dc}"
     },
     {
       "name": "Selected stage",
@@ -54,7 +54,7 @@
       "refersTo": "button-disabled",
       "description": "Interaction colors from DESIGN.md.",
       "html": "<button class=\"ds-control\" disabled>Disabled button</button>",
-      "css": ".ds-control {color:#405957;background:#e5ebe7;border:1px solid #657e72;border-radius:8px;padding:10px 14px;min-height:44px} .ds-control:focus-visible {outline:3px solid #a34c12;outline-offset:3px} .ds-control:not(:disabled):hover {color:#183339;background:#e5eeea} .ds-control:not(:disabled):active {color:#183339;background:#d4e2dc}"
+      "css": ".ds-control {color:#405957;background:#e5ebe7;border:1px solid #657e72;border-radius:8px;padding:10px 14px;min-height:44px} .ds-control:focus-visible {outline:3px solid #a34c12;outline-offset:3px} .ds-control:disabled {border-style:dashed;opacity:1} .ds-control:not(:disabled):hover {color:#183339;background:#e5eeea} .ds-control:not(:disabled):active {color:#183339;background:#d4e2dc}"
     }
   ],
   "narrative": {

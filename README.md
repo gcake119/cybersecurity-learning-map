@@ -65,6 +65,9 @@ pnpm test:browser
 
 ## 維護
 
+- `PRODUCT.md`、`DESIGN.md`：v2 產品邊界、互動色彩與元件狀態規範。
+- `docs/contrast-state-qa.md`：控制可讀性修正與三尺寸回歸證據。
+
 - `docs/curriculum-proposal.md`：confirmed Curriculum。
 - `docs/canonical/`：Canonical Content 與跨單元 review。
 - `docs/interaction-storyboard.md`、`docs/learning-copy.md`：互動與文案依據。

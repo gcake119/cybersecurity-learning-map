@@ -32,7 +32,7 @@ components:
     textColor: "{colors.on-action}"
     rounded: "{rounded.control}"
     padding: "{spacing.control-padding}"
-    height: "44px minimum"
+    height: "44px"
   button-primary-hover:
     backgroundColor: "{colors.action-hover}"
     textColor: "{colors.on-action}"
