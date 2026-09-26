@@ -69,6 +69,8 @@ for(const [key,value] of Object.entries(finalDefaults)){
  const contexts=[{},Object.fromEntries(Object.entries(finalDefaults).filter(([,v])=>typeof v==='boolean').map(([k])=>[k,true])),{app:false,appEncryption:true}];
  assert(contexts.some(p=>alternatives.some(v=>JSON.stringify(final(p))!==JSON.stringify(final({...p,[key]:v})))),'Final parameter '+key);checks++;
 }
+equal(final({sharing:'public'},0).edges.find(e=>e.from==='api'&&e.to==='db').status,'ok','public read is allowed, not a blocked work path');
+equal(final({resourceCheck:true},0).edges.find(e=>e.from==='api'&&e.to==='db').status,'blocked','private cross-document request is rejected');
 equal(final({},0).nodes.worker,'ok');equal(final({},2).nodes.worker,'bad');equal(final({workerRevoked:true}).nodes.worker,'ok');
 equal(final({resourceCheck:true}).nodes.db,'bad','API policy cannot contain lost worker/runtime');
 equal(final({deployRevoked:true}).nodes.app,'bad','revoking deploy does not stop executing artifact');
