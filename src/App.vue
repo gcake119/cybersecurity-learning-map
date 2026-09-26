@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import {computed,provide,ref,watch} from 'vue';
-import {useRoute} from 'vue-router';
-import {unitById} from './content/curriculum';
-import {missionLabs} from './labs/missions';
-import UiIcon from './components/UiIcon.vue';
-import ProgressFooter from './components/ProgressFooter.vue';
-function focusMain(){document.querySelector<HTMLElement>('main')?.focus();}
-const route=useRoute();provide('priority',ref(false));
-const isV2=computed(()=>route.path.startsWith('/v2'));
-const isSlide=computed(()=>route.name==='lab'||route.name==='practice'||route.name==='mission');const index=computed(()=>Number(route.params.index)||0);const phase=computed(()=>route.name==='mission'?{id:[0,3,2][index.value]??0,title:missionLabs[index.value]?.title??'整合任務'}:unitById[index.value]??unitById[0]);
-watch(()=>route.fullPath,()=>{document.title=`${isSlide.value?phase.value.title:'資安學習地圖'} · Security Fieldnotes`;},{immediate:true});
+import { watch } from 'vue';
+import { useRoute } from 'vue-router';
+import { bySlug } from './v2/course';
+const route = useRoute();
+function focusMain() { document.querySelector<HTMLElement>('main')?.focus(); }
+watch(() => route.fullPath, () => {
+  const title = route.name === 'v2-final' ? '整合情境' : bySlug[String(route.params.slug)]?.title ?? '資安學習地圖';
+  document.title = `${title} · AI-assisted Security Engineering`;
+}, { immediate: true });
 </script>
-<template><a class="skip" href="#main" @click.prevent="focusMain">跳到內容</a><header v-if="!isV2"><RouterLink class="brand" to="/map/0"><span class="mark"><UiIcon name="brand" :size="38"/></span><span>資安學習地圖<small>SECURITY FIELDNOTES</small></span></RouterLink><nav aria-label="學習導覽"><RouterLink :to="`/map/${phase.id}`"><UiIcon name="map" :size="21"/>{{isSlide?'返回學習地圖':'學習地圖'}}</RouterLink></nav><span class="edition">從基礎到安全工程 ↗</span></header><main :class="{'slide-mode':isSlide}" id="main" tabindex="-1"><RouterView/></main><ProgressFooter v-if="!isV2"/></template>
+<template>
+  <a class="skip" href="#main" @click.prevent="focusMain">跳到內容</a>
+  <main id="main" tabindex="-1"><RouterView /></main>
+</template>

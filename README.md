@@ -1,22 +1,23 @@
 # 資安學習地圖
 
-Vue 3 + TypeScript + Vite + pnpm 的互動課程，部署至 GitHub Pages。
+AI-assisted Security Engineering 互動課程。以 Vue 3、TypeScript、Vite 與 pnpm 實作，使用 deterministic synthetic 教學模型，不執行真實攻擊或產生安全分數。
+
+入口：`#/v2`。舊版教材、元件、模型、進度儲存、圖片與專用測試已移除；根入口與所有舊網址導向新版入口，不將舊單元編號映射成不同的新單元。
 
 ## 課程結構
 
-核心問題：如何判斷自己的 Web 系統有沒有保護重要資料與操作？
+1. 安全目標與需求。
+2. 威脅與情境風險。
+3. 信任與授權。
+4. 輸入與解讀邊界。
+5. 最小權限與影響範圍。
+6. 資料、憑證與軟體供應鏈。
+7. 驗證工具、finding 判讀與 detection。
+8. containment 與 recovery。
 
-| 章 | 單元 |
-|---|---|
-| 說清楚要保護什麼 | 1 從後果寫出安全需求；2 沿資料流找出信任邊界；3 依情境決定修補順序 |
-| 把保護放進系統 | 4 逐次檢查身分與資源權限；5 讓外部輸入保持資料身分；6 讓每條需求都有實作位置 |
-| 用證據確認保護有效 | 7 確認驗證環境與日誌來源；8 改變一個條件，留下對照證據；9 把安全保證留下來持續驗證 |
+Final Integrated Transfer：`#/v2/final`，在同一個合成 collaboration SaaS 裡逐步注入五種 changes／incidents，整合推理與處置。
 
-每單元包含問題、核心結論、兩項學習目標、三段觀念教學、操作路線、互動模型、兩項判斷檢核、專案應用筆記及限制。以案件管理系統作為共同案例，不提供純簡報模式。
-
-操作可返回觀念或檢核，切換階段保留當次實驗條件、結果、答案。離開單元後實驗和答案重設；筆記與完成紀錄保留於本機瀏覽器。筆記可匯出 Markdown。
-
-完成需同時具備指定對照、兩項正確判斷、至少 20 字筆記。筆記只檢查填寫長度，**不自動判定語意正確性**。新進度 key 為 `security-course-progress-v3`，不把舊實驗進度認定為新課程完成。清除完成紀錄保留筆記。
+操作包含漸進控制、節點與連線後果、前後比較、術語後揭露與獨立 Transfer。URL 保存可重建的當前模擬狀態；不保存個人學習紀錄或完成分數。Unit 7 使用明示的 synthetic Semgrep-like 模型，與真實 Semgrep 結果分開。
 
 ## 使用方式：直接學習或 Fork 成自己的教材
 
@@ -54,61 +55,22 @@ Node.js 22.12+；pnpm 11.19.0。
 ```sh
 pnpm install --frozen-lockfile
 pnpm dev
+pnpm test
 pnpm build
 pnpm exec playwright install chromium
 pnpm test:browser
 ```
 
-GitHub Actions 執行建置與瀏覽器測試後才部署，Pages Source 為 GitHub Actions。測試涵蓋三章順序、九個模型、對照與理解檢核完成條件、筆記保留、桌面與手機、舊路由、儲存失效。
+瀏覽器測試會自行啟動 production preview，驗證三種尺寸、八章所有階段與控制、Transfer、Final、路由與可及性。可用 `CHROMIUM_EXECUTABLE_PATH` 指定既有 Chromium。
 
 ## 維護
 
-- `src/content/curriculum.ts`：三章九單元及學習目標、觀念、操作路線、檢核與應用。
-- `src/labs/model.ts`：九個模擬及實驗證據條件。全部本機執行，無真實 Shell、SQL、SSH 或外部 API。
-- `src/components/LabView.vue`：學習階段、實驗、檢核與筆記。
-- `src/components/LearningMap.vue`：依章節展示單元；使用穩定 ID 保留既有深層連結。
-- `src/content/learning.ts`：保留舊簡報路由映射，非目前課程內容來源。
+- `docs/curriculum-proposal.md`：confirmed Curriculum。
+- `docs/canonical/`：Canonical Content 與跨單元 review。
+- `docs/interaction-storyboard.md`、`docs/learning-copy.md`：互動與文案依據。
+- `src/v2/course.ts`：階段、控制與 Transfer metadata。
+- `src/v2/model.ts`、`src/v2/final-model.ts`：pure deterministic synthetic models。
+- `tests/v2-model.mjs`、`tests/v2-browser.mjs`：模型與完整瀏覽器 QA。
+- `docs/implementation-v2.md`：Technical QA、實測範圍與尚未驗證的限制。
 
-顯示單元順序的穩定 ID 為 `[0,7,1,3,4,6,2,5,8]`。不要直接重排 labs 陣列以免破壞舊 `/lab/:id`、`/learn/:id`、`/slide/:id` 連結。
-
-## 動畫對照
-
-九個實驗的處理路徑會依模型輸出逐步播放。第二次執行後並排呈現最近兩次快照，共用時間軸，並標示變更條件；手機依序排列。被拒絕或未執行的步驟不會顯示資料通過。
-
-`ExperimentAnimation.vue` 提供暫停、重播、逐步前進、回到起點、直接看結果、速度與減少動態效果。尊重系統 reduced-motion 偏好；元件離開時清除計時器。播放僅解釋既有實驗證據，不新增執行、不改動完成狀態。不同情境分別呈現案件狀態、修補順位、終端輸出、回傳資料、邊界與測試結果。
-
-## 深入學習與整合任務
-
-九個單元各有 `/practice/:id`：引導觀察、配置與修補、新情境挑戰。每次執行前必須選擇預測，改動配置後預測清空；模型計算真實的模擬結果。動畫在對應的關鍵檢查點暫停，提示學習者先判斷信任條件，再繼續觀看後續資料、日誌、通知或測試影響。
-
-深入模型包括連鎖影響、逐步查證漏洞資訊、多維授權、SQL／HTML 兩個解讀邊界、所有寫入入口、環境與版本、交易外通知及多項刻意缺陷。每章另有 `/mission/0..2` 整合任務。
-
-完成深入／整合任務需三輪皆有「符合目標且預測正確」的執行證據，加上保證、證據與限制三欄筆記（各至少 12 字，僅檢查填寫，未做語意評分）。使用 `security-deep-progress-v1` 獨立記錄，不把舊基礎完成視為深入完成。三欄筆記保留在瀏覽器；執行快照僅本次頁面有效，匯出 Markdown 可保留全部配置、預測與實際結果。重新整理會重設當次證據，不清除既有完成紀錄或筆記。
-
-- `src/labs/deep.ts`：九單元深入模型、案例與完成條件。
-- `src/labs/missions.ts`：三章整合情境。
-- `src/components/DeepPractice.vue`：預測、配置、查證、動畫、證據與筆記。
-- `tests/deep-model.mjs`：27 情境與 9 任務輪次、授權過度限制、交易外副作用與部分漏檢反例。
-- `tests/deep-browser.mjs`：完整學習流程、預測失效、檢查點、筆記／進度與匯出、手機與儲存失效。
-
-## 九單元系統互動實驗室
-
-單元的「操作與比較」預設開啟系統互動實驗室；原有模擬工具保留在「基礎請求工具」。三輪任務分別建立基準、配置保護、接受新情境，全部完成後可進入既有觀念檢核。課程仍採 Vue 3、pnpm 與 GitHub Pages，沒有後端。
-
-- CIA：事件卡、保護位置、資產狀態。
-- 信任邊界：上傳／解析／入庫三道規則放置。
-- 修補順位：部署證據揭露與優先順序。
-- 身分與授權：身分／案件選擇、讀取前後的規則位置。
-- 輸入邊界：SQL 與 HTML 各自配置保護。
-- 多入口：單筆／批次／背景連線與共用規則。
-- 環境證據：虛擬指令、部署版本與日誌配對。
-- 重送驗證：處理順序、交易、提交後通知及副作用時間線。
-- 持續驗證：測試集合、缺陷植入、監控責任與處理方式。
-
-`src/labs/workbench.ts` 為確定性教學模型，配置決定實際結果；`SystemWorkbench.vue` 只控制呈現與動畫。動畫速度不影響計算結果。未執行與已拒絕步驟有獨立狀態。SQL、HTML、SSH、通知皆不實際執行。
-
-配置與證據使用 `security-workbench-v1-{id}` 儲存在使用者瀏覽器，不上傳資料。更新配置後舊結果會標示過期；匯出檔包含各次配置、事件、驗證與限制。測試結果僅支持模型內的情境，不代表整體安全評分。
-
-驗證：`pnpm test:models` 包含 27 個新任務與錯誤位置、入口繞過、回滾副作用等反例；`pnpm test:browser` 同時驗證既有課程、深入練習及全部系統實驗操作。
-
-互動設計參考 [System Design Simulator](https://github.com/vijaygupta18/system-design-simulator) 的配置、執行與回饋循環；本專案的資安模型與 Vue 元件為獨立實作，沒有複製參考專案程式碼。
+Technical QA 通過不代表真人學習效果已通過。公開 repo 不存放私人 Learning Handoff。
