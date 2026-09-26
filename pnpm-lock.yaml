@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@phosphor-icons/vue':
-        specifier: ^2.2.1
-        version: 2.2.1(vue@3.5.42(typescript@5.9.3))
       vue:
         specifier: 3.5.42
         version: 3.5.42(typescript@5.9.3)
@@ -58,12 +55,6 @@ packages:
 
   '@oxc-project/types@0.149.0':
     resolution: {integrity: sha512-Efcc+iF0j3Bf67YjEqIqWXbX5XddXoK/Mw4K1/JuXwRCZ8N16VR7iT23nlCc9XrveFVh/E5Rqs2StT0V8v9LdA==}
-
-  '@phosphor-icons/vue@2.2.1':
-    resolution: {integrity: sha512-3RNg1utc2Z5RwPKWFkW3eXI/0BfQAwXgtFxPUPeSzi55jGYUq16b+UqcgbKLazWFlwg5R92OCLKjDiJjeiJcnA==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      vue: '>=3.2.39'
 
   '@rolldown/binding-android-arm-eabi@1.2.8':
     resolution: {integrity: sha512-tN5aztYkKCte4i5SIrrz5yK/HMjEuCqCSCJa418jOV8tZ1cBY3YF2otxB1ktPxzsLA1BeTqwapK0bfjxNvHJVw==}
@@ -459,10 +450,6 @@ snapshots:
   '@jridgewell/sourcemap-codec@1.6.0': {}
 
   '@oxc-project/types@0.149.0': {}
-
-  '@phosphor-icons/vue@2.2.1(vue@3.5.42(typescript@5.9.3))':
-    dependencies:
-      vue: 3.5.42(typescript@5.9.3)
 
   '@rolldown/binding-android-arm-eabi@1.2.8':
     optional: true

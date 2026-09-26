@@ -26,14 +26,14 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - run: pnpm test:models
+      - run: pnpm test
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:browser
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: browser-screenshots-${{ github.run_attempt }}
-          path: test-results/
+          path: output/playwright/v2/
           retention-days: 7
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
