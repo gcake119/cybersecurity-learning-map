@@ -1,7 +1,7 @@
-# Cybersecurity Learning Map v2 — Curriculum Proposal v0.1
+# Cybersecurity Learning Map v2 — Curriculum Proposal v0.2
 
 > 日期：2026-09-26
-> 狀態：**Curriculum Confirmation Gate — 待確認**
+> 狀態：**Curriculum confirmed — 2026-09-26**
 > 本文件不修改 legacy UI，也不進 Canonical Content / Storyboard / Implementation。
 
 ## 1. 重新定義課程目的
@@ -12,7 +12,7 @@
 
 新版建議提高一層，保留開發者可用性：
 
-> **面對一個系統或功能，能先說清楚要保護什麼、誰／什麼可能造成傷害、哪些邊界不能直接相信；再選擇與放置防護，觀察失效後攻擊或損害能走多遠，並用測試、日誌與回復證據判斷保護是否真的成立。**
+> **在與 AI Agent 協作開發系統時，能辨認需要保護的資產、威脅與信任邊界，和 AI 一起設計適當的安全控制；能利用測試、安全工具與系統證據驗證設計與實作，在系統運作後建立偵測、限制影響與恢復機制，並判斷 AI 與工具提供的結論有哪些依據、假設與未涵蓋範圍。**
 
 完成後應能把相同 reasoning 轉用到 Web、內部系統、背景工作、檔案處理、第三方依賴與部署流程；不以背漏洞清單、工具指令或證照題目為完成標準。
 
@@ -208,7 +208,7 @@ Threat modeling 是 A–F 的整合 reasoning method，不建議孤立成「畫 
 
 ### Highest-level Learning Outcome
 
-> **能沿著一個系統的資產、資料流、身分與執行路徑，找出需要保護的 security objectives 與 trust boundaries；在明示 threat / risk 情境下選擇合適控制，推演控制失效後的 attack path / blast radius，並用 evidence 驗證、偵測、限制與恢復。**
+> **在與 AI Agent 協作開發系統時，能沿著資產、資料流、身分與執行路徑找出 security objectives、threats 與 trust boundaries；和 AI 一起提出與實作安全控制，使用安全工具、測試與 runtime evidence 查證結果，推演控制失效後的 attack path / blast radius，並建立 detection、containment 與 recovery。學習者需能判斷 AI 與工具結論的證據、假設與 coverage，而不是直接接受輸出。**
 
 ### Major Understandings
 
@@ -333,22 +333,22 @@ Sensitive data minimization、encryption in transit / at rest、key / secret lif
 
 ---
 
-### Unit 7｜保護失效時，怎麼知道發生了什麼？
+### Unit 7｜怎麼證明保護有效？失效時怎麼知道發生了什麼？
 
 **Central question**
 如果攻擊被擋住、沒被擋住、或只完成一半，哪些 evidence 能讓你判斷？
 
 **學完多出的判斷能力**
-能設計 security-relevant logging / detection，不用「log 全部」取代判斷；能把 event、identity、resource、decision、time 串起來，分辨 test evidence 與 production evidence。
+能把 security claim 對應到 AI review、SAST（以 Semgrep 為主要 teaching tool）、dependency / SCA scanning、secret scanning、安全測試與 runtime logging / detection；能判斷 finding、test result 與 production evidence 各自能支持什麼，以及 coverage / false positive / false negative 的限制。
 
 **必要概念**
-Security event logging、correlation、alert、detection signal、false positive / coverage、test evidence、side effect verification。
+Security verification、positive / negative / regression tests、SAST、SCA、secret scanning、tool finding、false positive / false negative / coverage、security event logging、correlation、alert、detection signal、side-effect verification。
 
 **Teaching case**
-登入異常、越權 request、敏感資料大量讀取。切換 log fields / correlation / alert rule，看 investigation timeline 能否重建。
+一個簡單 Web API 內含幾種 synthetic security defects。比較 AI review、Semgrep、dependency scan、secret scan、安全測試與 runtime evidence 各自能／不能發現什麼；修正後重新掃描與測試，再加入登入異常、越權 request、敏感資料大量讀取，觀察 investigation timeline 能否重建。
 
 **Transfer**
-衛生局案件：需要留下什麼，才能判斷誰在何時讀取／修改哪一案件，又不把敏感內容寫進 log？
+AI-assisted development workflow / 衛生局案件：讓 Agent 協助執行與解讀 scanner、追 code path、產生 security tests，再判斷哪些 security claims 已有證據、哪些仍未涵蓋；同時決定 production 要留下哪些 audit evidence。
 
 ---
 
@@ -456,14 +456,65 @@ Transfer 不顯示「這題是 authorization / injection / supply chain」等提
 
 這些可在核心 reasoning 建立後另做 extension decks。
 
-## 9. Curriculum Gate discussion points
+## 9. AI Agent collaboration pattern
 
-需要確認五件事：
+AI Agent 是全課的協作者，不另立成 AI 資安章。每章都要求學習者知道「可以交給 Agent 做什麼」與「什麼不能只靠 Agent 結論」。
 
-1. **主線**：是否接受「security reasoning / boundaries / blast radius / evidence / recovery」取代原本偏 Web security learning path 的主線？
-2. **深度**：Supply chain 與 incident recovery 是否應列為核心，而不是延伸？
-3. **順序**：U2 risk prioritization 要放在 trust / mechanism 前，或移到後段 vulnerability operations？
-4. **Teaching case**：是否接受新版用多個標準案例，而不再九章共用案件系統？
-5. **Transfer**：Final 是否以一個 synthetic integrated system 先做，再換使用者實際系統？
+- U1：Agent 協助枚舉 assets / consequences / assumptions；學習者確認真正的業務 security objectives。
+- U2：Agent 協助讀 advisory、比對版本與整理 evidence；學習者判斷 contextual risk。
+- U3：Agent 協助枚舉 identities、resources、actions 與可能越權路徑；學習者核對 authority rules。
+- U4：Agent 協助追 data flow / interpretation contexts；學習者確認 control 是否放在正確 boundary。
+- U5：指定 component compromised，Agent 協助推演 attack path；學習者檢查 privilege / credential / network assumptions。
+- U6：Agent 協助 inventory data、secrets、dependencies、CI/CD trust chain；學習者判斷 supply-chain / protection coverage。
+- U7：Agent 執行／解讀 scanner、整理 findings、追 code path、產生 security tests、提出修正並重新驗證；工具輸出不是自動正解。
+- U8：Agent 協助整理 logs / alerts、建立 incident hypotheses、提出 containment / recovery options；所有判斷回到 evidence。
 
-課綱確認前停止；不建立 Canonical Content、不設計 UI、不實作 simulator。
+工具深度以「基本會用、知道用途、能判讀 finding、知道 coverage 與限制」為核心；不以複雜 Semgrep rule authoring、Kali 工具鏈或滲透測試專精為目標。
+
+## 10. Interaction direction confirmed
+
+後續 Interaction Storyboard 必須參考 `gcake119/system-design-simulator` 的 **動畫與元件互動方式**，但不沿用其 System Design simulation model。
+
+核心規則：
+
+1. learner 改 system / permission / trust / input / credential / network / control / evidence parameter；
+2. deterministic synthetic model 重新計算 state；
+3. system graph 的 node / edge / state 直接呈現 consequence；
+4. attack path、blocked path、blast radius、exposure、finding、alert 或 recovery state 必須在發生位置可見；
+5. controls、graph、evidence / metrics、trade-off / limitation 同步連動；
+6. 支援 before / after comparison；
+7. 動畫呈現事件或資料如何沿路徑傳播，不作裝飾；
+8. 若主要互動只是「選答案 → 看文字回饋」，不視為完成主要 learning interaction；
+9. 各 Unit 使用適合該 security mechanism 的模型，不強迫所有章共用同一 simulator；
+10. 所有 parameter → consequence 必須可測試，並明示 synthetic assumptions。
+
+這裡只確認互動設計方向；Storyboard 仍須在 Canonical Content 與 Content Review 通過後另行設計。
+
+## 11. Teaching / Transfer strategy confirmed
+
+教材本體使用常見、來源充分的標準案例。使用者實際接觸過的專案只作 Transfer，不反過來決定一般資安原理。
+
+Recurring teaching cases 可包含：
+- 線上文件分享系統：security objective → authorization → blast radius → evidence / incident；
+- 簡單電商 Web App：SQL / HTML / path / file interpretation boundaries；
+- 三層 Web App：service identity / credential / segmentation / blast radius；
+- CI/CD pipeline：dependency / secret / artifact / deployment trust；
+- synthetic account-compromise incident：detection → containment → recovery。
+
+Transfer 使用 Sim-sik、台南市衛生局案件系統、Podcast hosting、VocaScript、自動發文、multi-repo deployment 與 AI-assisted development workflow。Transfer 不提示對應章節或 mechanism 名稱。
+
+## 12. Curriculum Gate decision
+
+**Confirmed — 2026-09-26。**
+
+已確認：
+- 主線採 AI-assisted Security Engineering；
+- Security reasoning / boundaries / blast radius / verification / detection / containment / recovery 為核心；
+- Supply chain 與 incident recovery 留在核心課程；
+- U2 risk prioritization 保持目前順序；
+- Teaching 使用常見標準案例；使用者專案只作 Transfer；
+- Final 先做 synthetic integrated system，再做實際專案 Transfer；
+- Semgrep 等工具教到基本使用、finding 判讀、evidence 與 coverage limitations，不做工具專精；
+- 互動參考 System Design Simulator 的 component interaction / animation / state propagation / consequence visualization，但建立 Cybersecurity 專用 deterministic models。
+
+下一階段才可進 Canonical Content → Unit-level Content Review → Cross-unit Content Review。尚未進 UI、Storyboard 或 implementation。
