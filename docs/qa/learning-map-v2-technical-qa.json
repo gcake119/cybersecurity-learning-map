@@ -1,0 +1,760 @@
+{
+  "base": "http://127.0.0.1:4187/cybersecurity-learning-map/",
+  "browser": "152.0.7977.8",
+  "matrix": [
+    {
+      "viewport": "desktop",
+      "unit": 1,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 2,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 3,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 4,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 5,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 6,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 7,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 8,
+      "stages": 5,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": "Final",
+      "stages": 6,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 1,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 2,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 3,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 4,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 5,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 6,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 7,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 8,
+      "stages": 5,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": "Final",
+      "stages": 6,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 1,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 2,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 3,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 4,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 5,
+      "stages": 3,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 6,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 7,
+      "stages": 4,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 8,
+      "stages": 5,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": "Final",
+      "stages": 6,
+      "controls": "all operated",
+      "transfer": "operated",
+      "overflow": "PASS"
+    }
+  ],
+  "errors": [],
+  "routeChecks": [
+    "native drag with keyboard select alternative",
+    "synthetic rule/triage/fix/rescan with fixture/miss",
+    "Teaching/Transfer independent state and reload",
+    "revisiting constraint preserves changed settings",
+    "Final incidents cumulative on return",
+    "landing",
+    "8 direct unit routes",
+    "reload preserves URL simulation/stage state",
+    "back/forward preserves stage state",
+    "unknown unit and unknown route redirect",
+    "restart resets stages/controls",
+    "stage reset restores defaults/constraint",
+    "progressive controls",
+    "keyboard Tab/Enter",
+    "stage focus",
+    "accessible button/select names",
+    "reduced-motion no animation with visible state",
+    "invalid query safe fallback",
+    "GitHub Pages base path assets HTTP 200",
+    "legacy map route"
+  ],
+  "interactionChecks": [
+    {
+      "viewport": "desktop",
+      "unit": 1,
+      "parameter": "policy",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 2,
+      "parameter": "mitigation",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 3,
+      "parameter": "authorizeBefore",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 4,
+      "parameter": "input",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 5,
+      "parameter": "compromised",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 6,
+      "parameter": "diskEncryption",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 7,
+      "parameter": "sast",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "desktop",
+      "unit": 8,
+      "parameter": "identityEvidence",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 1,
+      "parameter": "policy",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 2,
+      "parameter": "mitigation",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 3,
+      "parameter": "authorizeBefore",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 4,
+      "parameter": "input",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 5,
+      "parameter": "compromised",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 6,
+      "parameter": "diskEncryption",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 7,
+      "parameter": "sast",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "narrow",
+      "unit": 8,
+      "parameter": "identityEvidence",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 1,
+      "parameter": "policy",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 2,
+      "parameter": "mitigation",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 3,
+      "parameter": "authorizeBefore",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 4,
+      "parameter": "input",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 5,
+      "parameter": "compromised",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 6,
+      "parameter": "diskEncryption",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 7,
+      "parameter": "sast",
+      "visibleConsequence": "PASS"
+    },
+    {
+      "viewport": "mobile",
+      "unit": 8,
+      "parameter": "identityEvidence",
+      "visibleConsequence": "PASS"
+    }
+  ],
+  "qaHead": "34678af2da531644e683e160c362ea4416075ae6",
+  "date": "2026-09-26",
+  "gate": "PASS WITH FINDINGS; Ready for Human Learning Review",
+  "checks": {
+    "install": "PASS",
+    "test": "PASS; 214 v2 assertions plus legacy tests",
+    "build": "PASS",
+    "diffCheck": "PASS"
+  },
+  "viewports": {
+    "desktop": [
+      1280,
+      800
+    ],
+    "narrow": [
+      900,
+      700
+    ],
+    "mobile": [
+      390,
+      844
+    ]
+  },
+  "nativeKeyboard": [
+    {
+      "unit": 1,
+      "control": "注入事件",
+      "keyboard": "Space / Down / Return",
+      "observedValue": "修改內容",
+      "result": "PASS",
+      "surface": "Codex In-app Browser"
+    },
+    {
+      "unit": 2,
+      "control": "A 的本輪路徑已有有效緩解",
+      "keyboard": "Space",
+      "observedValue": "1",
+      "result": "PASS",
+      "surface": "Codex In-app Browser"
+    },
+    {
+      "unit": 3,
+      "control": "在 API 讀寫前檢查資源政策",
+      "keyboard": "Space",
+      "observedValue": "1",
+      "result": "PASS",
+      "surface": "Codex In-app Browser"
+    },
+    {
+      "unit": 4,
+      "control": "送入的資料",
+      "keyboard": "Space / Down / Return",
+      "observedValue": "不符業務型別",
+      "result": "PASS",
+      "surface": "Codex In-app Browser"
+    },
+    {
+      "unit": 5,
+      "control": "已失守的起點",
+      "keyboard": "Space / Down / Return",
+      "observedValue": "Worker",
+      "result": "PASS",
+      "surface": "Codex In-app Browser"
+    },
+    {
+      "unit": 6,
+      "control": "磁碟加密",
+      "keyboard": "Space",
+      "observedValue": "1",
+      "result": "PASS",
+      "surface": "Codex In-app Browser"
+    },
+    {
+      "unit": 7,
+      "control": "執行課程 Semgrep-like 規則",
+      "keyboard": "Space",
+      "observedValue": "0",
+      "result": "PASS",
+      "surface": "Codex In-app Browser"
+    },
+    {
+      "unit": 8,
+      "control": "取得身分使用紀錄",
+      "keyboard": "Space",
+      "observedValue": "1",
+      "result": "PASS",
+      "surface": "Codex In-app Browser"
+    },
+    {
+      "unit": "Final",
+      "control": "每次讀取前核對人與文件的允許條件",
+      "keyboard": "Space",
+      "observedValue": "1",
+      "result": "PASS",
+      "surface": "Codex In-app Browser"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "output/playwright/v2/desktop-final-1.png",
+      "sha256": "ddc41a977fb7ce328c00f2efd34a81673a675a1cc5a2c799e64b3adab1bfbae9"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-2.png",
+      "sha256": "8343173f945e4f0b4a16af6c4dc8a7e575c87a9ded91a1007f2092130ca3bec7"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-3.png",
+      "sha256": "23c4ed8b36a63b9f252773a7c07ff70193021cf714a65755e4e0626419800c82"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-4.png",
+      "sha256": "329657ca4c39ea8e1604ebd46eeb707061ae2cd934cfcb7c12ae6cd82319aba5"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-5.png",
+      "sha256": "7460f1eeb3e014ab287da7b1313dac70316692f01393174d4c1517ab5bd53d26"
+    },
+    {
+      "path": "output/playwright/v2/desktop-final-6.png",
+      "sha256": "ed4911383fb655acce1b08d70748ccfb4109c068e6d530adfae3b4399ca8fe1f"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u1-comparison.png",
+      "sha256": "a9a2dc92ddba10599db7506879bdc43b22d923c87805499255e4a6a1b4811886"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u1-transfer.png",
+      "sha256": "09cc85a40da808ec8eff33d7a3863e91efbe911d2d156ec574c2b3735261653f"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u2-comparison.png",
+      "sha256": "c8642d6bd311df1426c858c2cb9a9e7b4f89f490a6c758343395e8ba58abe79f"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u2-transfer.png",
+      "sha256": "51cb1c02c72e10283e86b303d8d9dfa72b2c5bf642409dbe3bac7c2b360a9aed"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u3-comparison.png",
+      "sha256": "efb02efe25272b3eda5d045ace422cb5941a00cdb385a0f0d1cd2ce87fc6f83a"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u3-transfer.png",
+      "sha256": "9bece42e17906e2cc3849794d2679cedf5b37fa7193f000cf50f6c45d945a247"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u4-comparison.png",
+      "sha256": "ad92255a09fed63c1603dbd2196e9edc9a2852b6edb5a7fc48056fbf4262d679"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u4-transfer.png",
+      "sha256": "b2a036acc39189c6bd9afc65e80a62944403445e0304777e99e9a990d85800c7"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u5-comparison.png",
+      "sha256": "11f64cea45250bf000f99f07d77469894e867391fb4c66b89600799c813fe1e5"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u5-transfer.png",
+      "sha256": "4fc2ebaf14a6220d5011ea8607ce9e675e19daa85bdf9045aa2719ef66f366a6"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u6-comparison.png",
+      "sha256": "b9eb691acbfe1a66d56b79882cc9e95df68d355cbd25898a888705bd98ceb675"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u6-transfer.png",
+      "sha256": "176a5c6ba39f589c75fe24434229508ce3e06745afde6867254c771d8703e441"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u7-comparison.png",
+      "sha256": "d23c61e8100ad7cb046871815006005e71b4fc6ff26dd6bf9c315a7b1466bb27"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u7-transfer.png",
+      "sha256": "4674adce8c62a0f73e2c1b11e2757b8da5aaeacdfbf51d454a0fc85f2ee93dac"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u8-comparison.png",
+      "sha256": "037ceb9c5f9a330fc1ca0ced87f13e10c6ffb878a81f191c009143e80092fe7a"
+    },
+    {
+      "path": "output/playwright/v2/desktop-u8-transfer.png",
+      "sha256": "66b4bd4dab5e3ce29634bacf27ebcf801b10b24275205960cce48e5cbfb704f7"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-1.png",
+      "sha256": "9c20888d28ec6056bc60a6280f44bf788ed20b71b14644f2383d990e2557f918"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-2.png",
+      "sha256": "078318ad4b0b8b175ab7f4d873d5657c5aecab26a54b51d5af9a6196451f9858"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-3.png",
+      "sha256": "58885f4a7214b7d47d9c0352f17b03def41692789b428162b8994ffe5f7778d1"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-4.png",
+      "sha256": "34fb4af0f9ce40b1a42bf3be00a572033fa0952f05d9eb62b76e254ba9b36241"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-5.png",
+      "sha256": "d704eb898c027d822d93e254bfffb07cabbb4765ded6d6c6ac7e8bdacfbaf870"
+    },
+    {
+      "path": "output/playwright/v2/mobile-final-6.png",
+      "sha256": "9e60a3e8a5c45c3f55a4ed029c123415ad0f653c257619b722f3765e7598bcc1"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u1-comparison.png",
+      "sha256": "f42307217176a0bdf243a5bbaedf703bfbef8f4c57e88d64d1ef9e6914d7f308"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u1-transfer.png",
+      "sha256": "0477bf9d9d34ba6bc969939516483b505447701e699ca4cfc2a93c8a350e78d5"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u2-comparison.png",
+      "sha256": "0c92068ff4da4cf9f2e8ca3cb2038b8e2f4c587fd985e3778011a8cb165e8920"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u2-transfer.png",
+      "sha256": "63595e43fbb95bf5544ff8192a3d51514bd97510b45b42d5b625bd0c2690f4e0"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u3-comparison.png",
+      "sha256": "53e9d5c11e7a8b8340d2e1bf9c41dac84f63a5c5987c210083e882e854254def"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u3-transfer.png",
+      "sha256": "c77d3deba921db9685c05c324e4f9c215aaef9b5322e4789805dc23fa4b496a6"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u4-comparison.png",
+      "sha256": "cc696611725d69f6e3e69b915e8c34380fca333a9f09719a196fa05e06d6319d"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u4-transfer.png",
+      "sha256": "402a21e8b64f9acebd9e7c1039c4c3772bae66c80b1df713d50187ea6ebddc6c"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u5-comparison.png",
+      "sha256": "0f2c4302b947b079b1e54c499a5dd6bf782d74229b416aeeeb3a3b587e36d930"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u5-transfer.png",
+      "sha256": "dd67224ea4af80a7b470d11ce25c934c2057bede2f8fc63828c95a1b6b721adc"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u6-comparison.png",
+      "sha256": "bcf63eba059b3589a913121c93d7dc5e4f93064f7eefd386e5834476f3a6facf"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u6-transfer.png",
+      "sha256": "484d76f9f261f057955241d4b836fbc73b0f5a636d3927182739d1c93dbc1a9d"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u7-comparison.png",
+      "sha256": "16d15335b5cf6983f5b2121c3622e8711c10b252ce1f8a8557c10a94ca1c0a5a"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u7-transfer.png",
+      "sha256": "1cc5c3b17e6cdbb050b51e6da086e35a81abebb4b066fe18b27dbf295daa28c4"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u8-comparison.png",
+      "sha256": "ed5461ae56261a0686eadc1ac114bc6b8dc0ee230efd32a6bb71db650cb63a06"
+    },
+    {
+      "path": "output/playwright/v2/mobile-u8-transfer.png",
+      "sha256": "a60e931f31dfb67fe7cadabb0bc589cbdd97565a16dc2241d85d6ac6f0048657"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-1.png",
+      "sha256": "64f03f009bf06a4bb97b40f81534f516b8dc7c4c6deb942a2b54aec2337173f4"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-2.png",
+      "sha256": "9e32592b86eca87c566952649993a766a021d17e037cecea6e42db2530915ece"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-3.png",
+      "sha256": "64a34303b8037d7bfa9019be5b48750aedae900a0481f3b4cd87e213c7a330cb"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-4.png",
+      "sha256": "2f7e3f0fd31f61609373ffca2995dd6e335f5970ebe222e915fc7be0262a283a"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-5.png",
+      "sha256": "b11815f48aafc37a2174e116741e935f5d3f0b3899ab57f5bd1bf19f1fa2605d"
+    },
+    {
+      "path": "output/playwright/v2/narrow-final-6.png",
+      "sha256": "1794704926e62201e4409fadc3a3a7ee98c3ffd3bb73bef99d6a87a5687e23fc"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u1-comparison.png",
+      "sha256": "da93d5a6a9af653394cba473a4536f9b31626fb111b332da485d4af60dfd9a67"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u1-transfer.png",
+      "sha256": "aee7407b30c3d2b588bcd169c025e6598e8aa1622fafaab14e74919e818bad02"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u2-comparison.png",
+      "sha256": "89f19c32daf8be2bd27897aed466c7e44a6a4657720cb1039e69f4b3a8d30340"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u2-transfer.png",
+      "sha256": "250a5360b43bab6b5bec9e6eaa0f9b1756474056189a441b0c3442f6894cbf24"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u3-comparison.png",
+      "sha256": "85887a5858486566a298cb88dc22bd05ef85b734734e272813a760539cce38f8"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u3-transfer.png",
+      "sha256": "188d0c3878d4c99b4b309161c286e2229c8227cf879b956250221db072448560"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u4-comparison.png",
+      "sha256": "79a655fdbe00de2dbb9311daf4c0732eae80aad74577142e11a00deb4856b243"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u4-transfer.png",
+      "sha256": "5fa70f34d6a19426992af688f423ec2d8d48b508f59a4e7378498288fb88966f"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u5-comparison.png",
+      "sha256": "d9d4dcc464659a4a3ab6828ab4567f92e985ed4f3716fb1a0cb9e09a7345d2a7"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u5-transfer.png",
+      "sha256": "e08acec96340934800e126e983621d508526ac0bff1624929e16ff66985848fc"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u6-comparison.png",
+      "sha256": "21cf8775d86011fabbb2ec6af9338242ef9920e6d50bb5f7d1c9b1a5851bc70f"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u6-transfer.png",
+      "sha256": "c78890f8f59ea2ee10512a11aea29a7abbb104a0a51a19d5a39154536276c235"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u7-comparison.png",
+      "sha256": "46e18a78592971226d06947dec496ab576f0a98cd9619545cc48912b0159d411"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u7-transfer.png",
+      "sha256": "ef4e21278bf215fafc6f15c199bc4d2ddfa95c1ca62882e0280e30ec5c302154"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u8-comparison.png",
+      "sha256": "6d931281011516b497f6c9b9465b20c405d3b67dc1f81fbd64be0763cfa7f439"
+    },
+    {
+      "path": "output/playwright/v2/narrow-u8-transfer.png",
+      "sha256": "818125a0812284dd5480d7889649ead068b47b5e4e040c6e244ae2aec71f0f4a"
+    }
+  ],
+  "notTested": [
+    "Real Semgrep execution",
+    "Safari / Firefox / physical mobile / full screen-reader audit",
+    "Online GitHub Actions / deployed GitHub Pages",
+    "Human learning effectiveness"
+  ]
+}
