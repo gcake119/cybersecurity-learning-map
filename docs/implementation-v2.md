@@ -1,3 +1,5 @@
+> 本文件保留先前版本實作與 QA 的歷史證據。2026-10-02 重構結果與目前 gate 請見 `course-refactor-review.md`；不能把下列舊 PASS 當本次測試結果。
+
 # Implementation v2 — Technical QA
 
 > 日期：2026-09-26

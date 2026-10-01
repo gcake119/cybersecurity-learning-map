@@ -17,6 +17,8 @@ AI-assisted Security Engineering 互動課程。以 Vue 3、TypeScript、Vite �
 
 Final Integrated Transfer：`#/v2/final`，在同一個合成 collaboration SaaS 裡逐步注入五種 changes／incidents，整合推理與處置。
 
+介面提供持續章節導覽、目前單元與階段、必要閱讀及程式碼複製。學習範圍與受眾假設見 `docs/curriculum-proposal.md` v0.3；不預設開發者已掌握資安知識。
+
 操作包含漸進控制、節點與連線後果、前後比較、術語後揭露與獨立 Transfer。URL 保存可重建的當前模擬狀態；不保存個人學習紀錄或完成分數。Unit 7 使用明示的 synthetic Semgrep-like 模型，與真實 Semgrep 結果分開。
 
 ## 使用方式：直接學習或 Fork 成自己的教材
@@ -68,12 +70,14 @@ pnpm test:browser
 - `PRODUCT.md`、`DESIGN.md`：v2 產品邊界、互動色彩與元件狀態規範。
 - `docs/contrast-state-qa.md`：控制可讀性修正與三尺寸回歸證據。
 
-- `docs/curriculum-proposal.md`：confirmed Curriculum。
+- `docs/curriculum-proposal.md`：reviewed Curriculum、baseline 與 scope。
 - `docs/canonical/`：Canonical Content 與跨單元 review。
 - `docs/interaction-storyboard.md`、`docs/learning-copy.md`：互動與文案依據。
 - `src/v2/course.ts`：階段、控制與 Transfer metadata。
 - `src/v2/model.ts`、`src/v2/final-model.ts`：pure deterministic synthetic models。
 - `tests/v2-model.mjs`、`tests/v2-browser.mjs`：模型與完整瀏覽器 QA。
-- `docs/implementation-v2.md`：Technical QA、實測範圍與尚未驗證的限制。
+- `docs/implementation-v2.md`：歷史實作與 QA。
+- `docs/course-refactor-review.md`：本次重構 review、Technical QA 與 Human Learning Review 指引。
+- `src/v2/reading.ts`：必要閱讀文案；`src/v2/navigation.ts`：直接路由與階段狀態重建。
 
 Technical QA 通過不代表真人學習效果已通過。公開 repo 不存放私人 Learning Handoff。

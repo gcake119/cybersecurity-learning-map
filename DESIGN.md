@@ -114,3 +114,12 @@ focus 不覆蓋既有 foreground/background，只加焦點框。selected 由 ari
 - **Don't** 使用較高優先權的頁面 a 規則覆蓋填色 CTA；不要用 !important 堆疊修補。
 - **Don't** 只改背景、降低整體透明度或只靠顏色表達選取。
 - **Don't** 新增只有術語清單、答案卡、一次揭露全部控制、私人學習進度與安全分數。
+
+
+## Course interface refinement — 2026-10-02
+
+保留既有色彩、字體與模型圖面識別，採文件網站的低干擾導覽。Desktop 以 240px 章節列與可操作學習面並列；1100px 以下用原生 button 展開章節，aria-expanded／aria-controls 保留鍵盤操作；章節 current 用 aria-current=page，階段 current 繼續用 step。
+
+正文 READ 不隱藏在 reveal／卡片內，最多 72ch、1.85 行高，先觀察後讀完整因果，再回同一模型修改；Transfer 不顯示 teaching 的解答文字。程式碼可換行、一鍵 copy，只在真實寫入剪貼簿成功時宣告已複製；拒絕時提供手動選取提示。
+
+章節切換 focus 至 main；階段切換 focus 至標題。沒有分數、鎖、私人學習紀錄或第三方品牌資產。導覽、正文、code 与 graph 均不得造成頁面水平溢出。Navbar 不使用動畫，原 reduced-motion 靜態 graph 等效維持。

@@ -1,0 +1,486 @@
+{
+  "date": "2026-10-02",
+  "baseCommit": "8b2566ca6d5f5d00226a0a106c4124fc591d4da2",
+  "methodCommit": "9e62bb771573f27360e869d8ab2f5db7dedd267d",
+  "referenceCommit": "a212e3713520a58d93c392d236d1895d25b61550",
+  "browser": "152.0.7977.8",
+  "productionBase": "http://127.0.0.1:4187/cybersecurity-learning-map/",
+  "install": "PASS frozen-lockfile",
+  "tests": "PASS 214 model assertions + direct-route/isolation/Transfer suites",
+  "build": "PASS vue-tsc + Vite",
+  "browserQA": {
+    "matrix": [
+      {
+        "viewport": "desktop",
+        "unit": 1,
+        "stages": 4,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 2,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 3,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 4,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 5,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 6,
+        "stages": 4,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 7,
+        "stages": 4,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 8,
+        "stages": 5,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": "Final",
+        "stages": 6,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 1,
+        "stages": 4,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 2,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 3,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 4,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 5,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 6,
+        "stages": 4,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 7,
+        "stages": 4,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 8,
+        "stages": 5,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": "Final",
+        "stages": 6,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 1,
+        "stages": 4,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 2,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 3,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 4,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 5,
+        "stages": 3,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 6,
+        "stages": 4,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 7,
+        "stages": 4,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 8,
+        "stages": 5,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": "Final",
+        "stages": 6,
+        "controls": "all operated",
+        "transfer": "operated",
+        "overflow": "PASS"
+      }
+    ],
+    "routeChecks": [
+      "native drag with keyboard select alternative",
+      "synthetic rule/triage/fix/rescan with fixture/miss",
+      "Teaching/Transfer independent state and reload",
+      "revisiting constraint preserves changed settings",
+      "Final incidents cumulative on return",
+      "landing",
+      "8 direct unit routes",
+      "reload preserves URL simulation/stage state",
+      "back/forward preserves stage state",
+      "unknown unit and unknown route redirect",
+      "restart resets stages/controls",
+      "stage reset restores defaults/constraint",
+      "progressive controls",
+      "keyboard Tab/Enter",
+      "stage focus",
+      "accessible button/select names",
+      "reduced-motion no animation with visible state",
+      "invalid query safe fallback",
+      "GitHub Pages base path assets HTTP 200",
+      "root and all removed legacy routes redirect to v2 without legacy content"
+    ],
+    "interactionChecks": [
+      {
+        "viewport": "desktop",
+        "unit": 1,
+        "parameter": "policy",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 2,
+        "parameter": "mitigation",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 3,
+        "parameter": "authorizeBefore",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 4,
+        "parameter": "input",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 5,
+        "parameter": "compromised",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 6,
+        "parameter": "diskEncryption",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 7,
+        "parameter": "sast",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "desktop",
+        "unit": 8,
+        "parameter": "identityEvidence",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 1,
+        "parameter": "policy",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 2,
+        "parameter": "mitigation",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 3,
+        "parameter": "authorizeBefore",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 4,
+        "parameter": "input",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 5,
+        "parameter": "compromised",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 6,
+        "parameter": "diskEncryption",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 7,
+        "parameter": "sast",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "unit": 8,
+        "parameter": "identityEvidence",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 1,
+        "parameter": "policy",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 2,
+        "parameter": "mitigation",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 3,
+        "parameter": "authorizeBefore",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 4,
+        "parameter": "input",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 5,
+        "parameter": "compromised",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 6,
+        "parameter": "diskEncryption",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 7,
+        "parameter": "sast",
+        "visibleConsequence": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "unit": 8,
+        "parameter": "identityEvidence",
+        "visibleConsequence": "PASS"
+      }
+    ],
+    "renderedContrastStateSamples": 9885,
+    "courseRefactorRows": [
+      {
+        "viewport": "desktop",
+        "chapters": "keyboard + current + focus PASS",
+        "reading": "visible + readable PASS",
+        "directRoute": "constraint + reload + revisit PASS",
+        "copy": "real clipboard PASS",
+        "transfer": "new facts + visible consequence + reload PASS",
+        "reducedMotion": "PASS",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "narrow",
+        "chapters": "keyboard + current + focus PASS",
+        "reading": "visible + readable PASS",
+        "directRoute": "constraint + reload + revisit PASS",
+        "copy": "real clipboard PASS",
+        "transfer": "new facts + visible consequence + reload PASS",
+        "reducedMotion": "PASS",
+        "overflow": "PASS"
+      },
+      {
+        "viewport": "mobile",
+        "chapters": "keyboard + current + focus PASS",
+        "reading": "visible + readable PASS",
+        "directRoute": "constraint + reload + revisit PASS",
+        "copy": "real clipboard PASS",
+        "transfer": "new facts + visible consequence + reload PASS",
+        "reducedMotion": "PASS",
+        "overflow": "PASS"
+      }
+    ],
+    "errors": []
+  },
+  "codeSHA256": {
+    "package.json": "3f7c259bc5547cf6b58c4779f1a4b80d24ef1639c66af49af5c4ab88a3f4c76f",
+    "src/App.vue": "e5aac36a3adb7e46e0f5bc3c20f4dd6575ec07a8f5fcc21e3be9c4212bce403b",
+    "src/main.ts": "dc7a1a8d6d86e725f606c3ce320bfcdb5d11773e195d14b7ecdbcaae85bdedad",
+    "src/style.css": "13a6863dc1e06fe8a9a3d097017560a28a3c0a2335a65ea8619af7f4a5a080b3",
+    "src/v2/CodeBlock.vue": "6a63a9868f6c8098aada20bacb5aec6e0f239abb33ea999dee7972e7292f17d2",
+    "src/v2/ControlsV2.vue": "8aa6073df7ab46e8b816c21432077342f3571b89895828c8e1a76c6d3a0ff11b",
+    "src/v2/CourseNavigation.vue": "efe651e3a1bac1d311dc0cb9cc3db9818e46770303d88d54cd7bcbb0a309cfae",
+    "src/v2/FinalV2.vue": "c1ee3c46028705735868877d88a9b50cbcd371183c8bb4fe8982403ba3dfbcb6",
+    "src/v2/LandingV2.vue": "20d30e41d84e42507fd3eab8c5b99b66e6ccc4acaf14260bdf799969fef60e6f",
+    "src/v2/LessonV2.vue": "c1da77803ead7b8f9b21c611351e3125651070603455f0739c2c07833b8da40a",
+    "src/v2/SystemGraph.vue": "eb80b887aecd992b19499c4828e743b2550e962282e2dc07f249741c3aed4abb",
+    "src/v2/course.ts": "ab389106363eb16b4996bafc74f644fd8f321495076a419d3d042fdfbf31b45c",
+    "src/v2/final-model.ts": "898f5fb17de3d1e9d9e19fea6c5f7a795a3a3b24d183a43f5c77765e2835af10",
+    "src/v2/model.ts": "2d50ff4460cac0d1b83e09b7c80f6c6f05e5ab8db8929a56159d9d1b6c8dd604",
+    "src/v2/navigation.ts": "869bd0ee13c0f86e38873c5169532d8db62a81d23a57fac741e67cb65d47c1f9",
+    "src/v2/reading.ts": "2e302c5f75dae4d2a6fa147802862e41cd7056764629443cab1dfedb2f818035",
+    "src/v2/v2.css": "3ca4f13a112f37e07db20a78fe543364a1aa2be1dcd972a28be28d31dbcb5ef9",
+    "tests/course-browser.mjs": "fc29837739e46f69e5c44f952dc68baee309d152063ac0d1a04f72d23e49a8d3",
+    "tests/course-navigation.mjs": "df4d09df2aa45e2136b2bd7a7d85c8d8cf61cdc4b85de353d6785b5464e97cd6",
+    "tests/final-isolation.mjs": "dedcfc7ba33c5f5cb70cd2e67c7505d58e39b0a89e44496ff31d7cc2269abf59",
+    "tests/final-transfer.mjs": "62da350150d76f67a9db4caaed5a98c8d7243b28c8c330c50d8787a257f5937d",
+    "tests/v2-browser.mjs": "ffa3cddea7ee1572790b9d8078d11c17264d5489ed49033ba8d066b6243dbcda",
+    "tests/v2-contrast.mjs": "7bd676808291b64c36e76d4f47f49bf09cf8624cced180f64e91c671376b9ac5",
+    "tests/v2-model.mjs": "36f68ec664d56c5ebb866a23b4e7bf6a3b9d164e88bca8611ee4f63e75167697",
+    "tsconfig.json": "b3e87c18f2d68d85ff47be378b2f7379603fbf63a4f3ca2685258f792b7a3b62",
+    "vite.config.ts": "b3cc73295815c79531846b9f1a95c36378f0fb43407e14a6c10daa98908a2a61"
+  },
+  "courseScreenshotSHA256": {
+    "output/playwright/course-refactor/desktop-course.png": "3e384b3539923d725bd5e521a1b2ecd31f72049002ed0c7a921771bca01f5fed",
+    "output/playwright/course-refactor/desktop-final-transfer.png": "b54152745d47976b97e1d18729d81199e98b4c15f0d7d0aba8f46d32c116f7d9",
+    "output/playwright/course-refactor/desktop-reading-copy.png": "895bebfb88b844c4aec91e902f0c6757e8fd3cf66702475cae56b3ba1d3bd921",
+    "output/playwright/course-refactor/mobile-course.png": "d7f75d66d1b9d08f1c04d38e94f89e58b88750618a2752b5816b896b8cfe7cf1",
+    "output/playwright/course-refactor/mobile-final-transfer.png": "b99899a17b89363ee3493b5c2bb9677d1c345f8a07e6f9aae06beb595ac9ab29",
+    "output/playwright/course-refactor/mobile-reading-copy.png": "be6218dfba3edb7a0d4996880b49cb539296d0b3e982b41014fd4b9618e10bac",
+    "output/playwright/course-refactor/narrow-course.png": "ffe4aeba3abfc9873193eb2ba660afb08401f31be72bcb5b9853410e81ba88f8",
+    "output/playwright/course-refactor/narrow-final-transfer.png": "6545b144d5edb98bed2ef3ebfdb12dc1f0d0bb1758bcd8833b8dac4df9dc9e80",
+    "output/playwright/course-refactor/narrow-reading-copy.png": "804ad44971abc8d40d2d9af1601a5fd0571cb48164bedc56959973c70f21000c"
+  },
+  "visualSpotCheck": [
+    "desktop-course.png: U5 graph, chapter navigation, required READ",
+    "mobile-reading-copy.png: U7 prose and copy"
+  ],
+  "notTested": [
+    "Safari / Firefox / physical phones / complete screen-reader audit / OS select popup",
+    "real browser or OS clipboard denial",
+    "real Semgrep / providers / production system",
+    "online GitHub Actions / deployed GitHub Pages",
+    "Human Learning Review and real project Transfer"
+  ],
+  "technicalQA": "PASS WITH FINDINGS",
+  "readyForHumanLearningReview": true,
+  "testedCodeCommit": "c6dd3805a4457d36e0c86734ca3a7f76d2c7af97"
+}

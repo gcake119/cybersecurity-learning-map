@@ -31,3 +31,8 @@ product
 ## Accessibility & Inclusion
 
 保留原生 button／select／link、鍵盤替代拖曳與 reduced-motion。互動文字所有狀態採至少 4.5：1，focus 與控制邊界至少 3：1；停用元件也採相同文字目標。完整跨瀏覽器與讀屏驗收另列，不能由本次對比檢查推定。依據：既有 QA、此次可讀性修正要求；詳細規範見 DESIGN.md。
+
+
+## Refactor decision — 2026-10-02
+
+既有最高層 outcome 與八單元保留。新增 baseline／scope、必要 READ、持續章節定位、直接路由狀態重建與 clipboard。Final 的去識別化合成 Transfer 改為需求與模型條件一起變動，不能只換 domain 名稱。真實專案架構仍需 learner 自行建立與確認；公開 repo 不記錄個人能力或 private handoff。詳細 gate 見 docs/course-refactor-review.md。
