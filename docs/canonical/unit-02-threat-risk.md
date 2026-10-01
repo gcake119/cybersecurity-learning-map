@@ -1,6 +1,6 @@
 # Unit 2 — 誰會造成問題？現在這個風險有多重要？
 
-> Content Review: PASS — 2026-09-26
+> Content Review: PASS — 2026-09-26；2026-10-02 完成先備／術語重構 review
 
 ## Central Question
 從「這裡有漏洞」到「我們現在應該先處理它」，中間缺哪些 evidence？
@@ -66,3 +66,13 @@ Agent 可讀 advisory、lockfile / version、整理 CVSS/EPSS/KEV、列出待查
 
 ## Content Review
 PASS。保留 vulnerability operations 所需工具語彙，但 learning outcome 仍是 contextual risk reasoning。
+
+## Prerequisites and baseline bridge — 2026-10-01
+
+先用 U1 的不可接受後果。套件是系統引用的外部程式；版本通知只說某範圍有問題，還需核對實際安裝與路徑。
+
+本章安全推理視為 New／unfamiliar；必要 READ 先補上述先備與 mechanism，觀察後的術語摘要不是唯一解釋來源。
+
+## Refactor source links
+
+- [FIRST EPSS FAQ](https://www.first.org/epss/faq)：支持既有本章 reasoning／mechanism；本次白話解釋未增加技術範圍。

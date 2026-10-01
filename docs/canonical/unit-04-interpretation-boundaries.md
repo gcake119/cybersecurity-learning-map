@@ -1,6 +1,6 @@
 # Unit 4 — 資料在哪一步變成「指令」或另一種意思？
 
-> Content Review: PASS — 2026-09-26
+> Content Review: PASS — 2026-09-26；2026-10-02 完成先備／術語重構 review
 
 ## Central Question
 同一份外部資料進 SQL、HTML、path、URL、parser 或 command context 後，為什麼會產生不同 consequence？
@@ -60,3 +60,13 @@ Agent 協助列 sources / transformations / sinks、找 string concatenation / u
 
 ## Content Review
 PASS。不同 interpretation contexts 已分離；不教 exploit payload memorization；模型可安全 synthetic 化。
+
+## Prerequisites and baseline bridge — 2026-10-01
+
+SQL 是資料庫查詢語言；HTML 是頁面結構標記；path 是檔案位置；process 是執行中的程序。重點是資料進入這些解讀位置的語意變化。
+
+本章安全推理視為 New／unfamiliar；必要 READ 先補上述先備與 mechanism，觀察後的術語摘要不是唯一解釋來源。
+
+## Refactor source links
+
+- [OWASP Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html)：支持既有本章 reasoning／mechanism；本次白話解釋未增加技術範圍。

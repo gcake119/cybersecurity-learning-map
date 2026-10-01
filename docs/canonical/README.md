@@ -1,8 +1,8 @@
 # Canonical Content Index
 
-> 課綱：`docs/curriculum-proposal.md` v0.2 confirmed
-> Content status：Unit 1–8 PASS
-> Cross-unit Review：PASS — 2026-09-26
+> 課綱：`docs/curriculum-proposal.md` v0.3 refactor reviewed
+> Content status：Unit 1–8 reviewed；先備與術語修訂完成
+> Cross-unit Review：PASS WITH SOURCE LIMITATION — 2026-10-02
 
 | Unit | Canonical Content | Review |
 | --- | --- | --- |
@@ -17,4 +17,4 @@
 
 Canonical Content 定義教材必須保持正確的 meaning；Learner-facing copy、動畫與 UI 另行設計。
 
-下一 gate：`interaction-storyboard.md`。
+本次 gate 與來源限制見 `cross-unit-content-review.md`；真人學習成效尚未驗收。

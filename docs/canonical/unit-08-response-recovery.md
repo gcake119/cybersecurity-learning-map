@@ -1,6 +1,6 @@
 # Unit 8 — 知道出事後，怎麼限制、恢復，再避免重演？
 
-> Content Review: PASS — 2026-09-26
+> Content Review: PASS — 2026-09-26；2026-10-02 完成先備／術語重構 review
 
 ## Central Question
 偵測到異常後，如何停止持續傷害、重新建立可信狀態，並驗證同類問題不再發生？
@@ -25,7 +25,14 @@
 alert / report → validate signal → scope assets / identities → contain → remediate compromised path → recover trusted service/data → verify → monitor → update model/tests/controls/playbook。
 
 ## Required Terminology
-Incident、Containment、Revocation、Rotation、Recovery、Restore、Lessons learned / improvement。
+
+- Incident（安全事件）：需要調查處理的保護失效情況。
+- Containment（限制影響）：限制持續或擴大傷害。
+- Remediation（排除問題）：處理被利用的原因或失守路徑。
+- Revocation／rotation（撤銷／輪替）：接 U6 的使舊值失效／切換替代值。
+- Recovery（恢復）：重新建立可接受且可驗證的可信運作狀態。
+- Restore（還原）：從備份等來源取回資料；只是恢復的一個動作。
+- Lessons learned（事件改善）：把原因与證據帶回控制、測試與流程。
 
 ## Teaching Case
 Synthetic account compromise：stolen deployment credential → unauthorized deployment / API access → unusual data reads → logs → alert。Learner 控制 log coverage、revoke credential、isolate service、reduce permissions、rotate downstream secrets、redeploy trusted artifact、restore data、regression tests。Graph 顯示 active attack paths、contained resources、trust-restoration checklist，不計算虛構成功率。
@@ -53,3 +60,13 @@ Agent 協助整理 timeline / evidence、產生 hypotheses、比較 containment 
 
 ## Content Review
 PASS。Containment / remediation / recovery 邊界清楚；不把 backup、patch、rollback、rotation 當同一種修復。
+
+## Prerequisites and baseline bridge — 2026-10-01
+
+使用 U7 的事件紀錄與警示建立已知／未知。先辨認持續傷害，再區分停止傷害與重建可信狀態，不要求已懂事件處理平台。
+
+本章安全推理視為 New／unfamiliar；必要 READ 先補上述先備與 mechanism，觀察後的術語摘要不是唯一解釋來源。
+
+## Refactor source links
+
+- [NIST SP 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)：支持既有本章 reasoning／mechanism；本次白話解釋未增加技術範圍。

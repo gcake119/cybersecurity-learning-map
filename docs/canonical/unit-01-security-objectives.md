@@ -1,6 +1,6 @@
 # Unit 1 — 什麼不能發生？
 
-> Content Review: PASS — 2026-09-26
+> Content Review: PASS — 2026-09-26；2026-10-02 完成先備／術語重構 review
 
 ## Central Question
 一個功能正常可用，還有哪些結果是不能接受的？
@@ -57,3 +57,13 @@ Agent 可提出漏掉的 asset / adverse consequence / assumption；學習者必
 
 ## Content Review
 PASS。沒有把 CIA 當完整課綱；沒有把 control 當 objective；Teaching Case 足以支撐 U2–U3 重訪。
+
+## Prerequisites and baseline bridge — 2026-10-01
+
+功能可用不代表所有結果都可接受。先用文件被讀、被改、不能開三種現象辨認資產，不要求已會 CIA。
+
+本章安全推理視為 New／unfamiliar；必要 READ 先補上述先備與 mechanism，觀察後的術語摘要不是唯一解釋來源。
+
+## Refactor source links
+
+- [OWASP Threat Modeling](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html)：支持既有本章 reasoning／mechanism；本次白話解釋未增加技術範圍。

@@ -1,6 +1,6 @@
 # Unit 3 — 跨過這條線後，還能相信什麼？
 
-> Content Review: PASS — 2026-09-26
+> Content Review: PASS — 2026-09-26；2026-10-02 完成先備／術語重構 review
 
 ## Central Question
 登入成功後，為什麼 resource ID、role、file metadata 與 service request 還不能直接相信？
@@ -64,3 +64,13 @@ Agent 協助產生 subject-resource-action matrix、找 missing paths / backgrou
 
 ## Content Review
 PASS。避免把 Zero Trust 當產品架構；避免把 RBAC 當完整 authorization；machine identities 已納入。
+
+## Prerequisites and baseline bridge — 2026-10-01
+
+Request 是對服務提出操作要求；API 是受理程式要求的入口；session 是多次要求間延續身分的方式。能辨認身分仍不能決定資源權限。
+
+本章安全推理視為 New／unfamiliar；必要 READ 先補上述先備與 mechanism，觀察後的術語摘要不是唯一解釋來源。
+
+## Refactor source links
+
+- [OWASP Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)：支持既有本章 reasoning／mechanism；本次白話解釋未增加技術範圍。

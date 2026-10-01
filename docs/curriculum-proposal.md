@@ -1,8 +1,8 @@
-# Cybersecurity Learning Map v2 — Curriculum Proposal v0.2
+# Cybersecurity Learning Map v2 — Curriculum Proposal v0.3
 
 > 日期：2026-09-26
 > 狀態：**Curriculum confirmed — 2026-09-26**
-> 本文件不修改 legacy UI，也不進 Canonical Content / Storyboard / Implementation。
+> 2026-10-01：依 learning-map main `9e62bb7` 完成既有課程重構審查。使用者已委託範圍內課綱決策；以下修訂保留既有最高層 outcome。
 
 ## 1. 重新定義課程目的
 
@@ -503,7 +503,7 @@ Recurring teaching cases 可包含：
 
 Transfer 使用 Sim-sik、台南市衛生局案件系統、Podcast hosting、VocaScript、自動發文、multi-repo deployment 與 AI-assisted development workflow。Transfer 不提示對應章節或 mechanism 名稱。
 
-## 12. Curriculum Gate decision
+## 12. Curriculum Gate decision（2026-09-26 歷史決策）
 
 **Confirmed — 2026-09-26。**
 
@@ -517,4 +517,35 @@ Transfer 使用 Sim-sik、台南市衛生局案件系統、Podcast hosting、Voc
 - Semgrep 等工具教到基本使用、finding 判讀、evidence 與 coverage limitations，不做工具專精；
 - 互動參考 System Design Simulator 的 component interaction / animation / state propagation / consequence visualization，但建立 Cybersecurity 專用 deterministic models。
 
-下一階段才可進 Canonical Content → Unit-level Content Review → Cross-unit Content Review。尚未進 UI、Storyboard 或 implementation。
+當時下一階段為 Canonical Content → Unit-level Content Review → Cross-unit Content Review。現行重構決策與 baseline 見第 13–14 節。
+
+
+## 13. Learner baseline and scope contract — 2026-10-01
+
+Baseline 是本次教學假設，不是個人的能力認證。已查閱本課與相鄰 agent-system-design-learning-map 的課程文件；未找到私人 Learning Handoff，也沒有前置教材完成／transfer 證據。公開 repo 只保留去識別化的受眾假設。
+
+| 分類 | 本次判斷 | 教學處理 |
+| --- | --- | --- |
+| Already knows | 無足夠證據可宣稱特定資安能力已掌握 | 不憑工程師常識跳過必要先備 |
+| Familiar but needs support | 接觸 AI 協作開發、功能、部署、測試，以及 Browser／Backend／Database／API 的角色 | 不擴成軟體開發入門 Unit；需要時用短 bridge 解釋 request、worker、credential、log |
+| New / unfamiliar | 安全目標與風險、授權與信任、解讀邊界、失守後能力、秘密／供應鏈生命週期、證據涵蓋、應變恢復 | 先備、術語、mechanism、cause → effect 與例子先於獨立 Transfer |
+
+| Scope | 決策 |
+| --- | --- |
+| Learn now | 八個安全推理問題、基本 finding 判讀、控制的邊界與證據、合成整合事件 |
+| Skip because already known | 目前無已證實可整章跳過的資安單元；一般開發操作只作銜接，不重教工具安裝／Git／框架教學 |
+| Defer / not now | Linux／SSH 操作、真實 Semgrep 安裝與實作 lab、自訂規則、完整加密金鑰與供應鏈平台設計，待建立推理後另課處理 |
+| Out of scope | 未授權攻擊、完整滲透測試、惡意程式逆向、密碼演算法實作、SOC／SIEM 維運、證照與合規框架背誦；本課不以 deep dive 補入 |
+
+## 14. Curriculum review decision
+
+最高層 outcome 保留：面對 AI 與工具建議，沿資產、資料、身分與執行路徑提出控制，查證依據，推演失守與恢復。八個 Unit 各支持一種不同判斷，沒有證據支持刪除任一 Unit。
+
+- U1 保護結果 → U2 在部署情境下排序 → U3 正常請求的允許條件 → U4 資料如何取得新語意 → U5 假設已失守後的能力 → U6 資料／秘密／軟體交付生命週期 → U7 claim 與 evidence → U8 持續傷害與可信恢復。
+- U3 最小權限與 U5 最小權限不是重複 Unit：前者建立允許政策，後者假設身分已失守並觀察剩餘能力；後者只做短 bridge。
+- U6 secret 輪替与 U8 輪替也是銜接：先教生命週期，再用於事件處置，不另重講。
+- 不把 Browser、HTTP、Git、CI 重新膨脹成章節；在首次必要處補可閱讀先備。
+- Unit 名稱保留 learning question；U5 在導覽改為「一個元件失守後，還能碰到哪裡？」。
+- 學習模式改為同一問題表面上的 INTERACT＋必要 READ；U1 提案分類用 PRACTICE，新增約束用 PRACTICE，每章結尾及 Final 用 TRANSFER。不插入彼此無關的 quiz。
+
+Curriculum Gate：PASS（使用者委託決策，未改 highest-level outcome）。Canonical review 與 storyboard 必須先完成，才改畫面。

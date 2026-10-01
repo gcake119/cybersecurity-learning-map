@@ -3,7 +3,7 @@
 > 日期：2026-09-26
 > 狀態：Storyboard PASS
 > Source of truth: confirmed curriculum + Canonical Content + Cross-unit Content Review
-> Implementation 尚未開始。
+> 歷史 storyboard 已實作；本次 mixed-mode 修訂見文末。
 
 ## Shared interaction grammar
 
@@ -231,3 +231,50 @@ PASS。
 - U8 不產生虛構 incident probability / score。
 
 下一步：Learning Copy。
+
+## Refactor mixed-mode storyboard — 2026-10-02
+
+同一 Unit 保留同一模型與 URL state。每階段先提出問題並提供可操作 graph，再直接顯示補足先備與 mechanism 的必要 READ；READ 不重設模型或另開 quiz。原 reveal 只作术語摘要。章節導覽不加入完成鎖。
+
+| Unit／stage | 主模式 | 必要 READ／用途 | 接續觀察 |
+| --- | --- | --- | --- |
+| U1／1 | INTERACT＋READ | 先觀察，再描述損害：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U1／2 | INTERACT＋READ | 把要求和做法分開：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U1／3 | PRACTICE＋READ | AI 提案需要哪一種依據：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U1／4 | PRACTICE＋READ | 公開讀取不代表公開修改：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U2／1 | INTERACT＋READ | 版本、路徑與後果要一起看：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U2／2 | INTERACT＋READ | 每份來源回答不同問題：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U2／3 | PRACTICE＋READ | 原排序會因條件而改變：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U3／1 | INTERACT＋READ | 身分與允許操作是兩個判斷：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U3／2 | INTERACT＋READ | 背景工作也有身分與能力：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U3／3 | PRACTICE＋READ | 能阻止副作用的位置才有效：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U4／1 | INTERACT＋READ | 資料到了哪個解讀位置：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U4／2 | INTERACT＋READ | 業務驗證與安全建構各管一件事：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U4／3 | PRACTICE＋READ | 安全與功能都要成立：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U5／1 | INTERACT＋READ | 起點已失守，還有哪些條件限制它：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U5／2 | INTERACT＋READ | 網路可達不等於有修改權限：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U5／3 | PRACTICE＋READ | 合法工作也需要路徑：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U6／1 | INTERACT＋READ | 誰還能取得解密能力：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U6／2 | INTERACT＋READ | 刪原文、換新值、撤銷舊值：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U6／3 | INTERACT＋READ | 軟體交付不是只看套件名稱：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U6／4 | PRACTICE＋READ | 舊值失效與工作可用要一起驗證：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U7／1 | INTERACT＋READ | 先說清想證明的主張：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U7／2 | INTERACT＋READ | 修正後，仍要看未涵蓋的地方：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U7／3 | INTERACT＋READ | 紀錄能連起事件，警示仍需調查：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U7／4 | PRACTICE＋READ | 綠燈只屬於受測條件：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U8／1 | INTERACT＋READ | 有線索，仍要保留未知：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U8／2 | INTERACT＋READ | 停止新部署與停止既有程序不同：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U8／3 | INTERACT＋READ | 可信恢復需要多份證據：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U8／4 | INTERACT＋READ | 讓同類問題可再次查核：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+| U8／5 | PRACTICE＋READ | 備份還原只是其中一步：完整因果與界線不能只靠路徑顏色推知 | 回到同一 graph 修改條件，核對節點副作用與 evidence |
+
+每章 Transfer：TRANSFER，不帶入 teaching 閱讀答案；保留獨立情境設定與無提示判斷。Final：累積五個變化，再換情境需求；不以只改 domain 名稱當成實際專案遷移。
+
+Simulator 實際參考版本：`a212e371`；已讀 README、SimulationControls、runSimulation 與 ComponentNodeInner。轉譯 config → model → node/edge consequence → compare/revise；不借用 QPS、面試評分或元件 palette。
+
+Storyboard Gate：PASS。課程介面需有持續章節導覽、current unit/stage、直接路由、可讀 prose、copy、back/next/restart、focus 與 reduced motion。
+
+
+### Final Transfer refinement
+
+原先選 domain 只改名稱，不足以支持遷移目標。保留合成 teaching 系統與 evidence，載入兩個不同需求情境：案件系統需要私人資料不可被未允許修改；自動發文需要公開内容可讀、發布能力僅限指定工作，但未知部署內容仍需查核。需求與 sharing／worker／產物狀態一起改變，不提示應套用哪章。明示切換會載入情境設定、不是實際專案資料。Transfer 不提供答案卡；要求 learner 指出后果、證據與未知。此修訂補足既有 transfer outcome，沒有增加新技術主題。

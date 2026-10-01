@@ -154,3 +154,23 @@ Burp / curl / DevTools 可作 supplemental authorized observation tools；Kali /
 **Cross-unit Content Review：PASS。**
 
 下一階段進 Interaction Storyboard；尚未修改 production UI。
+
+## Refactor Content Gate — 2026-10-02
+
+PASS WITH SOURCE LIMITATION。最高層 outcome 與八章順序保留。每章 central question、objectives、claims、reasoning、cases、misconceptions、boundary、transfer、source mapping 已逐章審查；新增 Prerequisites 與 U5–U8 術語定義。
+
+- U1 不將公開讀取稱外洩；U2 情境風險不簡化成工具分數。
+- U3 身分／資源權限與 U5 失守後能力保留區別。
+- U4 業務驗證、各輸出位置安全建構與功能要求分開。
+- U6 明文能力、憑證撤銷、consumer 更新與產物來源分開。
+- U7 finding／行為測試／runtime evidence 不互相代替；U8 止住傷害與可信恢復分開。
+- 必要解釋直接以 READ 呈現，現有術語 reveal 只保留觀察後摘要；不用 UI 代替 prerequisite。
+- 新增文字是既有 canonical 的白話展開，不增加新 outcome 或來源邊界。
+- 本輪核讀 FIRST、OWASP、NIST、Semgrep 官方頁面；CISA KEV 網頁取回 403，既有「確認實際利用紀錄」由 FIRST FAQ 支持，未加入最新 catalog 數據。
+
+下一 gate：Storyboard / Learning Copy → implementation → Technical QA → Human Learning Review。
+
+
+### Final Transfer refinement
+
+原先選 domain 只改名稱，不足以支持遷移目標。保留合成 teaching 系統與 evidence，載入兩個不同需求情境：案件系統需要私人資料不可被未允許修改；自動發文需要公開内容可讀、發布能力僅限指定工作，但未知部署內容仍需查核。需求與 sharing／worker／產物狀態一起改變，不提示應套用哪章。明示切換會載入情境設定、不是實際專案資料。Transfer 不提供答案卡；要求 learner 指出后果、證據與未知。此修訂補足既有 transfer outcome，沒有增加新技術主題。
