@@ -33,7 +33,7 @@ jobs:
         if: always()
         with:
           name: browser-screenshots-${{ github.run_attempt }}
-          path: output/playwright/v2/
+          path: output/playwright/
           retention-days: 7
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

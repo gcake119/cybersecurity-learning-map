@@ -1,12 +1,21 @@
 import type {Result,Status,Value} from './model';
 export const finalDefaults:Record<string,Value>={asset:'customer documents',objective:'read',sharing:'private',resourceCheck:false,safePreview:false,advisoryChecked:false,versionAffected:true,dependencyUsed:true,patched:false,separateWorker:false,workerScope:'all',workerRoute:true,workerRevoked:false,fields:false,interaction:false,bulkRule:false,deployRevoked:false,ciScope:'write',provenance:false,knownArtifact:false,rotate:false,restore:false,restoreVerified:false,isolate:false,resume:false,sast:false,behaviorTest:false,dependencyScan:false,secretScan:false,domain:'collaboration SaaS'};
+export const finalTransferCases:Record<string,{facts:string;patch:Record<string,Value>}>= {
+ 'collaboration SaaS':{facts:'團隊協作文件仍限制指定人讀取；背景工作可處理物件。保留目前系統設定，重新說明哪些假設有證據。',patch:{}},
+ '案件系統':{facts:'私人案件只能由指定人查看與修改。背景工作只需讀來源並產生預覽，不能改案件。發布憑證的事件仍需調查。',patch:{asset:'customer documents',objective:'write',sharing:'private',workerScope:'read',workerRoute:true,workerRevoked:false}},
+ '自動發文':{facts:'發布內容允許公開讀取，來源文章的讀取不是外洩。背景工作需要發布能力，但未知產物已部署，不能只以公開政策判斷可以放心。',patch:{asset:'deployment capability',objective:'write',sharing:'public',workerScope:'read',separateWorker:false,workerRevoked:false,workerRoute:true,knownArtifact:false}}
+};
+export function applyFinalTransfer(state:Record<string,Value>,domain:string):Record<string,Value>{
+ const scenario=finalTransferCases[domain];
+ return scenario?{...state,...scenario.patch,domain}:{...state};
+}
 export const incidents=[
 {title:'新 sharing feature',question:'團隊要讓外部協作者看文件預覽。Browser 帶入 document ID 與預覽內容，Worker 也讀檔。哪些結果不應發生？',keys:['asset','objective','sharing','resourceCheck','safePreview','sast','behaviorTest']},
 {title:'收到 dependency advisory',question:'建置使用的套件有一則通知，版本和使用路徑尚待核對。前一個 feature 已上線。現在能提出什麼判斷？',keys:['advisoryChecked','versionAffected','dependencyUsed','patched','dependencyScan','behaviorTest']},
 {title:'Worker identity 出現不熟悉的使用',question:'先假設 Worker 的工作身分已失守。它能碰到哪些資料和外部能力？原來的分享政策還足夠嗎？',keys:['separateWorker','workerScope','workerRoute','workerRevoked','resourceCheck']},
 {title:'大量文件存取訊號',question:'同一時段出現大量讀取。紀錄不完整，可能是合法批次，也可能和之前的身分有關。你能知道誰、在哪裡、做了什麼嗎？',keys:['fields','interaction','bulkRule','isolate','workerRevoked','workerScope']},
 {title:'發布憑證外洩，產物來源待核對',question:'公開紀錄出現部署 token，並有一份不熟悉的 artifact。刪原文或還原備份足夠嗎？逐條核對持續能力與恢復依據。',keys:['deployRevoked','ciScope','provenance','knownArtifact','rotate','restore','restoreVerified','isolate','resume','secretScan','behaviorTest']},
-{title:'帶到另一個系統',question:'選熟悉的 domain，沿同一張合成架構重新判斷。角色名稱換了，哪些 assumptions 需要重新確認？說明你保護什麼、控制在哪裡、證據與未知範圍。',keys:Object.keys(finalDefaults)}
+{title:'帶到另一個系統',question:'載入不同需求的合成情境，沿同一張架構重新判斷。需求與系統條件換了，哪些 assumptions 需要重新確認？說明你保護什麼、控制在哪裡、證據與未知範圍。',keys:Object.keys(finalDefaults)}
 ];
 export function evaluateFinal(c:Record<string,Value>,step:number):Result {
   const r:Result={nodes:{},details:{},edges:[],metrics:{},evidence:[],summary:'',limit:'所有事件與路徑都是明示假設的合成情境；不執行 scanner，不估 exploit probability，不代表真實系統設定。'};

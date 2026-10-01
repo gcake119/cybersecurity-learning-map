@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import * as model from '../src/v2/final-model.ts';
+assert.equal(typeof model.applyFinalTransfer,'function','Transfer must change requirements and model, not only a label');
+const cases=model.applyFinalTransfer(model.finalDefaults,'案件系統');
+const publishing=model.applyFinalTransfer(model.finalDefaults,'自動發文');
+assert.equal(cases.sharing,'private');
+assert.equal(publishing.sharing,'public');
+assert.equal(cases.objective,'write');
+assert.equal(publishing.asset,'deployment capability');
+assert.notDeepEqual(model.evaluateFinal(cases,5).details,model.evaluateFinal(publishing,5).details);
+assert.equal(model.finalDefaults.domain,'collaboration SaaS','Transfer does not mutate teaching defaults');
+const revised=model.applyFinalTransfer({...cases,fields:true,interaction:true},'自動發文');
+assert.equal(revised.fields,true,'existing evidence remains available');
+assert.equal(revised.interaction,true);
+console.log('PASS Transfer changes requirements, model consequence and preserves evidence');

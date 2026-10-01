@@ -5,12 +5,15 @@ import {bySlug,units} from './course';
 import {defaults,evaluate,setControl,cleanState,type State,type Value} from './model';
 import ControlsV2 from './ControlsV2.vue';
 import SystemGraph from './SystemGraph.vue';
+import CodeBlock from './CodeBlock.vue';
+import {readings} from './reading';
 import {resolveLesson} from './navigation';
 const route=useRoute(),router=useRouter();
 const unit=computed(()=>bySlug[String(route.params.slug)]||units[0]);
 const entry=computed(()=>resolveLesson(unit.value,route.query));
 const transfer=computed(()=>entry.value.transfer);
 const index=computed(()=>entry.value.index);
+const reading=computed(()=>readings[unit.value.id][Math.min(index.value,unit.value.stages.length-1)]);
 const stage=computed(()=>unit.value.stages[Math.min(index.value,unit.value.stages.length-1)]);
 const state=ref<State>(structuredClone(defaults[1]));
 const before=ref<State>(structuredClone(defaults[1]));
@@ -53,7 +56,7 @@ function snapshot(){before.value={unit:state.value.unit,controls:{...state.value
 </script>
 <template><section class="v2-lesson">
 <nav class="v2-top" aria-label="課程導覽"><RouterLink to="/v2">← 課程入口</RouterLink><span v-if="!transfer">UNIT {{unit.id}} · {{unit.teaching}}</span><span v-else>新情境 · {{unit.transfer}}</span><RouterLink to="/v2/final">整合情境 →</RouterLink></nav>
-<p class="v2-kicker">{{transfer?'TRANSFER':'AI-ASSISTED SECURITY ENGINEERING'}} · {{index+1}}／{{unit.stages.length+1}}</p>
+<p class="v2-kicker">{{transfer?'TRANSFER':reading.mode+' ＋ READ'}} · {{index+1}}／{{unit.stages.length+1}}</p>
 <h1 class="v2-stage-title" tabindex="-1">{{transfer?'換一個情境，重新推演':stage.title}}</h1>
 <p class="v2-question">{{transfer?unit.transferPrompt:stage.question}}</p>
 <p class="v2-synthetic">課程模擬：結果只依明示設定決定，不執行真實攻擊或 scanner。展開「模型假設」可查範圍。</p>
@@ -62,9 +65,10 @@ function snapshot(){before.value={unit:state.value.unit,controls:{...state.value
 <p class="v2-change" role="status">{{lastChange}}</p>
 <div class="v2-workbench"><section class="v2-control-panel"><h2>{{transfer?'改變系統事實':'試著改一個條件'}}</h2><ControlsV2 :controls="controls" :values="state.controls" @change="change"/></section>
 <section class="v2-canvas"><h2>追蹤改變發生在哪裡</h2><SystemGraph :result="visibleResult" :labels="transfer?unit.transferNodes:undefined" :pulse="pulse" :before="compare?visibleBefore:undefined"/><dl class="v2-metrics"><template v-for="(v,k) in visibleResult.metrics" :key="k"><dt>{{k}}</dt><dd>{{v}}</dd></template></dl><p v-if="!transfer" class="v2-summary">{{result.summary}}</p></section></div>
+<section v-if="!transfer" class="v2-reading" aria-label="必要閱讀"><p class="v2-kicker">READ · 必要閱讀</p><h2>{{reading.title}}</h2><p v-for="paragraph in reading.paragraphs" :key="paragraph">{{paragraph}}</p><p class="v2-reading-return">讀完後回到上方模型，再改一個條件，指出後果與仍未知的範圍。</p><p class="v2-reading-sources">查核來源：<template v-for="source in reading.sources" :key="source.url"><a :href="source.url" target="_blank" rel="noopener noreferrer">{{source.label}}</a> </template></p></section>
 <section v-if="unit.id===1&&index===2&&!transfer" class="v2-claim-board" aria-label="Agent 提案與依據關係"><p>可拖曳提案，或使用上方選單操作；兩者改變同一份關係圖。</p><div class="v2-claim-groups"><section v-for="group in claimGroups" :key="group.key" :data-claim-group="group.key" @dragover.prevent @drop.prevent="dropClaim($event,group.key)"><h2>{{group.name}}</h2><small>{{group.relation}}</small><p v-for="e in result.evidence.filter(e=>state.controls[e.id]===group.key)" :key="e.id" :data-claim="e.id" draggable="true" @dragstart="dragClaim($event,e.id)">{{e.claim}}</p></section></div></section>
 <section v-if="transfer||stage.evidence" class="v2-evidence"><h2>檢查依據和範圍</h2><p v-if="unit.id===7" class="v2-synthetic">課程模擬：固定 Semgrep-like 規則／結果，不執行真實 Semgrep。</p><div v-for="e in result.evidence" :key="e.id" class="v2-evidence-row" :data-evidence="e.id"><strong>{{e.source}} · {{e.claim}}</strong><p>{{e.observation}}</p><small>{{e.scope}}</small></div></section>
-<section v-if="unit.id===7&&!transfer&&index===1" class="v2-tool-flow" aria-label="課程工具循環"><h2>重跑同一份 evidence，核對修正範圍</h2><ol><li>rule：demo-unsafe-query</li><li>match：比對 query／fixture 的固定示範</li><li>finding：檢查來源和 sink</li><li>triage：調查是否適用</li><li>fix：只改已確認的 query 缺陷</li><li>rescan：核對 match 是否消失，保留 uncovered scope</li></ol><p>本課改變修正條件後，自動重跑模擬掃描與已啟用的 test；真實工具需要對修改後的程式重新執行。</p><button @click="pulse++;lastChange='已重新計算模擬掃描與已啟用的 test；請核對 finding 與未涵蓋範圍。'">重新執行課程掃描與測試</button><details><summary>對照真實 Semgrep 的基本用法</summary><p>在已獲授權的本機專案，完成工具安裝後，可用 <code>semgrep scan --config p/default .</code> 掃描。固定要查的程式範圍與 rules，讀 finding、追來源／sink、調查適用性，有限修正後再用相同範圍執行。</p><p>CI 可重複執行同一組規則。真實 engine、規則和設定會影響結果，不能用本課固定 match 表預測。</p><a href="https://docs.semgrep.dev/getting-started/quickstart" target="_blank" rel="noopener noreferrer">官方 Quickstart</a> · <a href="https://docs.semgrep.dev/writing-rules/glossary" target="_blank" rel="noopener noreferrer">官方 rule／finding 用語</a></details></section>
+<section v-if="unit.id===7&&!transfer&&index===1" class="v2-tool-flow" aria-label="課程工具循環"><h2>重跑同一份 evidence，核對修正範圍</h2><ol><li>rule：demo-unsafe-query</li><li>match：比對 query／fixture 的固定示範</li><li>finding：檢查來源和 sink</li><li>triage：調查是否適用</li><li>fix：只改已確認的 query 缺陷</li><li>rescan：核對 match 是否消失，保留 uncovered scope</li></ol><p>本課改變修正條件後，自動重跑模擬掃描與已啟用的 test；真實工具需要對修改後的程式重新執行。</p><button @click="pulse++;lastChange='已重新計算模擬掃描與已啟用的 test；請核對 finding 與未涵蓋範圍。'">重新執行課程掃描與測試</button><details><summary>對照真實 Semgrep 的基本用法</summary><p>在已獲授權的本機專案，完成工具安裝後，可用以下命令掃描。固定要查的程式範圍與 rules，讀 finding、追來源／sink、調查適用性，有限修正後再用相同範圍執行。</p><CodeBlock code="semgrep scan --config p/default ." label="Semgrep 本機掃描命令"/><p>CI 可重複執行同一組規則。真實 engine、規則和設定會影響結果，不能用本課固定 match 表預測。</p><a href="https://docs.semgrep.dev/getting-started/quickstart" target="_blank" rel="noopener noreferrer">官方 Quickstart</a> · <a href="https://docs.semgrep.dev/writing-rules/glossary" target="_blank" rel="noopener noreferrer">官方 rule／finding 用語</a></details></section>
 <section v-if="!transfer&&stage.reveal" class="v2-reveal"><button :aria-expanded="revealed" @click="revealed=!revealed">{{revealed?'收起名稱與界線':'觀察後，看看這個現象的名稱'}}</button><template v-if="revealed"><p v-for="text in stage.reveal" :key="text">{{text}}</p></template></section>
 <details class="v2-assumptions"><summary>這個 deterministic synthetic 模型假設了什麼？</summary><p>{{unit.assumption}}</p><p>{{result.limit}}</p><p>顏色與動畫只表示上述設定的路徑和狀態，不代表真實利用成功機率或安全評分。</p></details>
 <section v-if="transfer" class="v2-transfer"><h2>整理你的判斷</h2><p>指出圖上的變化、支持判斷的 evidence，以及仍未知的範圍。可和 AI 討論，不儲存個人作答、不提供答案卡。</p></section>
