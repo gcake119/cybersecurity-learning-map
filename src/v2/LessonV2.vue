@@ -5,10 +5,12 @@ import {bySlug,units} from './course';
 import {defaults,evaluate,setControl,cleanState,type State,type Value} from './model';
 import ControlsV2 from './ControlsV2.vue';
 import SystemGraph from './SystemGraph.vue';
+import {resolveLesson} from './navigation';
 const route=useRoute(),router=useRouter();
 const unit=computed(()=>bySlug[String(route.params.slug)]||units[0]);
-const transfer=computed(()=>route.query.mode==='transfer');
-const index=computed(()=>Math.min(unit.value.stages.length,Math.max(0,Math.trunc(Number(route.query.stage))||0)));
+const entry=computed(()=>resolveLesson(unit.value,route.query));
+const transfer=computed(()=>entry.value.transfer);
+const index=computed(()=>entry.value.index);
 const stage=computed(()=>unit.value.stages[Math.min(index.value,unit.value.stages.length-1)]);
 const state=ref<State>(structuredClone(defaults[1]));
 const before=ref<State>(structuredClone(defaults[1]));
@@ -29,8 +31,7 @@ const claimGroups=[{key:'confirmed',name:'需求結果',relation:'保護的結�
 function dropClaim(event:DragEvent,key:string){const id=event.dataTransfer?.getData('text/plain');if(id&&/^claim[0-4]$/.test(id))void change(id,key);}
 function dragClaim(event:DragEvent,id:string){event.dataTransfer?.setData('text/plain',id);}
 const controls=computed(()=>unit.value.controls.filter(c=>transfer.value||stage.value.keys.includes(c.key)));
-function read(){let raw:unknown;try{raw=JSON.parse(String(route.query.state||'null'));}catch{raw=null;}
-state.value=cleanState(unit.value.id,raw);}
+function read(){state.value=entry.value.state;}
 watch(()=>route.fullPath,read,{immediate:true});
 watch(()=>String(route.params.slug),()=>{before.value=structuredClone(defaults[unit.value.id]);compare.value=false;revealed.value=false;lastChange.value='先觀察節點，再改一個條件。';});
 function write(controls:Record<string,Value>,extra:Record<string,string|undefined>={}){return router.replace({path:route.path,query:{...route.query,state:JSON.stringify(controls),...extra}});}
@@ -38,7 +39,7 @@ async function change(key:string,value:Value){state.value=setControl(state.value
 async function go(n:number){
   revealed.value=false;
   const isTransfer=n===unit.value.stages.length;
-  const seen=String(route.query.seen||'0').split(',');
+  const seen=String(route.query.seen||String(index.value)).split(',');
   let current={...state.value.controls};
   if(transfer.value&&!isTransfer){try{current=cleanState(unit.value.id,JSON.parse(String(route.query.teaching||'null'))).controls;}catch{current={...defaults[unit.value.id].controls};}}
   if(isTransfer){try{current=route.query.transferState?cleanState(unit.value.id,JSON.parse(String(route.query.transferState))).controls:{...defaults[unit.value.id].controls,...unit.value.transferPatch};}catch{current={...defaults[unit.value.id].controls,...unit.value.transferPatch};}}

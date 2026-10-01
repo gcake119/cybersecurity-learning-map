@@ -22,12 +22,13 @@ export function evaluateFinal(c:Record<string,Value>,step:number):Result {
   const appRead=badRuntime&&!c.isolate;
   const previewChanged=!c.safePreview;
   const requestExposed=c.sharing==='private'&&!c.resourceCheck;
+  const requestActive=requestExposed&&!c.isolate;
   const versionRisk=step>=1&&c.versionAffected&&c.dependencyUsed&&!c.patched;
   const contained=!workerRead&&!providerUse&&!deploymentActive&&!appRead;
   const ready=step>=4&&contained&&c.provenance&&c.knownArtifact&&c.rotate&&c.restore&&c.restoreVerified;
   node('browser','ok','外部協作者改 document ID，要求另一位擁有者的文件');
   node('api',c.isolate?'blocked':requestExposed?'bad':'ok',c.isolate?'隔離，正常協作也不可用':requestExposed?'私人文件 ID 可跨使用者讀取':c.sharing==='public'?'政策允許公開讀取':'每次讀取先檢查人與文件');
-  node('db',requestExposed||workerWrite||appRead?'bad':workerRead?'warn':'ok',workerWrite?'Worker 可讀／改／刪':workerRead?'Worker 可讀；不能改／刪':appRead?'未知 runtime 可讀資料':requestExposed?'API 越界讀取仍在':'目前列出的越界路徑已阻擋');
+  node('db',requestActive||workerWrite||appRead?'bad':workerRead?'warn':'ok',workerWrite?'Worker 可讀／改／刪':workerRead?'Worker 可讀；不能改／刪':appRead?'未知 runtime 可讀資料':requestActive?'API 越界讀取仍在':'目前列出的越界路徑已阻擋');
   node('worker',workerCompromised?'bad':'ok',workerCompromised?'已失守，繼承現有能力':step>=2?'已撤銷失守的工作身分':'合法預覽工作');
   node('storage',workerRead?'bad':previewChanged?'warn':'ok',workerRead?`失守 Worker 能使用 ${c.workerScope} scope`:previewChanged?'外部預覽含安全結構標記，能改變 mock 畫面結構':'固定文字／允許結構的預覽');
   node('provider',providerUse?'bad':'blocked',providerUse?'共用 credential 可發布外部內容':'本 Worker 沒有此發布能力');
