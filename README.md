@@ -52,7 +52,7 @@ Agent 可以同時讀取教材 fork 與私人 Learning Handoff，再依實際學
 
 ## 開發與測試
 
-Node.js 22.12+；pnpm 11.19.0。
+本地開發與 CI 使用 Node.js 24、pnpm 11.19.0；package engines 的最低相容版本維持 Node.js 22.12+。
 
 ```sh
 pnpm install --frozen-lockfile
