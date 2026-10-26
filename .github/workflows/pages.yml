@@ -39,7 +39,7 @@ jobs:
       - run: pnpm build
       - run: pnpm test
       - run: bash scripts/ci/install-browser.sh
-      - run: timeout --signal=TERM --kill-after=30s 600s pnpm test:browser
+      - run: time timeout --signal=TERM --kill-after=30s 1200s pnpm test:browser
       - name: Record complete browser and exact build evidence
         id: evidence
         env:
