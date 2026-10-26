@@ -81,3 +81,7 @@ pnpm test:browser
 - `src/v2/reading.ts`：必要閱讀文案；`src/v2/navigation.ts`：直接路由與階段狀態重建。
 
 Technical QA 通過不代表真人學習效果已通過。公開 repo 不存放私人 Learning Handoff。
+
+## Mint CI 與既有 Pages 發布
+
+可信同repo CI使用專屬Mint runner，fork PR保留hosted。建置、原完整模型與三尺寸Chromium QA通過後，既有GitHub-hosted `deploy` job才發布同一份Pages artifact；只有該job取得Pages/OIDC權限。原main自動與手動發布入口保留；本輪使用者已明確允許既有Pages發布。完整資源、信任與驗收證據見[Mint遷移紀錄](docs/mint-runner-migration.md)。
