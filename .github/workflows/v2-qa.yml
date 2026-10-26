@@ -9,11 +9,23 @@ permissions:
   contents: read
 jobs:
   qa:
-    runs-on: ubuntu-latest
-    timeout-minutes: 12
+    runs-on: ${{ github.repository == 'gcake119/cybersecurity-learning-map' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && fromJSON('["self-hosted","Linux","X64","repo-cybersecurity-learning-map"]') || 'ubuntu-24.04' }}
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash scripts/ci/run-step.sh {0}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Verify Mint identity, shared controls and browser cache
+        env:
+          CI_RESOURCE_CLASS: light
+        run: bash scripts/ci/prepare-mint.sh
       - uses: pnpm/action-setup@v4
+        with:
+          dest: ${{ runner.temp }}/cyber-pnpm-${{ github.run_id }}-${{ github.run_attempt }}
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -21,8 +33,18 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm test
       - run: pnpm build
-      - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm test:browser
+      - run: bash scripts/ci/install-browser.sh
+      - run: timeout --signal=TERM --kill-after=30s 720s pnpm test:browser
+      - name: Record complete browser and exact build evidence
+        id: evidence
+        env:
+          CI_RESOURCE_CLASS: light
+        run: python3 scripts/ci/record-verification.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ci-verification-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ci-verification.json
+          if-no-files-found: error
       - uses: actions/upload-artifact@v4
         if: always()
         with:
