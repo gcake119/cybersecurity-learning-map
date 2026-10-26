@@ -6,7 +6,7 @@ permissions:
 jobs:
   qa:
     if: github.ref == 'refs/heads/codex/cybersecurity-browser-tail-diagnostic'
-    name: Read-only shared lock inspection (diagnostic only)
+    name: Focused original browser tail (diagnostic only)
     runs-on: ${{ github.repository == 'gcake119/cybersecurity-learning-map' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && fromJSON('["self-hosted","Linux","X64","repo-cybersecurity-learning-map"]') || 'ubuntu-24.04' }}
     timeout-minutes: 60
     defaults:
@@ -21,12 +21,21 @@ jobs:
         env:
           CI_RESOURCE_CLASS: light
         run: bash scripts/ci/prepare-mint.sh
-      - name: Inspect shared lock descriptor inheritance only
-        env:
-          CI_RESOURCE_CLASS: light
-        run: python3 scripts/ci/diagnostic-lock-readonly.py
+      - uses: pnpm/action-setup@v4
+        with:
+          dest: ${{ runner.temp }}/cyber-pnpm-${{ github.run_id }}-${{ github.run_attempt }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm build
+      - run: bash scripts/ci/install-browser.sh
+      - name: Diagnose unchanged original reduced-motion browser tail
+        run: timeout --signal=TERM --kill-after=30s 120s pnpm exec node --experimental-strip-types tests/diagnostic-browser-tail.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: diagnostic-lock-readonly-only
-          path: diagnostic-lock-readonly.json
+          name: diagnostic-browser-tail-only
+          path: output/playwright/
