@@ -1,14 +1,12 @@
 name: V2 technical QA
 on:
-  push:
-    branches: [learning-map-v2]
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   qa:
+    if: github.ref == 'refs/heads/codex/cybersecurity-browser-tail-diagnostic'
+    name: Focused original browser tail (diagnostic only)
     runs-on: ${{ github.repository == 'gcake119/cybersecurity-learning-map' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && fromJSON('["self-hosted","Linux","X64","repo-cybersecurity-learning-map"]') || 'ubuntu-24.04' }}
     timeout-minutes: 60
     defaults:
@@ -34,19 +32,10 @@ jobs:
       - run: pnpm test
       - run: pnpm build
       - run: bash scripts/ci/install-browser.sh
-      - run: timeout --signal=TERM --kill-after=30s 720s pnpm test:browser
-      - name: Record complete browser and exact build evidence
-        id: evidence
-        env:
-          CI_RESOURCE_CLASS: light
-        run: python3 scripts/ci/record-verification.py
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ci-verification-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ci-verification.json
-          if-no-files-found: error
+      - name: Diagnose unchanged original reduced-motion browser tail
+        run: timeout --signal=TERM --kill-after=30s 120s pnpm exec node --experimental-strip-types tests/diagnostic-browser-tail.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: v2-browser-qa
+          name: diagnostic-browser-tail-only
           path: output/playwright/
