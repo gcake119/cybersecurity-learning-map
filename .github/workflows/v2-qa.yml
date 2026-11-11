@@ -12,46 +12,66 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    runs-on: ${{ github.repository == 'gcake119/cybersecurity-learning-map' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && fromJSON('["self-hosted","Linux","X64","repo-cybersecurity-learning-map"]') || 'ubuntu-24.04' }}
+    runs-on: ["self-hosted", "Linux", "X64", "repo-cybersecurity-learning-map"]
     timeout-minutes: 60
     defaults:
       run:
         shell: bash scripts/ci/run-step.sh {0}
     steps:
+      - name: Require trusted source before self-hosted execution
+        id: ci_source_admission
+        shell: bash --noprofile --norc -e -o pipefail {0}
+        env:
+          CI_SOURCE_TRUSTED: ${{ github.repository == 'gcake119/cybersecurity-learning-map' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+        run: |
+          [[ "${CI_SOURCE_TRUSTED:-}" == true ]] || {
+            echo 'CI_SOURCE_REQUIRES_ISOLATED_SELF_HOSTED_RUNNER' >&2
+            exit 1
+          }
       - uses: actions/checkout@v4
+        if: ${{ steps.ci_source_admission.outcome == 'success' }}
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
       - name: Verify Mint identity, shared controls and browser cache
+        if: ${{ steps.ci_source_admission.outcome == 'success' }}
         env:
           CI_RESOURCE_CLASS: light
         run: bash scripts/ci/prepare-mint.sh
       - uses: pnpm/action-setup@v4
+        if: ${{ steps.ci_source_admission.outcome == 'success' }}
         with:
           dest: ${{ runner.temp }}/cyber-pnpm-${{ github.run_id }}-${{ github.run_attempt }}
       - uses: actions/setup-node@v4
+        if: ${{ steps.ci_source_admission.outcome == 'success' }}
         with:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+        if: ${{ steps.ci_source_admission.outcome == 'success' }}
       - run: pnpm test
+        if: ${{ steps.ci_source_admission.outcome == 'success' }}
       - run: pnpm build
+        if: ${{ steps.ci_source_admission.outcome == 'success' }}
       - run: bash scripts/ci/install-browser.sh
+        if: ${{ steps.ci_source_admission.outcome == 'success' }}
       - run: time timeout --signal=TERM --kill-after=30s 1200s pnpm test:browser
+        if: ${{ steps.ci_source_admission.outcome == 'success' }}
       - name: Record complete browser and exact build evidence
+        if: ${{ steps.ci_source_admission.outcome == 'success' }}
         id: evidence
         env:
           CI_RESOURCE_CLASS: light
         run: python3 scripts/ci/record-verification.py
       - name: Preserve untrusted PR diagnostic exception
-        if: ${{ (success()) && !(github.actor != 'dependabot[bot]' && github.event.pull_request.user.login != 'dependabot[bot]' && ((github.event_name != 'pull_request' && github.event_name != 'pull_request_target') || github.event.pull_request.head.repo.full_name == github.repository)) }}
+        if: ${{ steps.ci_source_admission.outcome == 'success' && ((success()) && !(github.actor != 'dependabot[bot]' && github.event.pull_request.user.login != 'dependabot[bot]' && ((github.event_name != 'pull_request' && github.event_name != 'pull_request_target') || github.event.pull_request.head.repo.full_name == github.repository))) }}
         uses: actions/upload-artifact@v4
         with:
           name: ci-verification-${{ github.run_id }}-${{ github.run_attempt }}
           path: ci-verification.json
           if-no-files-found: error
       - name: Store trusted ci-verification
-        if: ${{ (success()) && (github.actor != 'dependabot[bot]' && github.event.pull_request.user.login != 'dependabot[bot]' && ((github.event_name != 'pull_request' && github.event_name != 'pull_request_target') || github.event.pull_request.head.repo.full_name == github.repository)) }}
+        if: ${{ steps.ci_source_admission.outcome == 'success' && ((success()) && (github.actor != 'dependabot[bot]' && github.event.pull_request.user.login != 'dependabot[bot]' && ((github.event_name != 'pull_request' && github.event_name != 'pull_request_target') || github.event.pull_request.head.repo.full_name == github.repository))) }}
         uses: ./.github/actions/ci-artifact
         with:
           endpoint: ${{ secrets.CI_ARTIFACT_ENDPOINT }}
@@ -62,13 +82,13 @@ jobs:
           evidence-class: diagnostic
           if-no-files-found: error
       - name: Preserve untrusted PR diagnostic exception
-        if: ${{ (always()) && !(github.actor != 'dependabot[bot]' && github.event.pull_request.user.login != 'dependabot[bot]' && ((github.event_name != 'pull_request' && github.event_name != 'pull_request_target') || github.event.pull_request.head.repo.full_name == github.repository)) }}
+        if: ${{ steps.ci_source_admission.outcome == 'success' && ((always()) && !(github.actor != 'dependabot[bot]' && github.event.pull_request.user.login != 'dependabot[bot]' && ((github.event_name != 'pull_request' && github.event_name != 'pull_request_target') || github.event.pull_request.head.repo.full_name == github.repository))) }}
         uses: actions/upload-artifact@v4
         with:
           name: v2-browser-qa
           path: output/playwright/
       - name: Store trusted v2-browser-qa
-        if: ${{ (always()) && (github.actor != 'dependabot[bot]' && github.event.pull_request.user.login != 'dependabot[bot]' && ((github.event_name != 'pull_request' && github.event_name != 'pull_request_target') || github.event.pull_request.head.repo.full_name == github.repository)) }}
+        if: ${{ steps.ci_source_admission.outcome == 'success' && ((always()) && (github.actor != 'dependabot[bot]' && github.event.pull_request.user.login != 'dependabot[bot]' && ((github.event_name != 'pull_request' && github.event_name != 'pull_request_target') || github.event.pull_request.head.repo.full_name == github.repository))) }}
         uses: ./.github/actions/ci-artifact
         with:
           endpoint: ${{ secrets.CI_ARTIFACT_ENDPOINT }}
