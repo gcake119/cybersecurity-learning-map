@@ -84,4 +84,8 @@ Technical QA 通過不代表真人學習效果已通過。公開 repo 不存放�
 
 ## Mint CI 與既有 Pages 發布
 
-可信同repo CI使用專屬Mint runner，fork PR保留hosted。建置、原完整模型與三尺寸Chromium QA通過後，既有GitHub-hosted `deploy` job才發布同一份Pages artifact；只有該job取得Pages/OIDC權限。原main自動與手動發布入口保留；本輪使用者已明確允許既有Pages發布。完整資源、信任與驗收證據見[Mint遷移紀錄](docs/mint-runner-migration.md)。
+可信同repo CI使用專屬Mint runner，未符合原可信來源條件的PR在checkout前拒絕，不使用hosted fallback。建置、原完整模型與三尺寸Chromium QA通過後，既有GitHub-hosted `deploy` job才發布同一份Pages artifact；只有該job取得Pages/OIDC權限。原main自動與手動發布入口保留；目前使用者要求暫停發布，必須遵守下述發布開關，不在本輪執行部署。完整資源、信任與驗收證據見[Mint遷移紀錄](docs/mint-runner-migration.md)。
+
+## Pages 發布暫停開關
+
+Pages 部署另須 repository variable `ENABLE_PAGES_PUBLICATION` 明確為 `true`，原本部署條件與 build 依賴仍保留。此次 CI 遷移將此開關設為 `false`；不自行恢復。未設定或非 `true` 時仍執行原有 build／驗證，但不部署。Linux build／test 使用自架 runner，Pages 部署維持 GitHub-hosted 例外。可用 `node --test scripts/check-publication-hold.test.mjs` 核對發布條件，不會執行部署。

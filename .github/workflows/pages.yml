@@ -110,6 +110,7 @@ jobs:
           name: github-pages-${{ github.run_attempt }}
           path: dist
   deploy:
+    if: ${{ vars.ENABLE_PAGES_PUBLICATION == 'true' }}
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 10
